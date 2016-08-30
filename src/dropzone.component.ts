@@ -6,8 +6,9 @@ import { DropzoneConfig } from './dropzone.interfaces'
 
 @Component({
   selector: 'dropzone-upload',
-  template: require('./dropzone.component.html'),
-  styles: [require('./dropzone.component.scss')]
+  template: require('dropzone.component.html'),
+  styles: [require('dropzone.component.css'), require('dropzone/dist/min/dropzone.min.css')],
+  encapsulation: ViewEncapsulation.None
 })
 export class DropzoneComponent implements OnInit {
   private dropzone: any;
