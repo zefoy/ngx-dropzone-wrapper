@@ -1,0 +1,12 @@
+<div class="box-container">
+  <div class="app-title">{{title}}</div>
+
+  <div class="info-container">
+    For this example to work you need a server that can handle the uploading of the file.
+  </div>
+
+  <div class="upload-container">
+      <dropzone-upload class="upload-area" (uploadDone)="onUploadDone($event)" (uploadError)="onUploadError($event)" [placeholderText]="'Drag or click here to upload an image'">
+      </dropzone-upload>
+  </div>
+</div>
