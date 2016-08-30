@@ -1,21 +1,18 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "./lib",
     "sourceMap": true,
     "target": "es5",
     "typeRoots": [
       "./node_modules/@types"
     ]
   },
-	"exclude": [
-		"example",
-		"node_modules"
-	],
+  "exclude": [
+    "node_modules"
+  ],
   "filesGlob": [
     "!node_modules/**"
   ]
