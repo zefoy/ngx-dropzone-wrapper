@@ -1,13 +1,13 @@
 const Dropzone = require('dropzone');
 
-import { OnInit, Output, Input, Optional, Component, ElementRef, EventEmitter } from '@angular/core';
+import { OnInit, Output, Input, Optional, Component, ElementRef, EventEmitter, ViewEncapsulation } from '@angular/core';
 
 import { DropzoneConfig } from './dropzone.interfaces'
 
 @Component({
   selector: 'dropzone-upload',
   template: require('dropzone.component.html'),
-  styles: [require('dropzone.component.css'), require('dropzone/dist/min/dropzone.min.css')],
+  styles: [require('dropzone.component.scss'), require('dropzone/dist/min/dropzone.min.css')],
   encapsulation: ViewEncapsulation.None
 })
 export class DropzoneComponent implements OnInit {

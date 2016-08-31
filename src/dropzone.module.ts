@@ -42,12 +42,7 @@ export class DropzoneModule {
 }
 
 export function provideDropzoneConfig(configInterface: DropzoneConfigInterface = {}) {
-	const config = new DropzoneConfig();
-
-	config.url = configInterface.url || '';
-	config.headers = configInterface.headers;
-	config.maxFilesize = configInterface.maxFilesize;
-	config.acceptedFiles = configInterface.acceptedFiles;
+	const config = new DropzoneConfig(configInterface);
 
 	return config;
 }

@@ -10,4 +10,14 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   headers: any;
   maxFilesize: number;
   acceptedFiles: string;
+
+  constructor(config: DropzoneConfigInterface = {}) {
+    this.assign(config);
+  }
+
+  public assign(config: DropzoneConfigInterface = {}) {
+    for (var key in config) {
+      this[key] = config[key];
+    }
+  }
 }
