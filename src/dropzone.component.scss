@@ -1,18 +1,23 @@
-:host {
-  position: relative;
+.dropzone {
+  &.dz-clickable {
+    min-height: 32px;
+    padding: 0;
+    border: none;
+
+    background: transparent;
+  }
 
   .dz-message {
     max-width: 100%;
     max-height: 100%;
     padding: 10px;
     border: 2px dashed #aaa;
+    margin: 0;
 
     cursor: pointer;
     background-color: #eee;
   }
-}
 
-:host /deep/ {
   .dz-preview {
     position: absolute;
     top: 2px;

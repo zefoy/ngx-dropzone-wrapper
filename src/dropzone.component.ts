@@ -1,6 +1,6 @@
 const Dropzone = require('dropzone');
 
-import { OnInit, Output, Input, Optional, Component, ElementRef, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { OnInit, Output, Input, HostBinding, Optional, Component, ElementRef, EventEmitter, ViewEncapsulation } from '@angular/core';
 
 import { DropzoneConfig } from './dropzone.interfaces'
 
@@ -16,6 +16,8 @@ export class DropzoneComponent implements OnInit {
 
   @Output() uploadDone = new EventEmitter<any>();
   @Output() uploadError = new EventEmitter<Object>();
+
+  @HostBinding('class.dropzone') useDropzoneClass = true;
 
   @Input() placeholderText: string = "Click or drop files to upload";
 
