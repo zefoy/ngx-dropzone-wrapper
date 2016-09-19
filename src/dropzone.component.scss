@@ -5,54 +5,54 @@
     border: none;
 
     background: transparent;
-  }
 
-  .dz-message {
-    max-width: 100%;
-    max-height: 100%;
-    padding: 10px;
-    border: 2px dashed #aaa;
-    margin: 0;
-
-    cursor: pointer;
-    background-color: #eee;
-  }
-
-  .dz-preview {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    bottom: 2px;
-    left: 2px;
-
-    background-color: #eee;
-
-    .dz-image {
-      height: 100%;
+    .dz-message {
+      max-width: 100%;
       max-height: 100%;
+      padding: 10px;
+      border: 2px dashed #aaa;
+      margin: 0;
 
-      img {
-        height: 100%;
-      }
+      cursor: pointer;
+      background-color: #eee;
     }
 
-    .dz-details,
-    .dz-error-mark,
-    .dz-success-mark {
-      display: none;
-    }
-
-    .dz-error-message {
+    .dz-preview {
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-
-      padding: 8px;
-      font-weight: bold;
+      top: 2px;
+      right: 2px;
+      bottom: 2px;
+      left: 2px;
 
       background-color: #eee;
+
+      .dz-image {
+        height: 100%;
+        max-height: 100%;
+
+        img {
+          height: 100%;
+        }
+      }
+
+      .dz-details,
+      .dz-error-mark,
+      .dz-success-mark {
+        display: none;
+      }
+
+      .dz-error-message {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        padding: 8px;
+        font-weight: bold;
+
+        background-color: #eee;
+      }
     }
   }
 }
