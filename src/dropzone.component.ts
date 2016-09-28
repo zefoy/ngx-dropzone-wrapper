@@ -1,6 +1,17 @@
 const Dropzone = require('dropzone');
 
-import { OnInit, Output, Input, HostBinding, Optional, Component, ElementRef, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { 
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnChanges,
+  OnInit,
+  Optional,
+  Output,
+  SimpleChanges,
+  ViewEncapsulation } from '@angular/core';
 
 import { DropzoneConfig } from './dropzone.interfaces'
 
@@ -10,7 +21,7 @@ import { DropzoneConfig } from './dropzone.interfaces'
   styles: [require('dropzone.component.scss'), require('dropzone/dist/min/dropzone.min.css')],
   encapsulation: ViewEncapsulation.None
 })
-export class DropzoneComponent implements OnInit {
+export class DropzoneComponent implements OnChanges, OnInit {
   private dropzone: any;
   private dropzoneElement: any;
 
@@ -20,6 +31,8 @@ export class DropzoneComponent implements OnInit {
   @HostBinding('class.dropzone') useDropzoneClass = true;
 
   @Input() placeholderText: string = "Click or drop files to upload";
+  @Input() directory: string = null;
+  @Input() fileName: string = null;
 
   constructor( private elementRef: ElementRef, @Optional() private config: DropzoneConfig ) {
     this.config = config;
@@ -45,5 +58,24 @@ export class DropzoneComponent implements OnInit {
         this.dropzone.removeAllFiles();
       }, 5000);
     });
+  }
+
+  /* Whenever directory changes, add it to config url as a parameter */
+  ngOnChanges(changes: SimpleChanges) {
+    let paramArray = [];
+    if (this.directory) {
+      paramArray.push("directory" + "=" + encodeURIComponent(this.directory));
+    }
+    if (this.fileName) {
+      paramArray.push("name" + "=" + encodeURIComponent(this.fileName));
+    }
+    let paramString = paramArray.join("&");
+
+    // Remove old url parameters
+    this.config.url = this.config.url.replace(/\?.*/,"");
+    if (paramString) {
+      // Insert new parameters to url
+      this.config.url += "?" + paramString
+    }
   }
 }
