@@ -7,11 +7,10 @@
 
   <div class="upload-container">
       <dropzone class="upload-area" 
-      	(uploadDone)="onUploadDone($event)"
-      	(uploadError)="onUploadError($event)"
-      	[directory]="'fileuploads'"
-      	[fileName]="'image'"
-      	[placeholderText]="'Drag or click here to upload an image'">
+        (uploadDone)="onUploadDone($event)"
+        (uploadError)="onUploadError($event)"
+        [urlParameters]="urlParameters"
+        [placeholderText]="'Drag or click here to upload an image'">
       </dropzone>
   </div>
 </div>

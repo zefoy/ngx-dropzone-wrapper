@@ -9,6 +9,8 @@ import { DropzoneComponent } from 'angular2-dropzone-wrapper';
 export class AppComponent {
   @ViewChild(DropzoneComponent) private dropzone: DropzoneComponent;
 
+  private urlParameters = "directory=imageUploads&name=image.png";
+
   private title = 'Simple example app for the angular2-dropzone-wrapper';
 
   constructor() { }

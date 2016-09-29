@@ -24,6 +24,7 @@ import { DropzoneConfig } from './dropzone.interfaces'
 export class DropzoneComponent implements OnChanges, OnInit {
   private dropzone: any;
   private dropzoneElement: any;
+  private baseUrl: string;
 
   @Output() uploadDone = new EventEmitter<any>();
   @Output() uploadError = new EventEmitter<Object>();
@@ -32,12 +33,13 @@ export class DropzoneComponent implements OnChanges, OnInit {
   @HostBinding('class.no-preview') hidePreview: boolean = true;
 
   @Input() placeholderText: string = "Click or drop files to upload";
-  @Input() directory: string = null;
-  @Input() fileName: string = null;
+  @Input() urlParameters: string = null;
   @Input() backgroundImage: string;
 
   constructor( private elementRef: ElementRef, @Optional() private config: DropzoneConfig ) {
     this.config = config;
+
+    this.baseUrl = this.config.url;
 
     this.dropzoneElement = elementRef.nativeElement;
   }
@@ -62,22 +64,11 @@ export class DropzoneComponent implements OnChanges, OnInit {
     });
   }
 
-  /* Whenever directory changes, add it to config url as a parameter */
   ngOnChanges(changes: SimpleChanges) {
-    let paramArray = [];
-    if (this.directory) {
-      paramArray.push("directory" + "=" + encodeURIComponent(this.directory));
-    }
-    if (this.fileName) {
-      paramArray.push("name" + "=" + encodeURIComponent(this.fileName));
-    }
-    let paramString = paramArray.join("&");
-
-    // Remove old url parameters
-    this.config.url = this.config.url.replace(/\?.*/,"");
-    if (paramString) {
-      // Insert new parameters to url
-      this.config.url += "?" + paramString
+    if (this.baseUrl) {
+      this.config.url = this.baseUrl + (this.urlParameters ? "?" + this.urlParameters : "");
+    } else {
+      console.info("You need to define server url in your config!");
     }
   }
 }
