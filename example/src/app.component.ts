@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import { DropzoneComponent } from 'angular2-dropzone-wrapper';
 
 @Component({
   selector: 'my-app',
@@ -6,12 +7,20 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['app.component.css']
 })
 export class AppComponent {
+  @ViewChild(DropzoneComponent) private dropzone: DropzoneComponent;
+
   private title = 'Simple example app for the angular2-dropzone-wrapper';
 
   constructor() { }
 
   onUploadDone(event: any) {
     console.log('onUploadDone:', event);
+
+    // Example: set the backgroundimage according to response
+    if (event.xhr && event.xhr.response) {
+      let responseObject = JSON.parse(event.xhr.response);
+      this.dropzone.backgroundImage = responseObject['url'];
+    }
   }
 
   onUploadError(event: any) {

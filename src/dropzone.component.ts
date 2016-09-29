@@ -29,10 +29,12 @@ export class DropzoneComponent implements OnChanges, OnInit {
   @Output() uploadError = new EventEmitter<Object>();
 
   @HostBinding('class.dropzone') useDropzoneClass = true;
+  @HostBinding('class.no-preview') hidePreview: boolean = true;
 
   @Input() placeholderText: string = "Click or drop files to upload";
   @Input() directory: string = null;
   @Input() fileName: string = null;
+  @Input() backgroundImage: string;
 
   constructor( private elementRef: ElementRef, @Optional() private config: DropzoneConfig ) {
     this.config = config;
@@ -48,7 +50,7 @@ export class DropzoneComponent implements OnChanges, OnInit {
 
       setTimeout(() => {
         this.dropzone.removeAllFiles();
-      }, 5000);
+      }, this.hidePreview ? 1000 : 5000);
     });
 
     this.dropzone.on('success', (res) => {
@@ -56,7 +58,7 @@ export class DropzoneComponent implements OnChanges, OnInit {
 
       setTimeout(() => {
         this.dropzone.removeAllFiles();
-      }, 5000);
+      }, this.hidePreview ? 1000 : 5000);
     });
   }
 

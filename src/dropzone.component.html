@@ -1,3 +1,5 @@
-<div class="dz-message">
-  {{placeholderText}}
+<div class="dz-message" 
+	[style.min-height]="backgroundImage ? '100px' : ''"
+	[style.background-image]="'url(' + backgroundImage + ')'">
+	{{backgroundImage ? "" : placeholderText}}
 </div>
