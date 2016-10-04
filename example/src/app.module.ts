@@ -7,8 +7,10 @@ import { DropzoneModule, DropzoneConfigInterface } from 'angular2-dropzone-wrapp
 import { AppComponent } from './app.component';
 
 const DROPZONE_CONFIG: DropzoneConfigInterface = {
-  url: 'myserver.com', // Change this to your upload POST address
+  // Change this to your upload POST address:
+  server: 'https://httpbin.org/post',
   maxFilesize: 50,
+  previewDelay: 5000,
   acceptedFiles: 'image/*'
 };
 

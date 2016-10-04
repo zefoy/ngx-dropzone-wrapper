@@ -1,19 +1,8 @@
 const Dropzone = require('dropzone');
 
-import { 
-  Component,
-  ElementRef,
-  EventEmitter,
-  HostBinding,
-  Input,
-  OnChanges,
-  OnInit,
-  Optional,
-  Output,
-  SimpleChanges,
-  ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, OnChanges, SimpleChanges, ElementRef, Input, Output, EventEmitter, HostBinding, Optional } from '@angular/core';
 
-import { DropzoneConfig } from './dropzone.interfaces'
+import { DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces'
 
 @Component({
   selector: 'dropzone',
@@ -21,38 +10,35 @@ import { DropzoneConfig } from './dropzone.interfaces'
   styles: [require('dropzone.component.scss'), require('dropzone/dist/min/dropzone.min.css')],
   encapsulation: ViewEncapsulation.None
 })
-export class DropzoneComponent implements OnChanges, OnInit {
+export class DropzoneComponent implements OnInit, OnChanges {
   private dropzone: any;
+  private dropzoneConfig: any;
   private dropzoneElement: any;
-  private baseUrl: string;
+
+  @Input() config: DropzoneConfigInterface;
+
+  @Input() placeholder: string = "Click or drop files to upload";
 
   @Output() uploadDone = new EventEmitter<any>();
   @Output() uploadError = new EventEmitter<Object>();
 
   @HostBinding('class.dropzone') useDropzoneClass = true;
-  @HostBinding('class.no-preview') hidePreview: boolean = true;
-
-  @Input() placeholderText: string = "Click or drop files to upload";
-  @Input() urlParameters: string = null;
-  @Input() backgroundImage: string;
-
-  constructor( private elementRef: ElementRef, @Optional() private config: DropzoneConfig ) {
-    this.config = config;
-
-    this.baseUrl = this.config.url;
+  
+  constructor( private elementRef: ElementRef, @Optional() private defaults: DropzoneConfig ) {
+    this.dropzoneConfig = new DropzoneConfig(defaults);
 
     this.dropzoneElement = elementRef.nativeElement;
   }
 
   ngOnInit() {
-    this.dropzone = new Dropzone(this.dropzoneElement, this.config);
+    this.dropzone = new Dropzone(this.dropzoneElement, this.dropzoneConfig);
 
     this.dropzone.on('error', (err) => {
-      this.uploadError.emit({msg: "Upload errored", error: err});
+      this.uploadError.emit({msg: "Upload error", error: err});
 
       setTimeout(() => {
         this.dropzone.removeAllFiles();
-      }, this.hidePreview ? 1000 : 5000);
+      }, 5000);
     });
 
     this.dropzone.on('success', (res) => {
@@ -60,15 +46,13 @@ export class DropzoneComponent implements OnChanges, OnInit {
 
       setTimeout(() => {
         this.dropzone.removeAllFiles();
-      }, this.hidePreview ? 1000 : 5000);
+      }, this.dropzoneConfig.previewDelay || 0);
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.baseUrl) {
-      this.config.url = this.baseUrl + (this.urlParameters ? "?" + this.urlParameters : "");
-    } else {
-      console.info("You need to define server url in your config!");
-    }
+    this.dropzoneConfig.assign(this.defaults);
+
+    this.dropzoneConfig.assign(this.config);
   }
 }

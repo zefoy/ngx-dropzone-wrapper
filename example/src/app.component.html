@@ -6,11 +6,12 @@
   </div>
 
   <div class="upload-container">
-      <dropzone class="upload-area" 
-        (uploadDone)="onUploadDone($event)"
-        (uploadError)="onUploadError($event)"
-        [urlParameters]="urlParameters"
-        [placeholderText]="'Drag or click here to upload an image'">
-      </dropzone>
+    <dropzone class="upload-area" [config]="config" [placeholder]="'Drag or click here to upload an image'" (uploadDone)="onUploadDone($event)" (uploadError)="onUploadError($event)"></dropzone>
+  </div>
+
+  <div class="uploads-container">
+    <div *ngFor="let image of uploadedImages">
+      <img [src]="uploadedImages.url" class="preview-image">
+    </div>
   </div>
 </div>

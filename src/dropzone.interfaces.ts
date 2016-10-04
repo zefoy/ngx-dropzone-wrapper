@@ -1,14 +1,23 @@
 export interface DropzoneConfigInterface {
-  url?: string,
-  headers?: any
+  server?: string,
+
+  params?: any,
+  headers?: any,
+
   maxFilesize?: number,
+  previewDelay?: number,
   acceptedFiles?: string
 }
 
 export class DropzoneConfig implements DropzoneConfigInterface {
   url: string;
+  server: string;
+
+  params: any;
   headers: any;
+
   maxFilesize: number;
+  previewDelay: number;
   acceptedFiles: string;
 
   constructor(config: DropzoneConfigInterface = {}) {
@@ -19,5 +28,7 @@ export class DropzoneConfig implements DropzoneConfigInterface {
     for (var key in config) {
       this[key] = config[key];
     }
+
+		this.url = this.server + (this.params ? ('?' + this.params) : '');
   }
 }

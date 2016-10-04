@@ -29,3 +29,15 @@
 
   background-color: #fff;
 }
+
+.upload-container {
+  padding: 16px;
+  margin-top: 16px;
+  border-radius: 4px;
+
+  background-color: #fff;
+}
+
+.preview-image {
+	width: 64px;
+}
