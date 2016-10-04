@@ -1,4 +1,7 @@
 {
+  "extends": [
+    "stylelint-config-standard"
+  ],
   "rules": {
     "color-hex-case": "lower",
     "color-no-invalid-hex": true,
@@ -53,11 +56,16 @@
     "selector-pseudo-element-case": "lower",
     "selector-pseudo-element-colon-notation": "double",
     "selector-pseudo-element-no-unknown": true,
+    "selector-type-no-unknown": null,
     "selector-type-case": "lower",
     "selector-no-id": true,
 
+    "declaration-empty-line-before": null,
     "declaration-block-properties-order": [{
-      "emptyLineBefore": "always",
+      "properties": [
+        "content"
+      ]
+    }, {
       "properties": [
         "position",
         "z-index",
@@ -67,16 +75,10 @@
         "left"
       ]
     }, {
-      "emptyLineBefore": "always",
       "properties": [
         "display",
         "overflow",
         "box-sizing",
-        "width",
-        "height",
-        "align-content",
-        "align-items",
-        "align-self",
         "flex",
         "flex-basis",
         "flex-direction",
@@ -84,24 +86,54 @@
         "flex-grow",
         "flex-shrink",
         "flex-wrap",
+        "align-self",
+        "align-items",
+        "align-content",
         "justify-content",
         "order",
+        "width",
+        "height",
+        "min-width",
+        "min-height",
+        "max-width",
+        "max-height",
         "padding",
         "padding-top",
         "padding-right",
         "padding-bottom",
         "padding-left",
-        "border",
-        "border-top",
-        "border-right",
-        "border-bottom",
-        "border-left",
         "margin",
         "margin-top",
         "margin-right",
         "margin-bottom",
-        "margin-left"
+        "margin-left",
+        "border-radius",
+        "border",
+        "border-top",
+        "border-right",
+        "border-bottom",
+        "border-left"
       ]
+    }, {
+      "properties": [
+        "cursor",
+        "font-size",
+				"font-weight",
+        "text-align",
+        "color",
+        "background"
+			]
+    }, {
+      "properties": [
+        "transform",
+        "transition"
+			]
+    }, {
+      "properties": [
+        "animation",
+        "transform",
+        "transition"
+			]
 		}]
   }
 }
