@@ -11,7 +11,22 @@
   "scripts": {
     "clean": "rm -rf dist node_modules",
     "build": "webpack --config config/webpack.config.js",
-    "start": "webpack-dev-server --open --inline --config config/webpack.config.js"
+    "start": "webpack-dev-server --open --inline --config config/webpack.config.js",
+    "deploy": "echo \"Deploying all files in dist folder\" ; deploy-to-git",
+    "lint": "tslint 'src/**/*.ts' ; stylelint 'src/**/*.css' --syntax css"
+  },
+  "config": {
+    "deployToGit": {
+      "repository": "git@github.com:zefoy/angular2-dropzone-wrapper.git",
+      "branch": "gh-pages",
+      "folder": "dist",
+      "script": "rm -rf dist ; npm run build",
+      "commit": "Publishing $npm_package_version",
+      "user": {
+        "name": "ZEF Devel",
+        "email": "devel@zef.fi"
+      }
+    }
   },
   "dependencies": {
     "@angular/common": "2.0.0",
@@ -33,6 +48,7 @@
     "angular2-template-loader": "^0.5.0",
     "awesome-typescript-loader": "^2.2.0",
     "copy-webpack-plugin": "^3.0.0",
+    "deploy-to-git": "0.0.7",
     "html-webpack-plugin": "^2.22.0",
     "node-sass": "^3.8.0",
     "raw-loader": "^0.5.0",
