@@ -6,11 +6,13 @@
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-  padding: 32px;
+	width: 800px;
+	height: 500px;
   max-width: 800px;
-  max-height: 600px;
-  border-radius: 4px;
+  max-height: 500px;
+  padding: 32px;
   margin: 32px auto;
+  border-radius: 4px;
 
   color: #555;
   background-color: #eee;
@@ -28,16 +30,4 @@
   border-radius: 4px;
 
   background-color: #fff;
-}
-
-.upload-container {
-  padding: 16px;
-  margin-top: 16px;
-  border-radius: 4px;
-
-  background-color: #fff;
-}
-
-.preview-image {
-	width: 64px;
 }
