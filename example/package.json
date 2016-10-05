@@ -10,8 +10,8 @@
   },
   "scripts": {
     "clean": "rm -rf dist node_modules",
-    "build": "webpack --config config/webpack.config.js",
-    "start": "webpack-dev-server --open --inline --config config/webpack.config.js",
+    "build": "webpack --config config/webpack-deploy.config.js",
+    "start": "webpack-dev-server --open --inline --config config/webpack-server.config.js",
     "deploy": "rm -rf dist >/dev/null 2>&1; deploy-to-git",
     "lint": "tslint 'src/**/*.ts' ; stylelint 'src/**/*.css' --syntax css"
   },
