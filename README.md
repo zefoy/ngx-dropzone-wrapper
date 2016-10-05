@@ -13,11 +13,9 @@ See a live example application <a href="https://zefoy.github.io/angular2-dropzon
 
 ### Running the example
 
-    cd examples
+    cd example
     npm install
     npm start
-
-##### Then access [http://localhost:8080/](http://localhost:8080/)
 
 ### Installing and usage
 

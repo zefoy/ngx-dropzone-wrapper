@@ -1,3 +1,7 @@
+0.3.0 Packaging updates
+
+  - Added live demo url into the readme
+
 0.2.0 Packaging updates
 
   - Added basic information into the readme
