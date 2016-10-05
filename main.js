@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "http://localhost:8080/";
+/******/ 	__webpack_require__.p = "https://zefoy.github.io/angular2-dropzone-wrapper/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
