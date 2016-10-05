@@ -12,7 +12,7 @@
     "clean": "rm -rf dist node_modules",
     "build": "webpack --config config/webpack.config.js",
     "start": "webpack-dev-server --open --inline --config config/webpack.config.js",
-    "deploy": "echo \"Deploying all files in dist folder\" ; deploy-to-git",
+    "deploy": "rm -rf dist >/dev/null 2>&1; deploy-to-git",
     "lint": "tslint 'src/**/*.ts' ; stylelint 'src/**/*.css' --syntax css"
   },
   "config": {
@@ -20,7 +20,7 @@
       "repository": "git@github.com:zefoy/angular2-dropzone-wrapper.git",
       "branch": "gh-pages",
       "folder": "dist",
-      "script": "rm -rf dist ; npm run build",
+      "script": "npm run build",
       "commit": "Publishing $npm_package_version",
       "user": {
         "name": "ZEF Devel",
