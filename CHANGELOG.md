@@ -1,3 +1,7 @@
+0.2.0 Packaging updates
+
+  - Added basic information into the readme
+
 0.1.0 Feature release
 
   - Added support for component specific config
