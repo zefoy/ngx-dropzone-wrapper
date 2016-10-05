@@ -1,6 +1,6 @@
 0.1.0 Feature release
 
-  - Added support for component speficic config
+  - Added support for component specific config
 
 0.0.3 Packaging changes
 
