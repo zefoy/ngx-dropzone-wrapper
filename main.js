@@ -39745,11 +39745,9 @@
 	var core_1 = __webpack_require__(3);
 	var AppComponent = (function () {
 	    function AppComponent() {
-	        this.title = 'Simple example app for the angular2-dropzone-wrapper';
 	        this.config = {
 	            params: "name=test.png&directory=images"
 	        };
-	        this.uploadedImages = [];
 	    }
 	    AppComponent.prototype.onUploadDone = function (event) {
 	        console.log('onUploadDone:', event);
@@ -39774,13 +39772,13 @@
 /* 27 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"box-container\">\n  <div class=\"app-title\">{{title}}</div>\n\n  <div class=\"info-container\">\n    This example does not actually upload the files, only simulates it and shows the preview for 5 seconds.\n  </div>\n\n  <div class=\"upload-container\">\n    <dropzone class=\"upload-area\" [config]=\"config\" [placeholder]=\"'Drag or click here to upload an image'\" (uploadDone)=\"onUploadDone($event)\" (uploadError)=\"onUploadError($event)\"></dropzone>\n  </div>\n\n  <div class=\"uploads-container\">\n    <div *ngFor=\"let image of uploadedImages\">\n      <img [src]=\"uploadedImages.url\" class=\"preview-image\">\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"box-container\">\n  <div class=\"app-title\">Simple example application for the angular2-dropzone-wrapper</div>\n\n  <div class=\"info-container\">\n    This example does not actually upload the files, only simulates it and shows the preview for 5 seconds.\n  </div>\n\n  <div class=\"upload-container\">\n    <dropzone class=\"upload-area\" [config]=\"config\" [placeholder]=\"'Drag or click here to upload an image'\" (uploadDone)=\"onUploadDone($event)\" (uploadError)=\"onUploadError($event)\"></dropzone>\n  </div>\n</div>\n"
 
 /***/ },
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = ".app-title {\n  font-size: 1.8em;\n}\n\n.box-container {\n  display: flex;\n  box-sizing: border-box;\n  flex-direction: column;\n\twidth: 800px;\n\theight: 500px;\n  max-width: 800px;\n  max-height: 500px;\n  padding: 32px;\n  margin: 32px auto;\n  border-radius: 4px;\n\n  color: #555;\n  background-color: #eee;\n  font-family: sans-serif;\n  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18), 0 6px 6px rgba(0, 0, 0, 0.25);\n}\n\n.info-container {\n  padding: 16px;\n  line-height: 1.5em;\n}\n\n.upload-container {\n  padding: 16px;\n  border-radius: 4px;\n\n  background-color: #fff;\n}\n"
+	module.exports = ".app-title {\n  font-size: 24px;\n}\n\n.box-container {\n  display: flex;\n  box-sizing: border-box;\n  flex-direction: column;\n\twidth: 800px;\n\theight: 500px;\n  max-width: 90%;\n  max-height: 90%;\n  padding: 24px;\n  margin: 24px auto;\n  border-radius: 4px;\n\n  color: #555;\n  background-color: #eee;\n  font-family: sans-serif;\n  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18), 0 6px 6px rgba(0, 0, 0, 0.25);\n}\n\n.info-container {\n  padding: 16px;\n  line-height: 24px;\n}\n\n.upload-container {\n  overflow: auto;\n  flex: 1 1 auto;\n  padding: 24px;\n  border-radius: 4px;\n\n  background-color: #fff;\n}\n"
 
 /***/ }
 /******/ ]);
