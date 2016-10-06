@@ -1,5 +1,5 @@
 <div class="box-container">
-  <div class="app-title">{{title}}</div>
+  <div class="app-title">Simple example application for the angular2-dropzone-wrapper</div>
 
   <div class="info-container">
     This example does not actually upload the files, only simulates it and shows the preview for 5 seconds.
@@ -7,11 +7,5 @@
 
   <div class="upload-container">
     <dropzone class="upload-area" [config]="config" [placeholder]="'Drag or click here to upload an image'" (uploadDone)="onUploadDone($event)" (uploadError)="onUploadError($event)"></dropzone>
-  </div>
-
-  <div class="uploads-container">
-    <div *ngFor="let image of uploadedImages">
-      <img [src]="uploadedImages.url" class="preview-image">
-    </div>
   </div>
 </div>

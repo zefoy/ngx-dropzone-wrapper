@@ -8,15 +8,11 @@ import { DropzoneConfigInterface } from 'angular2-dropzone-wrapper';
   styleUrls: ['app.component.css']
 })
 export class AppComponent {
-  private title = 'Simple example app for the angular2-dropzone-wrapper';
-
   private config: DropzoneConfigInterface = {
     params: "name=test.png&directory=images"
   };
 
-  private uploadedImages = [];
-
-  constructor() { }
+  constructor() {}
 
   onUploadDone(event: any) {
     console.log('onUploadDone:', event);
