@@ -31,7 +31,6 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
   server: 'https://httpbin.org/post',
   maxFilesize: 50,
-  previewDelay: 5000,
   acceptedFiles: 'image/*'
 };
 
@@ -39,7 +38,7 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
   ...
   imports: [
     ...
-    DropzoneModule.forRoot(DROPZONE_CONFIG)
+    DropzoneModule.forRoot(DROPZONE_CONFIG,)
   ]
 })
 ```
@@ -47,25 +46,34 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
 ##### Use it in your html template (with custom configuration):
 
 ```html
-<dropzone [config]="config" [placeholder]="'Drag or click here to upload an image'" 
-  (uploadDone)="onUploadDone($event)" (uploadError)="onUploadError($event)"></dropzone>
+<dropzone [config]="config" [message]="'Drag or click here to upload an image'" (uploadError)="onUploadError($event)" (uploadSuccess)="onUploadSuccess($event)"></dropzone>
 ```
 
 ```javascript
-[config]       // Custom config to override the global defaults.
-[placeholder]  // Placeholder text to be shown on the upload area.
+[config]          // Custom config to override the global defaults.
+[message]         // Message to show for the user on the upload area.
+[placeholder]     // Placeholder image to be shown as the upload area.
 
-(uploadDone)   // Event handler for the dropzone upload done events.
-(uploadError)  // Event handler for the dropzone upload error events.
+(uploadError)     // Event handler for the dropzone upload error event.
+(uploadSuccess)   // Event handler for the dropzone upload success event.
+(uploadCanceled)  // Event handler for the dropzone upload canceled event.
 ```
 
 ##### Available configuration options (custom / global configuration):
 
 ```javascript
-server         // Server url for the POST upload request.
-params         // Url parameters to be added into the server url.
-headers        // Object of additional headers to send to the server. 
-maxFilesize    // Maximum file size for the uploads (in megabytes).
-previewDelay   // Delay for hiding the preview image after the upload.
-acceptedFiles  // Comma separated list of mime types or file extensions.
+server            // Server url for the POST upload request (Default: '').
+params            // Url parameters to be added to the server url (Default: null).
+preview           // Show preview of the image(s) before uploading (Default: false).
+
+method            // HTTP method to use communicating with the server (Default: 'post').
+headers           // Object of additional headers to send to the server (Default: null).
+paramName         // The name of the file param that gets transferred (Default: 'file').
+maxFilesize       // Maximum file size for the upload files in megabytes (Default: null).
+acceptedFiles     // Comma separated list of mime types or file extensions (Default: null).
+addRemoveLinks    // Add a link for the file preview to remove the file (Default: false).
+uploadMultiple    // Whether to send multiple files in one request or not (Default: false).
+parallerUploads   // How many file uploads should be processed in parallel (Default: 1).
 ```
+
+For more detailed documentation with all the supported options see [dropzone documentation](http://www.dropzonejs.com/#configuration-options).

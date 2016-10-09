@@ -1,24 +1,99 @@
 export interface DropzoneConfigInterface {
   server?: string,
+  params?: string,
+  preview?: boolean,
 
-  params?: any,
+  method?: string,
   headers?: any,
 
+  init?: any,
+  accept?: any,
+  fallback?: any,
+  renameFilename?: any,
+  previewsContainer?: any,
+  hiddenInputContainer?: any,
+
+  clickable?: boolean,
+  paramName?: string,
+  maxFiles?: number,
   maxFilesize?: number,
-  previewDelay?: number,
-  acceptedFiles?: string
+  filesizeBase?: number,
+  acceptedFiles?: string,
+  forceFallback?: boolean,
+  addRemoveLinks?: boolean,
+  uploadMultiple?: boolean,
+  parallelUploads?: number,
+  thumbnailWidth?: number,
+  thumbnailHeight?: number,
+  previewTemplate?: string,
+  autoProcessQueue?: boolean,
+  maxThumbnailFilesize?: number,
+  createImageThumbnails?: boolean,
+
+  // TODO: Remove once proper localization support is added...
+
+  dictDefaultMessage?: string,
+  dictFallbackMessage?: string,
+
+  dictFileTooBig?: string,
+  dictResponseError?: string,
+  dictInvalidFileType?: string,
+
+  dictRemoveFile?: string,
+  dictCancelUpload?: string,
+  dictFallbackText?: string,
+  dictMaxFilesExceeded?: string,
+  dictCancelUploadConfirmation?: string
 }
 
 export class DropzoneConfig implements DropzoneConfigInterface {
   url: string;
+
   server: string;
+  params: string;
+  preview: boolean;
 
-  params: any;
-  headers: any;
+  method: string;
+  headers: any;
 
+  init: any;
+  accept: any;
+  fallback: any;
+  renameFilename: any;
+  previewsContainer: any;
+  hiddenInputContainer: any;
+
+  clickable: boolean;
+  paramName: string;
+  maxFiles: number;
   maxFilesize: number;
-  previewDelay: number;
+  filesizeBase: number;
   acceptedFiles: string;
+  forceFallback: boolean;
+  addRemoveLinks: boolean;
+  uploadMultiple: boolean;
+  parallelUploads: number;
+  thumbnailWidth: number;
+  thumbnailHeight: number;
+  previewTemplate: string;
+  autoProcessQueue: boolean;
+  maxThumbnailFilesize: number;
+  createImageThumbnails: boolean;
+
+  // TODO: Remove once proper localization support is added...
+
+  dictDefaultMessage: string;
+  dictFallbackMessage: string;
+
+  dictFileTooBig: string;
+  dictResponseError: string;
+  dictInvalidFileType: string;
+
+  dictRemoveFile: string;
+  dictCancelUpload: string;
+  dictFallbackText: string;
+  dictMaxFilesExceeded: string;
+  dictCancelUploadConfirmation: string;
 
   constructor(config: DropzoneConfigInterface = {}) {
     this.assign(config);

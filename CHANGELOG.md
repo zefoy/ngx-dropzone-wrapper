@@ -1,3 +1,7 @@
+0.6.0 Feature release
+
+  - Added support for all the dropzone options
+
 0.3.0 Packaging updates
 
   - Added live demo url into the readme

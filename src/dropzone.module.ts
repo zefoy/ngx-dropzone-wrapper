@@ -21,7 +21,7 @@ export class DropzoneModule {
     }
   }
 
-	static forRoot(config: DropzoneConfigInterface): ModuleWithProviders {
+	static forRoot(config?: DropzoneConfigInterface): ModuleWithProviders {
 		return {
 			ngModule: DropzoneModule,
 			providers: [

@@ -11,19 +11,22 @@ import { DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces'
   encapsulation: ViewEncapsulation.None
 })
 export class DropzoneComponent implements OnInit, OnChanges {
-  private dropzone: any;
+  public dropzone: any;
+
   private dropzoneConfig: any;
   private dropzoneElement: any;
 
   @Input() config: DropzoneConfigInterface;
 
-  @Input() placeholder: string = "Click or drop files to upload";
+  @Input() message: string = 'Click or drag files to upload';
+  @Input() placeholder: string = '';
 
-  @Output() uploadDone = new EventEmitter<any>();
-  @Output() uploadError = new EventEmitter<Object>();
+  @Output() uploadError = new EventEmitter<any>();
+  @Output() uploadSuccess = new EventEmitter<any>();
+  @Output() uploadCanceled = new EventEmitter<any>();
 
   @HostBinding('class.dropzone') useDropzoneClass = true;
-  
+
   constructor( private elementRef: ElementRef, @Optional() private defaults: DropzoneConfig ) {
     this.dropzoneConfig = new DropzoneConfig(defaults);
 
@@ -34,19 +37,15 @@ export class DropzoneComponent implements OnInit, OnChanges {
     this.dropzone = new Dropzone(this.dropzoneElement, this.dropzoneConfig);
 
     this.dropzone.on('error', (err) => {
-      this.uploadError.emit({msg: "Upload error", error: err});
-
-      setTimeout(() => {
-        this.dropzone.removeAllFiles();
-      }, 5000);
+      this.uploadError.emit(err);
     });
 
     this.dropzone.on('success', (res) => {
-      this.uploadDone.emit(res);
+      this.uploadSuccess.emit(res);
+    });
 
-      setTimeout(() => {
-        this.dropzone.removeAllFiles();
-      }, this.dropzoneConfig.previewDelay || 0);
+    this.dropzone.on('canceled', (res) => {
+      this.uploadCanceled.emit(res);
     });
   }
 
@@ -54,5 +53,9 @@ export class DropzoneComponent implements OnInit, OnChanges {
     this.dropzoneConfig.assign(this.defaults);
 
     this.dropzoneConfig.assign(this.config);
+  }
+
+  reset() {
+    this.dropzone.removeAllFiles();
   }
 }
