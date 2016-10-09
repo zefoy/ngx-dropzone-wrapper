@@ -46,7 +46,7 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
 ##### Use it in your html template (with custom configuration):
 
 ```html
-<dropzone [config]="config" [message]="'Drag or click here to upload an image'" (uploadError)="onUploadError($event)" (uploadSuccess)="onUploadSuccess($event)"></dropzone>
+<dropzone [config]="config" [message]="'Click or drag images here to upload'" (uploadError)="onUploadError($event)" (uploadSuccess)="onUploadSuccess($event)"></dropzone>
 ```
 
 ```javascript

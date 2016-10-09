@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { DropzoneConfigInterface } from 'angular2-dropzone-wrapper';
 
@@ -9,16 +9,16 @@ import { DropzoneConfigInterface } from 'angular2-dropzone-wrapper';
 })
 export class AppComponent {
   private config: DropzoneConfigInterface = {
-    params: "name=test.png&directory=images"
+    params: "directory=images"
   };
 
   constructor() {}
 
-  onUploadDone(event: any) {
-    console.log('onUploadDone:', event);
-  }
-
   onUploadError(event: any) {
     console.log('onUploadError:', event);
+  }
+
+  onUploadSuccess(event: any) {
+    console.log('onUploadSuccess:', event);
   }
 }

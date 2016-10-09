@@ -2,10 +2,10 @@
   <div class="app-title">Simple example application for the angular2-dropzone-wrapper</div>
 
   <div class="info-container">
-    This example does not actually upload the files, only simulates it and shows the preview for 5 seconds.
+    This example does not actually upload any of the selected files, only simulates the upload process.
   </div>
 
   <div class="upload-container">
-    <dropzone class="upload-area" [config]="config" [placeholder]="'Drag or click here to upload an image'" (uploadDone)="onUploadDone($event)" (uploadError)="onUploadError($event)"></dropzone>
+    <dropzone class="upload-area" [config]="config" [message]="'Click or drag images here to upload'" (uploadError)="onUploadError($event)" (uploadSuccess)="onUploadSuccess($event)"></dropzone>
   </div>
 </div>
