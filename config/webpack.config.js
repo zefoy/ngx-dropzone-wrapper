@@ -31,8 +31,8 @@ module.exports = {
     ]
   },
   resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js', '.ts']
+    extensions: ['.js', '.ts'],
+    modules: [ '../src', path.join(__dirname, "../node_modules") ]
   },
 	externals: [
 		"@angular/common",

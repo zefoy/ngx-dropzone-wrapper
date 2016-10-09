@@ -22,7 +22,7 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
     ],
     imports: [
       BrowserModule,
-      DropzoneModule.forRoot(DROPZONE_CONFIG),
+      DropzoneModule.forRoot(DROPZONE_CONFIG)
     ]
 })
 export class AppModule {}
