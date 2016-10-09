@@ -7,12 +7,14 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
-    'main': './src/main.ts',
-    'polyfills': './src/polyfills.ts'
+    app: [
+      './src/polyfills.ts',
+      './src/main.ts'
+    ]
   },
   output: {
-    path: './dist',
     filename: '[name].js',
+    path: path.join(__dirname, '../dist'),
     publicPath: 'https://zefoy.github.io/angular2-dropzone-wrapper/'
   },
   module: {
@@ -40,9 +42,14 @@ module.exports = {
     }),
 
     new CopyWebpackPlugin([{
-      context: './public',
+      context: './assets',
       from: '**/*',
-      to: './dist'
-    }])
+      to: './assets'
+    }]),
+
+    new webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      path.join(__dirname, '../')
+    )
   ]
 };
