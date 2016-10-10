@@ -111,7 +111,7 @@ export class DropzoneConfig implements DropzoneConfigInterface {
     }
 
     if (this.server) {
-		  this.url = this.server + (this.params ? ('?' + this.params) : '');
+      this.url = this.server + (this.params ? ('?' + this.params) : '');
     }
   }
 }
