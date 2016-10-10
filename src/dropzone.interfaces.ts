@@ -1,8 +1,12 @@
 export interface DropzoneConfigInterface {
   server?: string,
   params?: string,
-  preview?: boolean,
 
+  autoReset?: number,
+  errorReset?: number,
+  cancelReset?: number,
+
+  url?: string,
   method?: string,
   headers?: any,
 
@@ -47,12 +51,14 @@ export interface DropzoneConfigInterface {
 }
 
 export class DropzoneConfig implements DropzoneConfigInterface {
-  url: string;
-
   server: string;
   params: string;
-  preview: boolean;
 
+  autoReset: number;
+  errorReset: number;
+  cancelReset: number;
+
+  url: string;
   method: string;
   headers: any;
 
@@ -104,6 +110,8 @@ export class DropzoneConfig implements DropzoneConfigInterface {
       this[key] = config[key];
     }
 
-		this.url = this.server + (this.params ? ('?' + this.params) : '');
+    if (this.server) {
+		  this.url = this.server + (this.params ? ('?' + this.params) : '');
+    }
   }
 }

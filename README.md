@@ -62,18 +62,17 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
 ##### Available configuration options (custom / global configuration):
 
 ```javascript
-server            // Server url for the POST upload request (Default: '').
+server            // Server url for sending the upload request (Default: '').
 params            // Url parameters to be added to the server url (Default: null).
-preview           // Show preview of the image(s) before uploading (Default: false).
+autoReset         // Time for resetting upload area after upload (Default: null).
+errorReset        // Time for resetting upload area after an error (Default: null).
+cancelReset       // Time for resetting upload area after canceling (Default: null).
 
 method            // HTTP method to use communicating with the server (Default: 'post').
 headers           // Object of additional headers to send to the server (Default: null).
-paramName         // The name of the file param that gets transferred (Default: 'file').
+paramName         // Name of the file parameter that gets transferred (Default: 'file').
 maxFilesize       // Maximum file size for the upload files in megabytes (Default: null).
 acceptedFiles     // Comma separated list of mime types or file extensions (Default: null).
-addRemoveLinks    // Add a link for the file preview to remove the file (Default: false).
-uploadMultiple    // Whether to send multiple files in one request or not (Default: false).
-parallerUploads   // How many file uploads should be processed in parallel (Default: 1).
 ```
 
 For more detailed documentation with all the supported options see [dropzone documentation](http://www.dropzonejs.com/#configuration-options).

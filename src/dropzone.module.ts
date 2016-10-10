@@ -1,6 +1,6 @@
-import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf } from "@angular/core";
+import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf } from '@angular/core';
 
-import { HttpModule } from "@angular/http";
+import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 
 import { DropzoneComponent } from './dropzone.component';
@@ -25,18 +25,18 @@ export class DropzoneModule {
 		return {
 			ngModule: DropzoneModule,
 			providers: [
-					{
-						provide: DROPZONE_CONFIG,
-						useValue: config ? config : {}
-					},
-					{
-						provide: DropzoneConfig,
-						useFactory: provideDropzoneConfig,
-						deps: [
-							DROPZONE_CONFIG
-						]
-					}
-				]
+				{
+					provide: DROPZONE_CONFIG,
+					useValue: config ? config : {}
+				},
+				{
+					provide: DropzoneConfig,
+					useFactory: provideDropzoneConfig,
+					deps: [
+						DROPZONE_CONFIG
+					]
+				}
+			]
 		};
 	}
 }

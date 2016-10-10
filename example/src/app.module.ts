@@ -9,8 +9,11 @@ import { AppComponent } from './app.component';
 const DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
   server: 'https://httpbin.org/post',
+  autoReset: 5000,
+  errorReset: 5000,
   maxFilesize: 50,
-  acceptedFiles: 'image/*'
+  acceptedFiles: 'image/*',
+  createImageThumbnails: true
 };
 
 @NgModule({
