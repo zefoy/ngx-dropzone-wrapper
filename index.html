@@ -8,22 +8,22 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-		<style>
-			.loading,
-			.loading:after,
-			.loading:before {
+    <style>
+      .loading,
+      .loading:after,
+      .loading:before {
         content: ' ';
         top: 0;
-				width: 24px;
-				height: 24px;
-				border-radius: 50%;
-				animation: spinner 1600ms infinite ease-in-out;
-			}
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        animation: spinner 1600ms infinite ease-in-out;
+      }
 
-			.loading {
-				color: #555;
-				margin: 64px auto;
-				position: relative;
+      .loading {
+        color: #555;
+        margin: 64px auto;
+        position: relative;
         animation-delay: -160ms;
       }
 
@@ -43,19 +43,19 @@
 
       @keyframes spinner {
         40% {
-					box-shadow: 0 40px 0 0;
-				}
+          box-shadow: 0 40px 0 0;
+        }
 
-			  0%,
-			  80%,
-			  100% {
-				  box-shadow: 0 40px 0 -20px;
-			  }
-		  }
-		</style>
+        0%,
+        80%,
+        100% {
+          box-shadow: 0 40px 0 -20px;
+        }
+      }
+    </style>
   </head>
 
   <body>
     <my-app><div class="loading"></div></my-app>
-	<script type="text/javascript" src="https://zefoy.github.io/angular2-dropzone-wrapper/polyfills.js"></script><script type="text/javascript" src="https://zefoy.github.io/angular2-dropzone-wrapper/main.js"></script></body>
+  <script type="text/javascript" src="https://zefoy.github.io/angular2-dropzone-wrapper/app.js"></script></body>
 </html>
