@@ -1,4 +1,4 @@
-0.6.0 Feature release
+0.8.0 Feature release
 
   - Added support for all the dropzone options
 
