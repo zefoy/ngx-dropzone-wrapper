@@ -1,3 +1,7 @@
+0.8.1 Bug fix release
+
+  - Fixed error on changes detection
+
 0.8.0 Feature release
 
   - Added support for all the dropzone options
