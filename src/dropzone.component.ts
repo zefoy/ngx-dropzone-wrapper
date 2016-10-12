@@ -2,7 +2,7 @@ declare var require: any;
 
 const Dropzone = require('dropzone');
 
-import { Component, ViewEncapsulation, OnInit, OnChanges, SimpleChanges, ElementRef, Input, Output, EventEmitter, HostBinding, Optional } from '@angular/core';
+import { Component, Optional, OnInit, DoCheck, OnDestroy, OnChanges, SimpleChanges, Input, Output, HostBinding, EventEmitter, ElementRef, KeyValueDiffers, ViewEncapsulation } from '@angular/core';
 
 import { DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces'
 
@@ -12,11 +12,10 @@ import { DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces'
   styles: [require('dropzone.component.scss'), require('dropzone/dist/min/dropzone.min.css')],
   encapsulation: ViewEncapsulation.None
 })
-export class DropzoneComponent implements OnInit, OnChanges {
+export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges {
   public dropzone: any;
 
-  private dropzoneConfig: any;
-  private dropzoneElement: any;
+  private configDiff: any;
 
   @Input() disabled: boolean = false;
 
@@ -32,44 +31,64 @@ export class DropzoneComponent implements OnInit, OnChanges {
   @HostBinding('class.dropzone') useDropzoneClass = true;
   @HostBinding('class.dz-wrapper') useDzWrapperClass = true;
 
-  constructor( private elementRef: ElementRef, @Optional() private defaults: DropzoneConfig ) {
+  constructor( private elementRef: ElementRef, private differs : KeyValueDiffers, @Optional() private defaults: DropzoneConfig ) {
     Dropzone.autoDiscover = false;
-
-    this.dropzoneConfig = new DropzoneConfig(defaults);
-
-    this.dropzoneElement = elementRef.nativeElement;
   }
 
   ngOnInit() {
-    this.dropzone = new Dropzone(this.dropzoneElement, this.dropzoneConfig);
+    let element = this.elementRef.nativeElement;
+
+    let options = new DropzoneConfig(this.defaults);
+
+    options.assign(this.config); // Custom config
+
+    this.dropzone = new Dropzone(element, options);
+
+    if (this.disabled) {
+      this.dropzone.disable();
+    }
 
     this.dropzone.on('error', (err) => {
       this.uploadError.emit(err);
 
-      if (this.dropzoneConfig.errorReset != null) {
-        setTimeout(() => this.reset(), this.dropzoneConfig.errorReset);
+      if (options.errorReset != null) {
+        setTimeout(() => this.reset(), options.errorReset);
       }
     });
 
     this.dropzone.on('success', (res) => {
       this.uploadSuccess.emit(res);
 
-      if (this.dropzoneConfig.autoReset != null) {
-        setTimeout(() => this.reset(), this.dropzoneConfig.autoReset);
+      if (options.autoReset != null) {
+        setTimeout(() => this.reset(), options.autoReset);
       }
     });
 
     this.dropzone.on('canceled', (res) => {
       this.uploadCanceled.emit(res);
 
-      if (this.dropzoneConfig.cancelReset != null) {
-        setTimeout(() => this.reset(), this.dropzoneConfig.cancelReset);
+      if (options.cancelReset != null) {
+        setTimeout(() => this.reset(), options.cancelReset);
       }
     });
 
-    if (this.disabled) {
-      this.dropzone.disable();
+    if (!this.configDiff) {
+      this.configDiff = this.differs.find(this.config).create(null);
     }
+  }
+
+  ngDoCheck() {
+    let changes = this.configDiff.diff(this.config);
+
+    if (changes) {
+      this.ngOnDestroy();
+
+      this.ngOnInit();
+    }
+  }
+
+  ngOnDestroy() {
+    this.dropzone.destroy();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -81,14 +100,6 @@ export class DropzoneComponent implements OnInit, OnChanges {
           this.dropzone.disable();
         }
       }
-    }
-
-    this.dropzoneConfig.assign(this.defaults);
-
-    this.dropzoneConfig.assign(this.config);
-
-    if (this.dropzone) {
-      this.dropzone.extend(this.dropzone.options, this.dropzoneConfig);
     }
   }
 
