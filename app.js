@@ -50534,7 +50534,7 @@ process.umask = function() { return 0; };
 /* 543 */
 /***/ function(module, exports) {
 
-module.exports = ".app-title {\n  font-size: 24px;\n}\n\n.box-container {\n  display: flex;\n  box-sizing: border-box;\n  flex-direction: column;\n  width: 800px;\n  height: 500px;\n  max-width: 90%;\n  max-height: 90%;\n  padding: 24px;\n  margin: 24px auto;\n  border-radius: 4px;\n\n  color: #555;\n  font-family: sans-serif;\n  box-shadow:\n    0 6px 20px rgba(0, 0, 0, 0.18),\n    0 6px 6px rgba(0, 0, 0, 0.25);\n  background-color: #eee;\n}\n\n.info-container {\n  padding: 16px;\n\n  line-height: 24px;\n}\n\n.upload-container {\n  overflow: auto;\n  flex: 1 1 auto;\n  padding: 24px;\n  border-radius: 4px;\n\n  background-color: #fff;\n}\n"
+module.exports = ".app-title {\n  font-size: 24px;\n}\n\n.box-container {\n  display: flex;\n  box-sizing: border-box;\n  flex-direction: column;\n  width: 800px;\n  height: 500px;\n  max-width: 90%;\n  max-height: 90%;\n  padding: 24px;\n  margin: 24px auto;\n  border-radius: 4px;\n\n  color: #555;\n  font-family: sans-serif;\n  box-shadow:\n    0 6px 20px rgba(0, 0, 0, 0.18),\n    0 6px 6px rgba(0, 0, 0, 0.25);\n  background-color: #eee;\n}\n\n.info-container {\n  padding: 12px 16px;\n\n  line-height: 24px;\n}\n\n.upload-container {\n  overflow: auto;\n  flex: 1 1 auto;\n  padding: 24px;\n  border-radius: 4px;\n\n  background-color: #fff;\n}\n"
 
 /***/ },
 /* 544 */
@@ -52268,12 +52268,14 @@ var DropzoneComponent = (function () {
     };
     DropzoneComponent.prototype.ngOnChanges = function (changes) {
         if (this.dropzone) {
-            if (changes['disabled'].currentValue != changes['disabled'].previousValue) {
-                if (changes['disabled'].currentValue === true) {
-                    this.dropzone.enable();
-                }
-                else if (changes['disabled'].currentValue === false) {
-                    this.dropzone.disable();
+            if (changes['disabled']) {
+                if (changes['disabled'].currentValue != changes['disabled'].previousValue) {
+                    if (changes['disabled'].currentValue === true) {
+                        this.dropzone.enable();
+                    }
+                    else if (changes['disabled'].currentValue === false) {
+                        this.dropzone.disable();
+                    }
                 }
             }
         }
