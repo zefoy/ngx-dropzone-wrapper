@@ -1,3 +1,7 @@
+0.8.2 Bug fix release
+
+  - Fixed configuration not being updated
+
 0.8.1 Bug fix release
 
   - Fixed error on changes detection

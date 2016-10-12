@@ -73,14 +73,12 @@ export class DropzoneComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.dropzone) {
-      if (changes['disabled']) {
-        if (changes['disabled'].currentValue != changes['disabled'].previousValue) {
-          if (changes['disabled'].currentValue === true) {
-            this.dropzone.enable();
-          } else if (changes['disabled'].currentValue === false) {
-            this.dropzone.disable();
-          }
+    if (this.dropzone && changes['disabled']) {
+      if (changes['disabled'].currentValue != changes['disabled'].previousValue) {
+        if (changes['disabled'].currentValue === true) {
+          this.dropzone.enable();
+        } else if (changes['disabled'].currentValue === false) {
+          this.dropzone.disable();
         }
       }
     }
@@ -89,15 +87,8 @@ export class DropzoneComponent implements OnInit, OnChanges {
 
     this.dropzoneConfig.assign(this.config);
 
-    this.updateDropzoneConfig();
-  }
-
-  updateDropzoneConfig() {
-    // dropzone doesn't keep up to date version of the configuration
     if (this.dropzone) {
-      for (var key in this.dropzoneConfig) {
-        this.dropzone.options[key] = this.dropzoneConfig[key];
-      }
+      this.dropzone.extend(this.dropzone.options, this.dropzoneConfig);
     }
   }
 
