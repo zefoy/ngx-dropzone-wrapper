@@ -88,6 +88,17 @@ export class DropzoneComponent implements OnInit, OnChanges {
     this.dropzoneConfig.assign(this.defaults);
 
     this.dropzoneConfig.assign(this.config);
+
+    this.updateDropzoneConfig();
+  }
+
+  updateDropzoneConfig() {
+    // dropzone doesn't keep up to date version of the configuration
+    if (this.dropzone) {
+      for (var key in this.dropzoneConfig) {
+        this.dropzone.options[key] = this.dropzoneConfig[key];
+      }
+    }
   }
 
   reset() {
