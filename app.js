@@ -52226,8 +52226,9 @@ var Dropzone = __webpack_require__(4);
 var core_1 = __webpack_require__(2);
 var dropzone_interfaces_1 = __webpack_require__(0);
 var DropzoneComponent = (function () {
-    function DropzoneComponent(elementRef, defaults) {
+    function DropzoneComponent(elementRef, differs, defaults) {
         this.elementRef = elementRef;
+        this.differs = differs;
         this.defaults = defaults;
         this.disabled = false;
         this.message = 'Click or drag files to upload';
@@ -52238,49 +52239,59 @@ var DropzoneComponent = (function () {
         this.useDropzoneClass = true;
         this.useDzWrapperClass = true;
         Dropzone.autoDiscover = false;
-        this.dropzoneConfig = new dropzone_interfaces_1.DropzoneConfig(defaults);
-        this.dropzoneElement = elementRef.nativeElement;
     }
     DropzoneComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.dropzone = new Dropzone(this.dropzoneElement, this.dropzoneConfig);
+        var element = this.elementRef.nativeElement;
+        var options = new dropzone_interfaces_1.DropzoneConfig(this.defaults);
+        options.assign(this.config); // Custom config
+        this.dropzone = new Dropzone(element, options);
+        if (this.disabled) {
+            this.dropzone.disable();
+        }
         this.dropzone.on('error', function (err) {
             _this.uploadError.emit(err);
-            if (_this.dropzoneConfig.errorReset != null) {
-                setTimeout(function () { return _this.reset(); }, _this.dropzoneConfig.errorReset);
+            if (options.errorReset != null) {
+                setTimeout(function () { return _this.reset(); }, options.errorReset);
             }
         });
         this.dropzone.on('success', function (res) {
             _this.uploadSuccess.emit(res);
-            if (_this.dropzoneConfig.autoReset != null) {
-                setTimeout(function () { return _this.reset(); }, _this.dropzoneConfig.autoReset);
+            if (options.autoReset != null) {
+                setTimeout(function () { return _this.reset(); }, options.autoReset);
             }
         });
         this.dropzone.on('canceled', function (res) {
             _this.uploadCanceled.emit(res);
-            if (_this.dropzoneConfig.cancelReset != null) {
-                setTimeout(function () { return _this.reset(); }, _this.dropzoneConfig.cancelReset);
+            if (options.cancelReset != null) {
+                setTimeout(function () { return _this.reset(); }, options.cancelReset);
             }
         });
-        if (this.disabled) {
-            this.dropzone.disable();
+        if (!this.configDiff) {
+            this.configDiff = this.differs.find(this.config).create(null);
         }
     };
+    DropzoneComponent.prototype.ngDoCheck = function () {
+        var changes = this.configDiff.diff(this.config);
+        if (changes) {
+            this.ngOnDestroy();
+            this.ngOnInit();
+        }
+    };
+    DropzoneComponent.prototype.ngOnDestroy = function () {
+        this.dropzone.destroy();
+    };
     DropzoneComponent.prototype.ngOnChanges = function (changes) {
-        if (this.dropzone) {
-            if (changes['disabled']) {
-                if (changes['disabled'].currentValue != changes['disabled'].previousValue) {
-                    if (changes['disabled'].currentValue === true) {
-                        this.dropzone.enable();
-                    }
-                    else if (changes['disabled'].currentValue === false) {
-                        this.dropzone.disable();
-                    }
+        if (this.dropzone && changes['disabled']) {
+            if (changes['disabled'].currentValue != changes['disabled'].previousValue) {
+                if (changes['disabled'].currentValue === true) {
+                    this.dropzone.enable();
+                }
+                else if (changes['disabled'].currentValue === false) {
+                    this.dropzone.disable();
                 }
             }
         }
-        this.dropzoneConfig.assign(this.defaults);
-        this.dropzoneConfig.assign(this.config);
     };
     DropzoneComponent.prototype.reset = function () {
         this.dropzone.removeAllFiles();
@@ -52328,8 +52339,8 @@ var DropzoneComponent = (function () {
             styles: [__webpack_require__(6), __webpack_require__(5)],
             encapsulation: core_1.ViewEncapsulation.None
         }),
-        __param(1, core_1.Optional()), 
-        __metadata('design:paramtypes', [core_1.ElementRef, dropzone_interfaces_1.DropzoneConfig])
+        __param(2, core_1.Optional()), 
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.KeyValueDiffers, dropzone_interfaces_1.DropzoneConfig])
     ], DropzoneComponent);
     return DropzoneComponent;
 }());
