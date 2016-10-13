@@ -1,7 +1,7 @@
 {
   "name": "angular2-dropzone-wrapper-example",
   "license": "MIT",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "tslint": {
     "extends": "./tslint.json"
   },

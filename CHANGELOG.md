@@ -1,3 +1,7 @@
+0.8.3 Bug fix release
+
+  - Fixed error when config was not used
+
 0.8.2 Bug fix release
 
   - Fixed configuration not being updated

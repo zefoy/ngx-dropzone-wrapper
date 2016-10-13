@@ -73,7 +73,7 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
     });
 
     if (!this.configDiff) {
-      this.configDiff = this.differs.find(this.config).create(null);
+      this.configDiff = this.differs.find(this.config || {}).create(null);
     }
   }
 
