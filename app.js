@@ -52325,12 +52325,14 @@ var DropzoneComponent = (function () {
         __metadata('design:type', Object)
     ], DropzoneComponent.prototype, "uploadCanceled", void 0);
     __decorate([
-        core_1.HostBinding('class.dropzone'), 
-        __metadata('design:type', Object)
+        core_1.HostBinding('class.dropzone'),
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
     ], DropzoneComponent.prototype, "useDropzoneClass", void 0);
     __decorate([
-        core_1.HostBinding('class.dz-wrapper'), 
-        __metadata('design:type', Object)
+        core_1.HostBinding('class.dz-wrapper'),
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
     ], DropzoneComponent.prototype, "useDzWrapperClass", void 0);
     DropzoneComponent = __decorate([
         core_1.Component({
