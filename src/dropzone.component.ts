@@ -28,8 +28,8 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
   @Output() uploadSuccess = new EventEmitter<any>();
   @Output() uploadCanceled = new EventEmitter<any>();
 
-  @HostBinding('class.dropzone') useDropzoneClass = true;
-  @HostBinding('class.dz-wrapper') useDzWrapperClass = true;
+  @HostBinding('class.dropzone') @Input() useDropzoneClass: boolean = true;
+  @HostBinding('class.dz-wrapper') @Input() useDzWrapperClass: boolean = true;
 
   constructor( private elementRef: ElementRef, private differs : KeyValueDiffers, @Optional() private defaults: DropzoneConfig ) {
     Dropzone.autoDiscover = false;
