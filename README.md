@@ -38,7 +38,7 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
   ...
   imports: [
     ...
-    DropzoneModule.forRoot(DROPZONE_CONFIG,)
+    DropzoneModule.forRoot(DROPZONE_CONFIG)
   ]
 })
 ```

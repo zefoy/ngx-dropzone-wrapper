@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf } from '@angular/core';
+import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf, Inject } from '@angular/core';
 
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { DropzoneComponent } from './dropzone.component';
 import { DropzoneConfig, DropzoneConfigInterface} from './dropzone.interfaces';
 
+export const DROPZONE_GUARD = new OpaqueToken('DROPZONE_GUARD');
 export const DROPZONE_CONFIG = new OpaqueToken('DROPZONE_CONFIG');
 
 @NgModule({
@@ -14,17 +15,23 @@ export const DROPZONE_CONFIG = new OpaqueToken('DROPZONE_CONFIG');
   exports: [CommonModule, HttpModule, DropzoneComponent]
 })
 export class DropzoneModule {
-  constructor (@Optional() @SkipSelf() parentModule: DropzoneModule) {
-    if (parentModule) {
-      throw new Error(`DropzoneModule is already loaded.
-        Import it in the AppModule only!`);
-    }
-  }
+  constructor (@Optional() @Inject(DROPZONE_GUARD) guard: any) {}
 
   static forRoot(config?: DropzoneConfigInterface): ModuleWithProviders {
     return {
       ngModule: DropzoneModule,
       providers: [
+        {
+          provide: DROPZONE_GUARD,
+          useFactory: provideForRootGuard,
+          deps: [
+            [
+              DropzoneConfig,
+              new Optional(),
+              new SkipSelf()
+            ]
+          ]
+        },
         {
           provide: DROPZONE_CONFIG,
           useValue: config ? config : {}
@@ -39,6 +46,23 @@ export class DropzoneModule {
       ]
     };
   }
+
+  static forChild(): ModuleWithProviders {
+    return {
+      ngModule: DropzoneModule
+    };
+  }
+}
+
+export function provideForRootGuard(config: DropzoneConfig): any {
+  if (config) {
+    throw new Error(`
+      Application called DropzoneModule.forRoot() twice.
+      For submodules use DropzoneModule.forChild() instead.
+    `);
+  }
+
+  return 'guarded';
 }
 
 export function provideDropzoneConfig(configInterface: DropzoneConfigInterface = {}) {

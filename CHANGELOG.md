@@ -1,3 +1,7 @@
+0.9.1 Feature release
+
+  - Added support for using in submodules
+
 0.9.0 Feature release
 
   - Made it possible to disable default styles
