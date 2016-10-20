@@ -38,7 +38,7 @@ export class DropzoneModule {
         },
         {
           provide: DropzoneConfig,
-          useFactory: provideDropzoneConfig,
+          useFactory: () => new DropzoneConfig(DROPZONE_CONFIG),
           deps: [
             DROPZONE_CONFIG
           ]
@@ -63,10 +63,4 @@ export function provideForRootGuard(config: DropzoneConfig): any {
   }
 
   return 'guarded';
-}
-
-export function provideDropzoneConfig(configInterface: DropzoneConfigInterface = {}) {
-  const config = new DropzoneConfig(configInterface);
-
-  return config;
 }
