@@ -52378,17 +52378,26 @@ var http_1 = __webpack_require__(10);
 var common_1 = __webpack_require__(9);
 var dropzone_component_1 = __webpack_require__(1);
 var dropzone_interfaces_1 = __webpack_require__(0);
+exports.DROPZONE_GUARD = new core_1.OpaqueToken('DROPZONE_GUARD');
 exports.DROPZONE_CONFIG = new core_1.OpaqueToken('DROPZONE_CONFIG');
 var DropzoneModule = (function () {
-    function DropzoneModule(parentModule) {
-        if (parentModule) {
-            throw new Error("DropzoneModule is already loaded.\n        Import it in the AppModule only!");
-        }
+    function DropzoneModule(guard) {
     }
     DropzoneModule.forRoot = function (config) {
         return {
             ngModule: DropzoneModule,
             providers: [
+                {
+                    provide: exports.DROPZONE_GUARD,
+                    useFactory: provideForRootGuard,
+                    deps: [
+                        [
+                            dropzone_interfaces_1.DropzoneConfig,
+                            new core_1.Optional(),
+                            new core_1.SkipSelf()
+                        ]
+                    ]
+                },
                 {
                     provide: exports.DROPZONE_CONFIG,
                     useValue: config ? config : {}
@@ -52403,6 +52412,11 @@ var DropzoneModule = (function () {
             ]
         };
     };
+    DropzoneModule.forChild = function () {
+        return {
+            ngModule: DropzoneModule
+        };
+    };
     DropzoneModule = __decorate([
         core_1.NgModule({
             imports: [common_1.CommonModule, http_1.HttpModule],
@@ -52410,12 +52424,19 @@ var DropzoneModule = (function () {
             exports: [common_1.CommonModule, http_1.HttpModule, dropzone_component_1.DropzoneComponent]
         }),
         __param(0, core_1.Optional()),
-        __param(0, core_1.SkipSelf()), 
-        __metadata('design:paramtypes', [DropzoneModule])
+        __param(0, core_1.Inject(exports.DROPZONE_GUARD)), 
+        __metadata('design:paramtypes', [Object])
     ], DropzoneModule);
     return DropzoneModule;
 }());
 exports.DropzoneModule = DropzoneModule;
+function provideForRootGuard(config) {
+    if (config) {
+        throw new Error("\n      Application called DropzoneModule.forRoot() twice.\n      For submodules use DropzoneModule.forChild() instead.\n    ");
+    }
+    return 'guarded';
+}
+exports.provideForRootGuard = provideForRootGuard;
 function provideDropzoneConfig(configInterface) {
     if (configInterface === void 0) { configInterface = {}; }
     var config = new dropzone_interfaces_1.DropzoneConfig(configInterface);
