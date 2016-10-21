@@ -38,7 +38,7 @@ export class DropzoneModule {
         },
         {
           provide: DropzoneConfig,
-          useFactory: () => new DropzoneConfig(DROPZONE_CONFIG),
+          useFactory: (config) => new DropzoneConfig(config),
           deps: [
             DROPZONE_CONFIG
           ]
