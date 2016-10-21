@@ -52404,7 +52404,7 @@ var DropzoneModule = (function () {
                 },
                 {
                     provide: dropzone_interfaces_1.DropzoneConfig,
-                    useFactory: provideDropzoneConfig,
+                    useFactory: function (config) { return new dropzone_interfaces_1.DropzoneConfig(config); },
                     deps: [
                         exports.DROPZONE_CONFIG
                     ]
@@ -52437,12 +52437,6 @@ function provideForRootGuard(config) {
     return 'guarded';
 }
 exports.provideForRootGuard = provideForRootGuard;
-function provideDropzoneConfig(configInterface) {
-    if (configInterface === void 0) { configInterface = {}; }
-    var config = new dropzone_interfaces_1.DropzoneConfig(configInterface);
-    return config;
-}
-exports.provideDropzoneConfig = provideDropzoneConfig;
 
 
 /***/ },
