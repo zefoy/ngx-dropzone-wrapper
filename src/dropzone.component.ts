@@ -2,34 +2,35 @@ declare var require: any;
 
 const Dropzone = require('dropzone');
 
+// http://www.dropzonejs.com/#event-list
+
 const dropzoneEvents = [
-    // http://www.dropzonejs.com/#event-list
-    'drop',
-    'dragstart',
-    'dragend',
-    'dragenter',
-    'dragover',
-    'dragleave',
-    'addedfile',
-    'removedfile',
-    'thumbnail',
-    'error',
-    'processing',
-    'uploadprogress',
-    'sending',
-    'success',
-    'complete',
-    'canceled',
-    'maxfilesreached',
-    'maxfilesexceeded',
-    'processingmultiple',
-    'sendingmultiple',
-    'successmultiple',
-    'completemultiple',
-    'canceledmultiple',
-    'totaluploadprogress',
-    'reset',
-    'queuecomplete',
+  'drop',
+  'dragstart',
+  'dragend',
+  'dragenter',
+  'dragover',
+  'dragleave',
+  'addedfile',
+  'removedfile',
+  'thumbnail',
+  'error',
+  'processing',
+  'uploadprogress',
+  'sending',
+  'success',
+  'complete',
+  'canceled',
+  'maxfilesreached',
+  'maxfilesexceeded',
+  'processingmultiple',
+  'sendingmultiple',
+  'successmultiple',
+  'completemultiple',
+  'canceledmultiple',
+  'totaluploadprogress',
+  'reset',
+  'queuecomplete'
 ];
 
 import { Component, Optional, OnInit, DoCheck, OnDestroy, OnChanges, SimpleChanges, Input, Output, HostBinding, EventEmitter, ElementRef, KeyValueDiffers, ViewEncapsulation } from '@angular/core';
@@ -58,34 +59,32 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
   @Output() uploadSuccess = new EventEmitter<any>();
   @Output() uploadCanceled = new EventEmitter<any>();
 
-  //dropzone event emitters
-  @Output('drop'               ) dz_drop                = new EventEmitter<any>();
-  @Output('dragstart'          ) dz_dragstart           = new EventEmitter<any>();
-  @Output('dragend'            ) dz_dragend             = new EventEmitter<any>();
-  @Output('dragenter'          ) dz_dragenter           = new EventEmitter<any>();
-  @Output('dragover'           ) dz_dragover            = new EventEmitter<any>();
-  @Output('dragleave'          ) dz_dragleave           = new EventEmitter<any>();
-  @Output('addedfile'          ) dz_addedfile           = new EventEmitter<any>();
-  @Output('removedfile'        ) dz_removedfile         = new EventEmitter<any>();
-  @Output('thumbnail'          ) dz_thumbnail           = new EventEmitter<any>();
-  @Output('error'              ) dz_error               = new EventEmitter<any>();
-  @Output('processing'         ) dz_processing          = new EventEmitter<any>();
-  @Output('uploadprogress'     ) dz_uploadprogress      = new EventEmitter<any>();
-  @Output('sending'            ) dz_sending             = new EventEmitter<any>();
-  @Output('success'            ) dz_success             = new EventEmitter<any>();
-  @Output('complete'           ) dz_complete            = new EventEmitter<any>();
-  @Output('canceled'           ) dz_canceled            = new EventEmitter<any>();
-  @Output('maxfilesreached'    ) dz_maxfilesreached     = new EventEmitter<any>();
-  @Output('maxfilesexceeded'   ) dz_maxfilesexceeded    = new EventEmitter<any>();
-  @Output('processingmultiple' ) dz_processingmultiple  = new EventEmitter<any>();
-  @Output('sendingmultiple'    ) dz_sendingmultiple     = new EventEmitter<any>();
-  @Output('successmultiple'    ) dz_successmultiple     = new EventEmitter<any>();
-  @Output('completemultiple'   ) dz_completemultiple    = new EventEmitter<any>();
-  @Output('canceledmultiple'   ) dz_canceledmultiple    = new EventEmitter<any>();
+  @Output('drop') dz_drop = new EventEmitter<any>();
+  @Output('dragstart') dz_dragstart = new EventEmitter<any>();
+  @Output('dragend') dz_dragend = new EventEmitter<any>();
+  @Output('dragenter') dz_dragenter = new EventEmitter<any>();
+  @Output('dragover') dz_dragover = new EventEmitter<any>();
+  @Output('dragleave') dz_dragleave = new EventEmitter<any>();
+  @Output('addedfile') dz_addedfile = new EventEmitter<any>();
+  @Output('removedfile') dz_removedfile = new EventEmitter<any>();
+  @Output('thumbnail') dz_thumbnail = new EventEmitter<any>();
+  @Output('error') dz_error = new EventEmitter<any>();
+  @Output('processing') dz_processing = new EventEmitter<any>();
+  @Output('uploadprogress') dz_uploadprogress = new EventEmitter<any>();
+  @Output('sending') dz_sending = new EventEmitter<any>();
+  @Output('success') dz_success = new EventEmitter<any>();
+  @Output('complete') dz_complete = new EventEmitter<any>();
+  @Output('canceled') dz_canceled = new EventEmitter<any>();
+  @Output('maxfilesreached') dz_maxfilesreached = new EventEmitter<any>();
+  @Output('maxfilesexceeded') dz_maxfilesexceeded = new EventEmitter<any>();
+  @Output('processingmultiple') dz_processingmultiple = new EventEmitter<any>();
+  @Output('sendingmultiple') dz_sendingmultiple = new EventEmitter<any>();
+  @Output('successmultiple') dz_successmultiple = new EventEmitter<any>();
+  @Output('completemultiple') dz_completemultiple = new EventEmitter<any>();
+  @Output('canceledmultiple') dz_canceledmultiple = new EventEmitter<any>();
   @Output('totaluploadprogress') dz_totaluploadprogress = new EventEmitter<any>();
-  @Output('reset'              ) dz_reset               = new EventEmitter<any>();
-  @Output('queuecomplete'      ) dz_queuecomplete       = new EventEmitter<any>();
-
+  @Output('reset') dz_reset = new EventEmitter<any>();
+  @Output('queuecomplete') dz_queuecomplete = new EventEmitter<any>();
 
   @HostBinding('class.dropzone') @Input() useDropzoneClass: boolean = true;
   @HostBinding('class.dz-wrapper') @Input() useDzWrapperClass: boolean = true;
@@ -131,16 +130,18 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
       }
     });
 
-    // trigger native dropzone events
-    dropzoneEvents.forEach((eventName)=>{
+    // Trigger native dropzone events
+    dropzoneEvents.forEach((eventName) => {
       let self = this;
-      this.dropzone.on(eventName, function(e){
+
+      this.dropzone.on(eventName, function(event) {
         let args = Array.prototype.slice.call(arguments);
-        if (args.length == 1){
+
+        if (args.length === 1) {
           args = args[0];
         }
-        let emitter = self[`dz_${eventName}`];
-        emitter.emit(args);
+
+        self[`dz_${eventName}`].emit(args);
       });
     });
 

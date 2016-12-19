@@ -1,3 +1,7 @@
+1.0.0 Feature release
+
+  - Added outputs for all dropzone events
+
 0.9.2 Bug fix release
 
   - Fixed global configuration setting
