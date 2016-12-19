@@ -50782,6 +50782,15 @@ exports.tryCatch = tryCatch;
     (factory());
 }(this, (function () { 'use strict';
 
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
 var Zone$1 = (function (global) {
     if (global.Zone) {
         throw new Error('Zone already loaded.');
@@ -50792,37 +50801,46 @@ var Zone$1 = (function (global) {
             this._parent = parent;
             this._name = zoneSpec ? zoneSpec.name || 'unnamed' : '<root>';
             this._properties = zoneSpec && zoneSpec.properties || {};
-            this._zoneDelegate = new ZoneDelegate(this, this._parent && this._parent._zoneDelegate, zoneSpec);
+            this._zoneDelegate =
+                new ZoneDelegate(this, this._parent && this._parent._zoneDelegate, zoneSpec);
         }
         Zone.assertZonePatched = function () {
             if (global.Promise !== ZoneAwarePromise) {
-                throw new Error("Zone.js has detected that ZoneAwarePromise `(window|global).Promise` " +
-                    "has been overwritten.\n" +
-                    "Most likely cause is that a Promise polyfill has been loaded " +
-                    "after Zone.js (Polyfilling Promise api is not necessary when zone.js is loaded. " +
-                    "If you must load one, do so before loading zone.js.)");
+                throw new Error('Zone.js has detected that ZoneAwarePromise `(window|global).Promise` ' +
+                    'has been overwritten.\n' +
+                    'Most likely cause is that a Promise polyfill has been loaded ' +
+                    'after Zone.js (Polyfilling Promise api is not necessary when zone.js is loaded. ' +
+                    'If you must load one, do so before loading zone.js.)');
             }
         };
         Object.defineProperty(Zone, "current", {
-            get: function () { return _currentZone; },
+            get: function () {
+                return _currentZone;
+            },
             enumerable: true,
             configurable: true
         });
         
         Object.defineProperty(Zone, "currentTask", {
-            get: function () { return _currentTask; },
+            get: function () {
+                return _currentTask;
+            },
             enumerable: true,
             configurable: true
         });
         
         Object.defineProperty(Zone.prototype, "parent", {
-            get: function () { return this._parent; },
+            get: function () {
+                return this._parent;
+            },
             enumerable: true,
             configurable: true
         });
         
         Object.defineProperty(Zone.prototype, "name", {
-            get: function () { return this._name; },
+            get: function () {
+                return this._name;
+            },
             enumerable: true,
             configurable: true
         });
@@ -50893,8 +50911,8 @@ var Zone$1 = (function (global) {
         Zone.prototype.runTask = function (task, applyThis, applyArgs) {
             task.runCount++;
             if (task.zone != this)
-                throw new Error('A task can only be run in the zone which created it! (Creation: ' +
-                    task.zone.name + '; Execution: ' + this.name + ')');
+                throw new Error('A task can only be run in the zone which created it! (Creation: ' + task.zone.name +
+                    '; Execution: ' + this.name + ')');
             var previousTask = _currentTask;
             _currentTask = task;
             var oldZone = _currentZone;
@@ -50943,40 +50961,51 @@ var Zone$1 = (function (global) {
             this._parentDelegate = parentDelegate;
             this._forkZS = zoneSpec && (zoneSpec && zoneSpec.onFork ? zoneSpec : parentDelegate._forkZS);
             this._forkDlgt = zoneSpec && (zoneSpec.onFork ? parentDelegate : parentDelegate._forkDlgt);
-            this._interceptZS = zoneSpec && (zoneSpec.onIntercept ? zoneSpec : parentDelegate._interceptZS);
-            this._interceptDlgt = zoneSpec && (zoneSpec.onIntercept ? parentDelegate : parentDelegate._interceptDlgt);
+            this._interceptZS =
+                zoneSpec && (zoneSpec.onIntercept ? zoneSpec : parentDelegate._interceptZS);
+            this._interceptDlgt =
+                zoneSpec && (zoneSpec.onIntercept ? parentDelegate : parentDelegate._interceptDlgt);
             this._invokeZS = zoneSpec && (zoneSpec.onInvoke ? zoneSpec : parentDelegate._invokeZS);
-            this._invokeDlgt = zoneSpec && (zoneSpec.onInvoke ? parentDelegate : parentDelegate._invokeDlgt);
-            this._handleErrorZS = zoneSpec && (zoneSpec.onHandleError ? zoneSpec : parentDelegate._handleErrorZS);
-            this._handleErrorDlgt = zoneSpec && (zoneSpec.onHandleError ? parentDelegate : parentDelegate._handleErrorDlgt);
-            this._scheduleTaskZS = zoneSpec && (zoneSpec.onScheduleTask ? zoneSpec : parentDelegate._scheduleTaskZS);
-            this._scheduleTaskDlgt = zoneSpec && (zoneSpec.onScheduleTask ? parentDelegate : parentDelegate._scheduleTaskDlgt);
-            this._invokeTaskZS = zoneSpec && (zoneSpec.onInvokeTask ? zoneSpec : parentDelegate._invokeTaskZS);
-            this._invokeTaskDlgt = zoneSpec && (zoneSpec.onInvokeTask ? parentDelegate : parentDelegate._invokeTaskDlgt);
-            this._cancelTaskZS = zoneSpec && (zoneSpec.onCancelTask ? zoneSpec : parentDelegate._cancelTaskZS);
-            this._cancelTaskDlgt = zoneSpec && (zoneSpec.onCancelTask ? parentDelegate : parentDelegate._cancelTaskDlgt);
+            this._invokeDlgt =
+                zoneSpec && (zoneSpec.onInvoke ? parentDelegate : parentDelegate._invokeDlgt);
+            this._handleErrorZS =
+                zoneSpec && (zoneSpec.onHandleError ? zoneSpec : parentDelegate._handleErrorZS);
+            this._handleErrorDlgt =
+                zoneSpec && (zoneSpec.onHandleError ? parentDelegate : parentDelegate._handleErrorDlgt);
+            this._scheduleTaskZS =
+                zoneSpec && (zoneSpec.onScheduleTask ? zoneSpec : parentDelegate._scheduleTaskZS);
+            this._scheduleTaskDlgt =
+                zoneSpec && (zoneSpec.onScheduleTask ? parentDelegate : parentDelegate._scheduleTaskDlgt);
+            this._invokeTaskZS =
+                zoneSpec && (zoneSpec.onInvokeTask ? zoneSpec : parentDelegate._invokeTaskZS);
+            this._invokeTaskDlgt =
+                zoneSpec && (zoneSpec.onInvokeTask ? parentDelegate : parentDelegate._invokeTaskDlgt);
+            this._cancelTaskZS =
+                zoneSpec && (zoneSpec.onCancelTask ? zoneSpec : parentDelegate._cancelTaskZS);
+            this._cancelTaskDlgt =
+                zoneSpec && (zoneSpec.onCancelTask ? parentDelegate : parentDelegate._cancelTaskDlgt);
             this._hasTaskZS = zoneSpec && (zoneSpec.onHasTask ? zoneSpec : parentDelegate._hasTaskZS);
-            this._hasTaskDlgt = zoneSpec && (zoneSpec.onHasTask ? parentDelegate : parentDelegate._hasTaskDlgt);
+            this._hasTaskDlgt =
+                zoneSpec && (zoneSpec.onHasTask ? parentDelegate : parentDelegate._hasTaskDlgt);
         }
         ZoneDelegate.prototype.fork = function (targetZone, zoneSpec) {
-            return this._forkZS
-                ? this._forkZS.onFork(this._forkDlgt, this.zone, targetZone, zoneSpec)
-                : new Zone(targetZone, zoneSpec);
+            return this._forkZS ? this._forkZS.onFork(this._forkDlgt, this.zone, targetZone, zoneSpec) :
+                new Zone(targetZone, zoneSpec);
         };
         ZoneDelegate.prototype.intercept = function (targetZone, callback, source) {
-            return this._interceptZS
-                ? this._interceptZS.onIntercept(this._interceptDlgt, this.zone, targetZone, callback, source)
-                : callback;
+            return this._interceptZS ?
+                this._interceptZS.onIntercept(this._interceptDlgt, this.zone, targetZone, callback, source) :
+                callback;
         };
         ZoneDelegate.prototype.invoke = function (targetZone, callback, applyThis, applyArgs, source) {
-            return this._invokeZS
-                ? this._invokeZS.onInvoke(this._invokeDlgt, this.zone, targetZone, callback, applyThis, applyArgs, source)
-                : callback.apply(applyThis, applyArgs);
+            return this._invokeZS ?
+                this._invokeZS.onInvoke(this._invokeDlgt, this.zone, targetZone, callback, applyThis, applyArgs, source) :
+                callback.apply(applyThis, applyArgs);
         };
         ZoneDelegate.prototype.handleError = function (targetZone, error) {
-            return this._handleErrorZS
-                ? this._handleErrorZS.onHandleError(this._handleErrorDlgt, this.zone, targetZone, error)
-                : true;
+            return this._handleErrorZS ?
+                this._handleErrorZS.onHandleError(this._handleErrorDlgt, this.zone, targetZone, error) :
+                true;
         };
         ZoneDelegate.prototype.scheduleTask = function (targetZone, task) {
             try {
@@ -51002,12 +51031,13 @@ var Zone$1 = (function (global) {
         };
         ZoneDelegate.prototype.invokeTask = function (targetZone, task, applyThis, applyArgs) {
             try {
-                return this._invokeTaskZS
-                    ? this._invokeTaskZS.onInvokeTask(this._invokeTaskDlgt, this.zone, targetZone, task, applyThis, applyArgs)
-                    : task.callback.apply(applyThis, applyArgs);
+                return this._invokeTaskZS ?
+                    this._invokeTaskZS.onInvokeTask(this._invokeTaskDlgt, this.zone, targetZone, task, applyThis, applyArgs) :
+                    task.callback.apply(applyThis, applyArgs);
             }
             finally {
-                if (targetZone == this.zone && (task.type != 'eventTask') && !(task.data && task.data.isPeriodic)) {
+                if (targetZone == this.zone && (task.type != 'eventTask') &&
+                    !(task.data && task.data.isPeriodic)) {
                     this._updateTaskCount(task.type, -1);
                 }
             }
@@ -51030,7 +51060,8 @@ var Zone$1 = (function (global) {
             return value;
         };
         ZoneDelegate.prototype.hasTask = function (targetZone, isEmpty) {
-            return this._hasTaskZS && this._hasTaskZS.onHasTask(this._hasTaskDlgt, this.zone, targetZone, isEmpty);
+            return this._hasTaskZS &&
+                this._hasTaskZS.onHasTask(this._hasTaskDlgt, this.zone, targetZone, isEmpty);
         };
         ZoneDelegate.prototype._updateTaskCount = function (type, count) {
             var counts = this._taskCounts;
@@ -51087,12 +51118,14 @@ var Zone$1 = (function (global) {
                 return this.data.handleId;
             }
             else {
-                return this.toString();
+                return Object.prototype.toString.call(this);
             }
         };
         return ZoneTask;
     }());
-    function __symbol__(name) { return '__zone_symbol__' + name; }
+    function __symbol__(name) {
+        return '__zone_symbol__' + name;
+    }
     
     var symbolSetTimeout = __symbol__('setTimeout');
     var symbolPromise = __symbol__('Promise');
@@ -51147,7 +51180,9 @@ var Zone$1 = (function (global) {
                 var _loop_1 = function() {
                     var uncaughtPromiseError = _uncaughtPromiseErrors.shift();
                     try {
-                        uncaughtPromiseError.zone.runGuarded(function () { throw uncaughtPromiseError; });
+                        uncaughtPromiseError.zone.runGuarded(function () {
+                            throw uncaughtPromiseError;
+                        });
                     }
                     catch (e) {
                         consoleError(e);
@@ -51163,8 +51198,12 @@ var Zone$1 = (function (global) {
     function isThenable(value) {
         return value && value.then;
     }
-    function forwardResolution(value) { return value; }
-    function forwardRejection(rejection) { return ZoneAwarePromise.reject(rejection); }
+    function forwardResolution(value) {
+        return value;
+    }
+    function forwardRejection(rejection) {
+        return ZoneAwarePromise.reject(rejection);
+    }
     var symbolState = __symbol__('state');
     var symbolValue = __symbol__('value');
     var source = 'Promise.then';
@@ -51197,7 +51236,8 @@ var Zone$1 = (function (global) {
                 if (queue.length == 0 && state == REJECTED) {
                     promise[symbolState] = REJECTED_NO_CATCH;
                     try {
-                        throw new Error("Uncaught (in promise): " + value);
+                        throw new Error('Uncaught (in promise): ' + value +
+                            (value && value.stack ? '\n' + value.stack : ''));
                     }
                     catch (e) {
                         var error_1 = e;
@@ -51261,9 +51301,16 @@ var Zone$1 = (function (global) {
         ZoneAwarePromise.race = function (values) {
             var resolve;
             var reject;
-            var promise = new this(function (res, rej) { resolve = res; reject = rej; });
-            function onResolve(value) { promise && (promise = null || resolve(value)); }
-            function onReject(error) { promise && (promise = null || reject(error)); }
+            var promise = new this(function (res, rej) {
+                _a = [res, rej], resolve = _a[0], reject = _a[1];
+                var _a;
+            });
+            function onResolve(value) {
+                promise && (promise = null || resolve(value));
+            }
+            function onReject(error) {
+                promise && (promise = null || reject(error));
+            }
             for (var _i = 0, values_1 = values; _i < values_1.length; _i++) {
                 var value = values_1[_i];
                 if (!isThenable(value)) {
@@ -51276,7 +51323,10 @@ var Zone$1 = (function (global) {
         ZoneAwarePromise.all = function (values) {
             var resolve;
             var reject;
-            var promise = new this(function (res, rej) { resolve = res; reject = rej; });
+            var promise = new this(function (res, rej) {
+                resolve = res;
+                reject = rej;
+            });
             var count = 0;
             var resolvedValues = [];
             for (var _i = 0, values_2 = values; _i < values_2.length; _i++) {
@@ -51323,13 +51373,14 @@ var Zone$1 = (function (global) {
     global.Promise = ZoneAwarePromise;
     function patchThen(NativePromise) {
         var NativePromiseProtototype = NativePromise.prototype;
-        var NativePromiseThen = NativePromiseProtototype[__symbol__('then')]
-            = NativePromiseProtototype.then;
+        var NativePromiseThen = NativePromiseProtototype[__symbol__('then')] =
+            NativePromiseProtototype.then;
         NativePromiseProtototype.then = function (onResolve, onReject) {
             var nativePromise = this;
             return new ZoneAwarePromise(function (resolve, reject) {
                 NativePromiseThen.call(nativePromise, resolve, reject);
-            }).then(onResolve, onReject);
+            })
+                .then(onResolve, onReject);
         };
     }
     if (NativePromise) {
@@ -51346,7 +51397,8 @@ var Zone$1 = (function (global) {
             }
             // ignore output to prevent error;
             fetchPromise.then(function () { return null; }, function () { return null; });
-            if (fetchPromise.constructor != NativePromise) {
+            if (fetchPromise.constructor != NativePromise &&
+                fetchPromise.constructor != ZoneAwarePromise) {
                 patchThen(fetchPromise.constructor);
             }
         }
@@ -51357,9 +51409,11 @@ var Zone$1 = (function (global) {
 })(typeof window === 'object' && window || typeof self === 'object' && self || global);
 
 /**
- * Suppress closure compiler errors about unknown 'process' variable
- * @fileoverview
- * @suppress {undefinedVars}
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
  */
 var zoneSymbol = Zone['__symbol__'];
 var _global$1 = typeof window === 'object' && window || typeof self === 'object' && self || global;
@@ -51394,10 +51448,7 @@ var isWebWorker = (typeof WorkerGlobalScope !== 'undefined' && self instanceof W
 var isNode = (typeof process !== 'undefined' && {}.toString.call(process) === '[object process]');
 var isBrowser = !isNode && !isWebWorker && !!(typeof window !== 'undefined' && window['HTMLElement']);
 function patchProperty(obj, prop) {
-    var desc = Object.getOwnPropertyDescriptor(obj, prop) || {
-        enumerable: true,
-        configurable: true
-    };
+    var desc = Object.getOwnPropertyDescriptor(obj, prop) || { enumerable: true, configurable: true };
     // A property descriptor cannot have getter/setter and be writable
     // deleting the writable and value properties avoids this error:
     //
@@ -51426,7 +51477,8 @@ function patchProperty(obj, prop) {
             this[_prop] = null;
         }
     };
-    // The getter would return undefined for unassigned properties but the default value of an unassigned property is null
+    // The getter would return undefined for unassigned properties but the default value of an
+    // unassigned property is null
     desc.get = function () {
         return this[_prop] || null;
     };
@@ -51460,9 +51512,7 @@ function findExistingRegisteredTask(target, handler, name, capture, remove) {
         for (var i = 0; i < eventTasks.length; i++) {
             var eventTask = eventTasks[i];
             var data = eventTask.data;
-            if (data.handler === handler
-                && data.useCapturing === capture
-                && data.eventName === name) {
+            if (data.handler === handler && data.useCapturing === capture && data.eventName === name) {
                 if (remove) {
                     eventTasks.splice(i, 1);
                 }
@@ -51515,13 +51565,14 @@ function makeZoneAwareAddListener(addFnName, removeFnName, useCapturingParam, al
             // In cross site contexts (such as WebDriver frameworks like Selenium),
             // accessing the handler object here will cause an exception to be thrown which
             // will fail tests prematurely.
-            validZoneHandler = handler && handler.toString() === "[object FunctionWrapper]";
+            validZoneHandler = handler && handler.toString() === '[object FunctionWrapper]';
         }
         catch (e) {
             // Returning nothing here is fine, because objects in a cross-site context are unusable
             return;
         }
-        // Ignore special listeners of IE11 & Edge dev tools, see https://github.com/angular/zone.js/issues/150
+        // Ignore special listeners of IE11 & Edge dev tools, see
+        // https://github.com/angular/zone.js/issues/150
         if (!delegate || validZoneHandler) {
             return target[addFnSymbol](eventName, handler, useCapturing);
         }
@@ -51602,7 +51653,8 @@ function patchClass(className) {
             case 4:
                 this[originalInstanceKey] = new OriginalClass(a[0], a[1], a[2], a[3]);
                 break;
-            default: throw new Error('Arg list too long.');
+            default:
+                throw new Error('Arg list too long.');
         }
     };
     var instance = new OriginalClass(function () { });
@@ -51654,7 +51706,7 @@ function createNamedFn(name, delegate) {
 }
 function patchMethod(target, name, patchFn) {
     var proto = target;
-    while (proto && !proto.hasOwnProperty(name)) {
+    while (proto && Object.getOwnPropertyNames(proto).indexOf(name) === -1) {
         proto = Object.getPrototypeOf(proto);
     }
     if (!proto && target[name]) {
@@ -51670,36 +51722,90 @@ function patchMethod(target, name, patchFn) {
     return delegate;
 }
 
-var WTF_ISSUE_555 = 'Anchor,Area,Audio,BR,Base,BaseFont,Body,Button,Canvas,Content,DList,Directory,Div,Embed,FieldSet,Font,Form,Frame,FrameSet,HR,Head,Heading,Html,IFrame,Image,Input,Keygen,LI,Label,Legend,Link,Map,Marquee,Media,Menu,Meta,Meter,Mod,OList,Object,OptGroup,Option,Output,Paragraph,Pre,Progress,Quote,Script,Select,Source,Span,Style,TableCaption,TableCell,TableCol,Table,TableRow,TableSection,TextArea,Title,Track,UList,Unknown,Video';
-var NO_EVENT_TARGET = 'ApplicationCache,EventSource,FileReader,InputMethodContext,MediaController,MessagePort,Node,Performance,SVGElementInstance,SharedWorker,TextTrack,TextTrackCue,TextTrackList,WebKitNamedFlow,Window,Worker,WorkerGlobalScope,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload,IDBRequest,IDBOpenDBRequest,IDBDatabase,IDBTransaction,IDBCursor,DBIndex'.split(',');
-var EVENT_TARGET = 'EventTarget';
-function eventTargetPatch(_global) {
-    var apis = [];
-    var isWtf = _global['wtf'];
-    if (isWtf) {
-        // Workaround for: https://github.com/google/tracing-framework/issues/555
-        apis = WTF_ISSUE_555.split(',').map(function (v) { return 'HTML' + v + 'Element'; }).concat(NO_EVENT_TARGET);
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+function patchTimer(window, setName, cancelName, nameSuffix) {
+    var setNative = null;
+    var clearNative = null;
+    setName += nameSuffix;
+    cancelName += nameSuffix;
+    var tasksByHandleId = {};
+    function scheduleTask(task) {
+        var data = task.data;
+        data.args[0] = function () {
+            task.invoke.apply(this, arguments);
+            delete tasksByHandleId[data.handleId];
+        };
+        data.handleId = setNative.apply(window, data.args);
+        tasksByHandleId[data.handleId] = task;
+        return task;
     }
-    else if (_global[EVENT_TARGET]) {
-        apis.push(EVENT_TARGET);
+    function clearTask(task) {
+        delete tasksByHandleId[task.data.handleId];
+        return clearNative(task.data.handleId);
     }
-    else {
-        // Note: EventTarget is not available in all browsers,
-        // if it's not available, we instead patch the APIs in the IDL that inherit from EventTarget
-        apis = NO_EVENT_TARGET;
-    }
-    for (var i = 0; i < apis.length; i++) {
-        var type = _global[apis[i]];
-        patchEventTargetMethods(type && type.prototype);
-    }
+    setNative =
+        patchMethod(window, setName, function (delegate) { return function (self, args) {
+            if (typeof args[0] === 'function') {
+                var zone = Zone.current;
+                var options = {
+                    handleId: null,
+                    isPeriodic: nameSuffix === 'Interval',
+                    delay: (nameSuffix === 'Timeout' || nameSuffix === 'Interval') ? args[1] || 0 : null,
+                    args: args
+                };
+                var task = zone.scheduleMacroTask(setName, args[0], options, scheduleTask, clearTask);
+                if (!task) {
+                    return task;
+                }
+                // Node.js must additionally support the ref and unref functions.
+                var handle = task.data.handleId;
+                if (handle.ref && handle.unref) {
+                    task.ref = handle.ref.bind(handle);
+                    task.unref = handle.unref.bind(handle);
+                }
+                return task;
+            }
+            else {
+                // cause an error by calling it directly.
+                return delegate.apply(window, args);
+            }
+        }; });
+    clearNative =
+        patchMethod(window, cancelName, function (delegate) { return function (self, args) {
+            var task = typeof args[0] === 'number' ? tasksByHandleId[args[0]] : args[0];
+            if (task && typeof task.type === 'string') {
+                if (task.cancelFn && task.data.isPeriodic || task.runCount === 0) {
+                    // Do not cancel already canceled functions
+                    task.zone.cancelTask(task);
+                }
+            }
+            else {
+                // cause an error by calling it directly.
+                delegate.apply(window, args);
+            }
+        }; });
 }
 
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 /*
  * This is necessary for Chrome and Chrome mobile, to enable
  * things like redefining `createdCallback` on an element.
  */
 var _defineProperty = Object[zoneSymbol('defineProperty')] = Object.defineProperty;
-var _getOwnPropertyDescriptor = Object[zoneSymbol('getOwnPropertyDescriptor')] = Object.getOwnPropertyDescriptor;
+var _getOwnPropertyDescriptor = Object[zoneSymbol('getOwnPropertyDescriptor')] =
+    Object.getOwnPropertyDescriptor;
 var _create = Object.create;
 var unconfigurablesKey = zoneSymbol('unconfigurables');
 function propertyPatch() {
@@ -51761,7 +51867,8 @@ function _tryDefineProperty(obj, prop, desc, originalConfigurableFlag) {
     }
     catch (e) {
         if (desc.configurable) {
-            // In case of errors, when the configurable flag was likely set by rewriteDescriptor(), let's retry with the original flag value
+            // In case of errors, when the configurable flag was likely set by rewriteDescriptor(), let's
+            // retry with the original flag value
             if (typeof originalConfigurableFlag == 'undefined') {
                 delete desc.configurable;
             }
@@ -51788,40 +51895,45 @@ function _tryDefineProperty(obj, prop, desc, originalConfigurableFlag) {
     }
 }
 
-function registerElementPatch(_global) {
-    if (!isBrowser || !('registerElement' in _global.document)) {
-        return;
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+var WTF_ISSUE_555 = 'Anchor,Area,Audio,BR,Base,BaseFont,Body,Button,Canvas,Content,DList,Directory,Div,Embed,FieldSet,Font,Form,Frame,FrameSet,HR,Head,Heading,Html,IFrame,Image,Input,Keygen,LI,Label,Legend,Link,Map,Marquee,Media,Menu,Meta,Meter,Mod,OList,Object,OptGroup,Option,Output,Paragraph,Pre,Progress,Quote,Script,Select,Source,Span,Style,TableCaption,TableCell,TableCol,Table,TableRow,TableSection,TextArea,Title,Track,UList,Unknown,Video';
+var NO_EVENT_TARGET = 'ApplicationCache,EventSource,FileReader,InputMethodContext,MediaController,MessagePort,Node,Performance,SVGElementInstance,SharedWorker,TextTrack,TextTrackCue,TextTrackList,WebKitNamedFlow,Window,Worker,WorkerGlobalScope,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload,IDBRequest,IDBOpenDBRequest,IDBDatabase,IDBTransaction,IDBCursor,DBIndex'
+    .split(',');
+var EVENT_TARGET = 'EventTarget';
+function eventTargetPatch(_global) {
+    var apis = [];
+    var isWtf = _global['wtf'];
+    if (isWtf) {
+        // Workaround for: https://github.com/google/tracing-framework/issues/555
+        apis = WTF_ISSUE_555.split(',').map(function (v) { return 'HTML' + v + 'Element'; }).concat(NO_EVENT_TARGET);
     }
-    var _registerElement = document.registerElement;
-    var callbacks = [
-        'createdCallback',
-        'attachedCallback',
-        'detachedCallback',
-        'attributeChangedCallback'
-    ];
-    document.registerElement = function (name, opts) {
-        if (opts && opts.prototype) {
-            callbacks.forEach(function (callback) {
-                var source = 'Document.registerElement::' + callback;
-                if (opts.prototype.hasOwnProperty(callback)) {
-                    var descriptor = Object.getOwnPropertyDescriptor(opts.prototype, callback);
-                    if (descriptor && descriptor.value) {
-                        descriptor.value = Zone.current.wrap(descriptor.value, source);
-                        _redefineProperty(opts.prototype, callback, descriptor);
-                    }
-                    else {
-                        opts.prototype[callback] = Zone.current.wrap(opts.prototype[callback], source);
-                    }
-                }
-                else if (opts.prototype[callback]) {
-                    opts.prototype[callback] = Zone.current.wrap(opts.prototype[callback], source);
-                }
-            });
-        }
-        return _registerElement.apply(document, [name, opts]);
-    };
+    else if (_global[EVENT_TARGET]) {
+        apis.push(EVENT_TARGET);
+    }
+    else {
+        // Note: EventTarget is not available in all browsers,
+        // if it's not available, we instead patch the APIs in the IDL that inherit from EventTarget
+        apis = NO_EVENT_TARGET;
+    }
+    for (var i = 0; i < apis.length; i++) {
+        var type = _global[apis[i]];
+        patchEventTargetMethods(type && type.prototype);
+    }
 }
 
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 // we have to patch the instance since the proto is non-configurable
 function apply(_global) {
     var WS = _global.WebSocket;
@@ -51855,7 +51967,15 @@ function apply(_global) {
     }
 }
 
-var eventNames = 'copy cut paste abort blur focus canplay canplaythrough change click contextmenu dblclick drag dragend dragenter dragleave dragover dragstart drop durationchange emptied ended input invalid keydown keypress keyup load loadeddata loadedmetadata loadstart message mousedown mouseenter mouseleave mousemove mouseout mouseover mouseup pause play playing progress ratechange reset scroll seeked seeking select show stalled submit suspend timeupdate volumechange waiting mozfullscreenchange mozfullscreenerror mozpointerlockchange mozpointerlockerror error webglcontextrestored webglcontextlost webglcontextcreationerror'.split(' ');
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+var eventNames = 'copy cut paste abort blur focus canplay canplaythrough change click contextmenu dblclick drag dragend dragenter dragleave dragover dragstart drop durationchange emptied ended input invalid keydown keypress keyup load loadeddata loadedmetadata loadstart message mousedown mouseenter mouseleave mousemove mouseout mouseover mouseup pause play playing progress ratechange reset scroll seeked seeking select show stalled submit suspend timeupdate volumechange waiting mozfullscreenchange mozfullscreenerror mozpointerlockchange mozpointerlockerror error webglcontextrestored webglcontextlost webglcontextcreationerror'
+    .split(' ');
 function propertyDescriptorPatch(_global) {
     if (isNode) {
         return;
@@ -51889,8 +52009,8 @@ function propertyDescriptorPatch(_global) {
     }
 }
 function canPatchViaPropertyDescriptor() {
-    if (isBrowser && !Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'onclick')
-        && typeof Element !== 'undefined') {
+    if (isBrowser && !Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'onclick') &&
+        typeof Element !== 'undefined') {
         // WebKit https://bugs.webkit.org/show_bug.cgi?id=134364
         // IDL interface attributes are not configurable
         var desc = Object.getOwnPropertyDescriptor(Element.prototype, 'onclick');
@@ -51916,7 +52036,7 @@ function patchViaCapturingAllTheEvents() {
     var _loop_1 = function(i) {
         var property = eventNames[i];
         var onproperty = 'on' + property;
-        document.addEventListener(property, function (event) {
+        self.addEventListener(property, function (event) {
             var elt = event.target, bound, source;
             if (elt) {
                 source = elt.constructor['name'] + '.' + onproperty;
@@ -51940,61 +52060,49 @@ function patchViaCapturingAllTheEvents() {
     
 }
 
-function patchTimer(window, setName, cancelName, nameSuffix) {
-    var setNative = null;
-    var clearNative = null;
-    setName += nameSuffix;
-    cancelName += nameSuffix;
-    function scheduleTask(task) {
-        var data = task.data;
-        data.args[0] = task.invoke;
-        data.handleId = setNative.apply(window, data.args);
-        return task;
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+function registerElementPatch(_global) {
+    if (!isBrowser || !('registerElement' in _global.document)) {
+        return;
     }
-    function clearTask(task) {
-        return clearNative(task.data.handleId);
-    }
-    setNative = patchMethod(window, setName, function (delegate) { return function (self, args) {
-        if (typeof args[0] === 'function') {
-            var zone = Zone.current;
-            var options = {
-                handleId: null,
-                isPeriodic: nameSuffix === 'Interval',
-                delay: (nameSuffix === 'Timeout' || nameSuffix === 'Interval') ? args[1] || 0 : null,
-                args: args
-            };
-            var task = zone.scheduleMacroTask(setName, args[0], options, scheduleTask, clearTask);
-            if (!task) {
-                return task;
-            }
-            // Node.js must additionally support the ref and unref functions.
-            var handle = task.data.handleId;
-            if (handle.ref && handle.unref) {
-                task.ref = handle.ref.bind(handle);
-                task.unref = handle.unref.bind(handle);
-            }
-            return task;
+    var _registerElement = document.registerElement;
+    var callbacks = ['createdCallback', 'attachedCallback', 'detachedCallback', 'attributeChangedCallback'];
+    document.registerElement = function (name, opts) {
+        if (opts && opts.prototype) {
+            callbacks.forEach(function (callback) {
+                var source = 'Document.registerElement::' + callback;
+                if (opts.prototype.hasOwnProperty(callback)) {
+                    var descriptor = Object.getOwnPropertyDescriptor(opts.prototype, callback);
+                    if (descriptor && descriptor.value) {
+                        descriptor.value = Zone.current.wrap(descriptor.value, source);
+                        _redefineProperty(opts.prototype, callback, descriptor);
+                    }
+                    else {
+                        opts.prototype[callback] = Zone.current.wrap(opts.prototype[callback], source);
+                    }
+                }
+                else if (opts.prototype[callback]) {
+                    opts.prototype[callback] = Zone.current.wrap(opts.prototype[callback], source);
+                }
+            });
         }
-        else {
-            // cause an error by calling it directly.
-            return delegate.apply(window, args);
-        }
-    }; });
-    clearNative = patchMethod(window, cancelName, function (delegate) { return function (self, args) {
-        var task = args[0];
-        if (task && typeof task.type === 'string') {
-            if (task.cancelFn && task.data.isPeriodic || task.runCount === 0) {
-                // Do not cancel already canceled functions
-                task.zone.cancelTask(task);
-            }
-        }
-        else {
-            // cause an error by calling it directly.
-            delegate.apply(window, args);
-        }
-    }; });
+        return _registerElement.apply(document, [name, opts]);
+    };
 }
 
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 var set = 'set';
 var clear = 'clear';
 var blockingMethods = ['alert', 'prompt', 'confirm'];
@@ -52045,8 +52153,7 @@ function patchXHR(window) {
         sendNative.apply(data.target, data.args);
         return task;
     }
-    function placeholderCallback() {
-    }
+    function placeholderCallback() { }
     function clearTask(task) {
         var data = task.data;
         // Note - ideally, we would call data.target.removeEventListener here, but it's too late
@@ -52065,13 +52172,7 @@ function patchXHR(window) {
             return sendNative.apply(self, args);
         }
         else {
-            var options = {
-                target: self,
-                isPeriodic: false,
-                delay: null,
-                args: args,
-                aborted: false
-            };
+            var options = { target: self, isPeriodic: false, delay: null, args: args, aborted: false };
             return zone.scheduleMacroTask('XMLHttpRequest.send', placeholderCallback, options, scheduleTask, clearTask);
         }
     }; });
@@ -52084,15 +52185,13 @@ function patchXHR(window) {
             }
             task.zone.cancelTask(task);
         }
-        // Otherwise, we are trying to abort an XHR which has not yet been sent, so there is no task to cancel. Do nothing.
+        // Otherwise, we are trying to abort an XHR which has not yet been sent, so there is no task
+        // to cancel. Do nothing.
     }; });
 }
 /// GEO_LOCATION
 if (_global['navigator'] && _global['navigator'].geolocation) {
-    patchPrototype(_global['navigator'].geolocation, [
-        'getCurrentPosition',
-        'watchPosition'
-    ]);
+    patchPrototype(_global['navigator'].geolocation, ['getCurrentPosition', 'watchPosition']);
 }
 
 })));
@@ -52222,7 +52321,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var Dropzone = __webpack_require__(4);
+var Dropzone = __webpack_require__(7);
+// http://www.dropzonejs.com/#event-list
+var dropzoneEvents = [
+    'drop',
+    'dragstart',
+    'dragend',
+    'dragenter',
+    'dragover',
+    'dragleave',
+    'addedfile',
+    'removedfile',
+    'thumbnail',
+    'error',
+    'processing',
+    'uploadprogress',
+    'sending',
+    'success',
+    'complete',
+    'canceled',
+    'maxfilesreached',
+    'maxfilesexceeded',
+    'processingmultiple',
+    'sendingmultiple',
+    'successmultiple',
+    'completemultiple',
+    'canceledmultiple',
+    'totaluploadprogress',
+    'reset',
+    'queuecomplete'
+];
 var core_1 = __webpack_require__(2);
 var dropzone_interfaces_1 = __webpack_require__(0);
 var DropzoneComponent = (function () {
@@ -52236,6 +52364,32 @@ var DropzoneComponent = (function () {
         this.uploadError = new core_1.EventEmitter();
         this.uploadSuccess = new core_1.EventEmitter();
         this.uploadCanceled = new core_1.EventEmitter();
+        this.dz_drop = new core_1.EventEmitter();
+        this.dz_dragstart = new core_1.EventEmitter();
+        this.dz_dragend = new core_1.EventEmitter();
+        this.dz_dragenter = new core_1.EventEmitter();
+        this.dz_dragover = new core_1.EventEmitter();
+        this.dz_dragleave = new core_1.EventEmitter();
+        this.dz_addedfile = new core_1.EventEmitter();
+        this.dz_removedfile = new core_1.EventEmitter();
+        this.dz_thumbnail = new core_1.EventEmitter();
+        this.dz_error = new core_1.EventEmitter();
+        this.dz_processing = new core_1.EventEmitter();
+        this.dz_uploadprogress = new core_1.EventEmitter();
+        this.dz_sending = new core_1.EventEmitter();
+        this.dz_success = new core_1.EventEmitter();
+        this.dz_complete = new core_1.EventEmitter();
+        this.dz_canceled = new core_1.EventEmitter();
+        this.dz_maxfilesreached = new core_1.EventEmitter();
+        this.dz_maxfilesexceeded = new core_1.EventEmitter();
+        this.dz_processingmultiple = new core_1.EventEmitter();
+        this.dz_sendingmultiple = new core_1.EventEmitter();
+        this.dz_successmultiple = new core_1.EventEmitter();
+        this.dz_completemultiple = new core_1.EventEmitter();
+        this.dz_canceledmultiple = new core_1.EventEmitter();
+        this.dz_totaluploadprogress = new core_1.EventEmitter();
+        this.dz_reset = new core_1.EventEmitter();
+        this.dz_queuecomplete = new core_1.EventEmitter();
         this.useDropzoneClass = true;
         this.useDzWrapperClass = true;
         Dropzone.autoDiscover = false;
@@ -52266,6 +52420,17 @@ var DropzoneComponent = (function () {
             if (options.cancelReset != null) {
                 setTimeout(function () { return _this.reset(); }, options.cancelReset);
             }
+        });
+        // Trigger native dropzone events
+        dropzoneEvents.forEach(function (eventName) {
+            var self = _this;
+            _this.dropzone.on(eventName, function (event) {
+                var args = Array.prototype.slice.call(arguments);
+                if (args.length === 1) {
+                    args = args[0];
+                }
+                self[("dz_" + eventName)].emit(args);
+            });
         });
         if (!this.configDiff) {
             this.configDiff = this.differs.find(this.config || {}).create(null);
@@ -52325,6 +52490,110 @@ var DropzoneComponent = (function () {
         __metadata('design:type', Object)
     ], DropzoneComponent.prototype, "uploadCanceled", void 0);
     __decorate([
+        core_1.Output('drop'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_drop", void 0);
+    __decorate([
+        core_1.Output('dragstart'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_dragstart", void 0);
+    __decorate([
+        core_1.Output('dragend'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_dragend", void 0);
+    __decorate([
+        core_1.Output('dragenter'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_dragenter", void 0);
+    __decorate([
+        core_1.Output('dragover'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_dragover", void 0);
+    __decorate([
+        core_1.Output('dragleave'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_dragleave", void 0);
+    __decorate([
+        core_1.Output('addedfile'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_addedfile", void 0);
+    __decorate([
+        core_1.Output('removedfile'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_removedfile", void 0);
+    __decorate([
+        core_1.Output('thumbnail'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_thumbnail", void 0);
+    __decorate([
+        core_1.Output('error'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_error", void 0);
+    __decorate([
+        core_1.Output('processing'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_processing", void 0);
+    __decorate([
+        core_1.Output('uploadprogress'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_uploadprogress", void 0);
+    __decorate([
+        core_1.Output('sending'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_sending", void 0);
+    __decorate([
+        core_1.Output('success'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_success", void 0);
+    __decorate([
+        core_1.Output('complete'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_complete", void 0);
+    __decorate([
+        core_1.Output('canceled'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_canceled", void 0);
+    __decorate([
+        core_1.Output('maxfilesreached'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_maxfilesreached", void 0);
+    __decorate([
+        core_1.Output('maxfilesexceeded'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_maxfilesexceeded", void 0);
+    __decorate([
+        core_1.Output('processingmultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_processingmultiple", void 0);
+    __decorate([
+        core_1.Output('sendingmultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_sendingmultiple", void 0);
+    __decorate([
+        core_1.Output('successmultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_successmultiple", void 0);
+    __decorate([
+        core_1.Output('completemultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_completemultiple", void 0);
+    __decorate([
+        core_1.Output('canceledmultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_canceledmultiple", void 0);
+    __decorate([
+        core_1.Output('totaluploadprogress'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_totaluploadprogress", void 0);
+    __decorate([
+        core_1.Output('reset'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_reset", void 0);
+    __decorate([
+        core_1.Output('queuecomplete'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_queuecomplete", void 0);
+    __decorate([
         core_1.HostBinding('class.dropzone'),
         core_1.Input(), 
         __metadata('design:type', Boolean)
@@ -52337,8 +52606,8 @@ var DropzoneComponent = (function () {
     DropzoneComponent = __decorate([
         core_1.Component({
             selector: 'dropzone',
-            template: __webpack_require__(7),
-            styles: [__webpack_require__(6), __webpack_require__(5)],
+            template: __webpack_require__(6),
+            styles: [__webpack_require__(5), __webpack_require__(4)],
             encapsulation: core_1.ViewEncapsulation.None
         }),
         __param(2, core_1.Optional()), 
@@ -52441,6 +52710,24 @@ exports.provideForRootGuard = provideForRootGuard;
 
 /***/ },
 /* 4 */
+/***/ function(module, exports) {
+
+module.exports = "@-webkit-keyframes passing-through{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%, 70%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}100%{opacity:0;-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px)}}@-moz-keyframes passing-through{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%, 70%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}100%{opacity:0;-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px)}}@keyframes passing-through{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%, 70%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}100%{opacity:0;-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px)}}@-webkit-keyframes slide-in{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}}@-moz-keyframes slide-in{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}}@keyframes slide-in{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}}@-webkit-keyframes pulse{0%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}10%{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}20%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}@-moz-keyframes pulse{0%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}10%{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}20%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}@keyframes pulse{0%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}10%{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}20%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}.dropzone,.dropzone *{box-sizing:border-box}.dropzone{min-height:150px;border:2px solid rgba(0,0,0,0.3);background:white;padding:20px 20px}.dropzone.dz-clickable{cursor:pointer}.dropzone.dz-clickable *{cursor:default}.dropzone.dz-clickable .dz-message,.dropzone.dz-clickable .dz-message *{cursor:pointer}.dropzone.dz-started .dz-message{display:none}.dropzone.dz-drag-hover{border-style:solid}.dropzone.dz-drag-hover .dz-message{opacity:0.5}.dropzone .dz-message{text-align:center;margin:2em 0}.dropzone .dz-preview{position:relative;display:inline-block;vertical-align:top;margin:16px;min-height:100px}.dropzone .dz-preview:hover{z-index:1000}.dropzone .dz-preview:hover .dz-details{opacity:1}.dropzone .dz-preview.dz-file-preview .dz-image{border-radius:20px;background:#999;background:linear-gradient(to bottom, #eee, #ddd)}.dropzone .dz-preview.dz-file-preview .dz-details{opacity:1}.dropzone .dz-preview.dz-image-preview{background:white}.dropzone .dz-preview.dz-image-preview .dz-details{-webkit-transition:opacity 0.2s linear;-moz-transition:opacity 0.2s linear;-ms-transition:opacity 0.2s linear;-o-transition:opacity 0.2s linear;transition:opacity 0.2s linear}.dropzone .dz-preview .dz-remove{font-size:14px;text-align:center;display:block;cursor:pointer;border:none}.dropzone .dz-preview .dz-remove:hover{text-decoration:underline}.dropzone .dz-preview:hover .dz-details{opacity:1}.dropzone .dz-preview .dz-details{z-index:20;position:absolute;top:0;left:0;opacity:0;font-size:13px;min-width:100%;max-width:100%;padding:2em 1em;text-align:center;color:rgba(0,0,0,0.9);line-height:150%}.dropzone .dz-preview .dz-details .dz-size{margin-bottom:1em;font-size:16px}.dropzone .dz-preview .dz-details .dz-filename{white-space:nowrap}.dropzone .dz-preview .dz-details .dz-filename:hover span{border:1px solid rgba(200,200,200,0.8);background-color:rgba(255,255,255,0.8)}.dropzone .dz-preview .dz-details .dz-filename:not(:hover){overflow:hidden;text-overflow:ellipsis}.dropzone .dz-preview .dz-details .dz-filename:not(:hover) span{border:1px solid transparent}.dropzone .dz-preview .dz-details .dz-filename span,.dropzone .dz-preview .dz-details .dz-size span{background-color:rgba(255,255,255,0.4);padding:0 0.4em;border-radius:3px}.dropzone .dz-preview:hover .dz-image img{-webkit-transform:scale(1.05, 1.05);-moz-transform:scale(1.05, 1.05);-ms-transform:scale(1.05, 1.05);-o-transform:scale(1.05, 1.05);transform:scale(1.05, 1.05);-webkit-filter:blur(8px);filter:blur(8px)}.dropzone .dz-preview .dz-image{border-radius:20px;overflow:hidden;width:120px;height:120px;position:relative;display:block;z-index:10}.dropzone .dz-preview .dz-image img{display:block}.dropzone .dz-preview.dz-success .dz-success-mark{-webkit-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);-moz-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);-ms-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);-o-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1)}.dropzone .dz-preview.dz-error .dz-error-mark{opacity:1;-webkit-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);-moz-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);-ms-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);-o-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1)}.dropzone .dz-preview .dz-success-mark,.dropzone .dz-preview .dz-error-mark{pointer-events:none;opacity:0;z-index:500;position:absolute;display:block;top:50%;left:50%;margin-left:-27px;margin-top:-27px}.dropzone .dz-preview .dz-success-mark svg,.dropzone .dz-preview .dz-error-mark svg{display:block;width:54px;height:54px}.dropzone .dz-preview.dz-processing .dz-progress{opacity:1;-webkit-transition:all 0.2s linear;-moz-transition:all 0.2s linear;-ms-transition:all 0.2s linear;-o-transition:all 0.2s linear;transition:all 0.2s linear}.dropzone .dz-preview.dz-complete .dz-progress{opacity:0;-webkit-transition:opacity 0.4s ease-in;-moz-transition:opacity 0.4s ease-in;-ms-transition:opacity 0.4s ease-in;-o-transition:opacity 0.4s ease-in;transition:opacity 0.4s ease-in}.dropzone .dz-preview:not(.dz-processing) .dz-progress{-webkit-animation:pulse 6s ease infinite;-moz-animation:pulse 6s ease infinite;-ms-animation:pulse 6s ease infinite;-o-animation:pulse 6s ease infinite;animation:pulse 6s ease infinite}.dropzone .dz-preview .dz-progress{opacity:1;z-index:1000;pointer-events:none;position:absolute;height:16px;left:50%;top:50%;margin-top:-8px;width:80px;margin-left:-40px;background:rgba(255,255,255,0.9);-webkit-transform:scale(1);border-radius:8px;overflow:hidden}.dropzone .dz-preview .dz-progress .dz-upload{background:#333;background:linear-gradient(to bottom, #666, #444);position:absolute;top:0;left:0;bottom:0;width:0;-webkit-transition:width 300ms ease-in-out;-moz-transition:width 300ms ease-in-out;-ms-transition:width 300ms ease-in-out;-o-transition:width 300ms ease-in-out;transition:width 300ms ease-in-out}.dropzone .dz-preview.dz-error .dz-error-message{display:block}.dropzone .dz-preview.dz-error:hover .dz-error-message{opacity:1;pointer-events:auto}.dropzone .dz-preview .dz-error-message{pointer-events:none;z-index:1000;position:absolute;display:block;display:none;opacity:0;-webkit-transition:opacity 0.3s ease;-moz-transition:opacity 0.3s ease;-ms-transition:opacity 0.3s ease;-o-transition:opacity 0.3s ease;transition:opacity 0.3s ease;border-radius:8px;font-size:13px;top:130px;left:-10px;width:140px;background:#be2626;background:linear-gradient(to bottom, #be2626, #a92222);padding:0.5em 1.2em;color:white}.dropzone .dz-preview .dz-error-message:after{content:'';position:absolute;top:-6px;left:64px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid #be2626}\n"
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+module.exports = ".dropzone.dz-wrapper {\n  position: relative;\n  padding: 0;\n  border: none;\n  color: #666;\n  background: transparent; }\n  .dropzone.dz-wrapper .dz-message {\n    position: relative;\n    overflow: auto;\n    min-height: 40px;\n    max-width: 100%;\n    max-height: 320px;\n    margin: 0;\n    border: 2px dashed #aaa;\n    background: #eee; }\n    .dropzone.dz-wrapper .dz-message .dz-text {\n      padding: 9px;\n      text-align: center; }\n    .dropzone.dz-wrapper .dz-message .dz-image {\n      width: 100%;\n      height: auto; }\n    .dropzone.dz-wrapper .dz-message.disabled {\n      cursor: not-allowed; }\n      .dropzone.dz-wrapper .dz-message.disabled .dz-text {\n        opacity: 0.5; }\n    .dropzone.dz-wrapper .dz-message.dz-placeholder {\n      border-color: rgba(170, 170, 170, 0); }\n      .dropzone.dz-wrapper .dz-message.dz-placeholder .dz-text {\n        position: absolute;\n        z-index: 1;\n        top: 50%;\n        right: 5%;\n        left: 5%;\n        opacity: 0;\n        font-weight: bold;\n        background: rgba(255, 255, 255, 0.3);\n        transform: translateY(-50%);\n        transition: filter 150ms ease-in-out, opacity 150ms ease-in-out, border-color 150ms ease-in-out; }\n      .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) {\n        border-color: #aaa; }\n        .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) .dz-text {\n          opacity: 1; }\n        .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) .dz-image {\n          -webkit-filter: blur(8px);\n          filter: blur(8px); }\n  .dropzone.dz-wrapper .dz-preview {\n    overflow: auto;\n    width: 100%;\n    height: auto;\n    min-height: 40px;\n    max-width: 100%;\n    max-height: 320px;\n    padding: 9px;\n    margin: 0;\n    background: transparent; }\n    .dropzone.dz-wrapper .dz-preview .dz-image {\n      width: 100%;\n      height: auto;\n      border-radius: 0; }\n      .dropzone.dz-wrapper .dz-preview .dz-image img {\n        width: 100%;\n        height: auto;\n        margin: 0 auto; }\n    .dropzone.dz-wrapper .dz-preview .dz-progress {\n      width: 90%;\n      margin-left: -45%;\n      border-radius: 4px;\n      border: 1px solid #aaa; }\n      .dropzone.dz-wrapper .dz-preview .dz-progress .dz-upload {\n        background: #666; }\n    .dropzone.dz-wrapper .dz-preview .dz-error-mark,\n    .dropzone.dz-wrapper .dz-preview .dz-success-mark {\n      display: none; }\n    .dropzone.dz-wrapper .dz-preview .dz-error-message {\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      opacity: 1;\n      width: 100%;\n      min-height: 40px;\n      padding: 10px;\n      border-radius: 0;\n      border: 2px solid #aaa;\n      color: #666;\n      font-weight: bold;\n      text-align: center;\n      background: #eee; }\n      .dropzone.dz-wrapper .dz-preview .dz-error-message::after {\n        display: none; }\n    .dropzone.dz-wrapper .dz-preview.dz-file-preview .dz-image {\n      display: none; }\n    .dropzone.dz-wrapper .dz-preview.dz-file-preview .dz-details {\n      display: none; }\n"
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+module.exports = "<div class=\"dz-message\" [ngClass]=\"{'disabled': disabled, 'dz-placeholder': placeholder}\">\n  <div class=\"dz-text\">{{message}}</div>\n\n  <img *ngIf=\"placeholder\" class=\"dz-image\" [src]=\"placeholder\">\n</div>\n"
+
+/***/ },
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {
@@ -54214,24 +54501,6 @@ exports.provideForRootGuard = provideForRootGuard;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)(module)))
 
 /***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-module.exports = "@-webkit-keyframes passing-through{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%, 70%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}100%{opacity:0;-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px)}}@-moz-keyframes passing-through{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%, 70%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}100%{opacity:0;-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px)}}@keyframes passing-through{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%, 70%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}100%{opacity:0;-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px)}}@-webkit-keyframes slide-in{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}}@-moz-keyframes slide-in{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}}@keyframes slide-in{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}}@-webkit-keyframes pulse{0%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}10%{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}20%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}@-moz-keyframes pulse{0%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}10%{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}20%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}@keyframes pulse{0%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}10%{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}20%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}.dropzone,.dropzone *{box-sizing:border-box}.dropzone{min-height:150px;border:2px solid rgba(0,0,0,0.3);background:white;padding:20px 20px}.dropzone.dz-clickable{cursor:pointer}.dropzone.dz-clickable *{cursor:default}.dropzone.dz-clickable .dz-message,.dropzone.dz-clickable .dz-message *{cursor:pointer}.dropzone.dz-started .dz-message{display:none}.dropzone.dz-drag-hover{border-style:solid}.dropzone.dz-drag-hover .dz-message{opacity:0.5}.dropzone .dz-message{text-align:center;margin:2em 0}.dropzone .dz-preview{position:relative;display:inline-block;vertical-align:top;margin:16px;min-height:100px}.dropzone .dz-preview:hover{z-index:1000}.dropzone .dz-preview:hover .dz-details{opacity:1}.dropzone .dz-preview.dz-file-preview .dz-image{border-radius:20px;background:#999;background:linear-gradient(to bottom, #eee, #ddd)}.dropzone .dz-preview.dz-file-preview .dz-details{opacity:1}.dropzone .dz-preview.dz-image-preview{background:white}.dropzone .dz-preview.dz-image-preview .dz-details{-webkit-transition:opacity 0.2s linear;-moz-transition:opacity 0.2s linear;-ms-transition:opacity 0.2s linear;-o-transition:opacity 0.2s linear;transition:opacity 0.2s linear}.dropzone .dz-preview .dz-remove{font-size:14px;text-align:center;display:block;cursor:pointer;border:none}.dropzone .dz-preview .dz-remove:hover{text-decoration:underline}.dropzone .dz-preview:hover .dz-details{opacity:1}.dropzone .dz-preview .dz-details{z-index:20;position:absolute;top:0;left:0;opacity:0;font-size:13px;min-width:100%;max-width:100%;padding:2em 1em;text-align:center;color:rgba(0,0,0,0.9);line-height:150%}.dropzone .dz-preview .dz-details .dz-size{margin-bottom:1em;font-size:16px}.dropzone .dz-preview .dz-details .dz-filename{white-space:nowrap}.dropzone .dz-preview .dz-details .dz-filename:hover span{border:1px solid rgba(200,200,200,0.8);background-color:rgba(255,255,255,0.8)}.dropzone .dz-preview .dz-details .dz-filename:not(:hover){overflow:hidden;text-overflow:ellipsis}.dropzone .dz-preview .dz-details .dz-filename:not(:hover) span{border:1px solid transparent}.dropzone .dz-preview .dz-details .dz-filename span,.dropzone .dz-preview .dz-details .dz-size span{background-color:rgba(255,255,255,0.4);padding:0 0.4em;border-radius:3px}.dropzone .dz-preview:hover .dz-image img{-webkit-transform:scale(1.05, 1.05);-moz-transform:scale(1.05, 1.05);-ms-transform:scale(1.05, 1.05);-o-transform:scale(1.05, 1.05);transform:scale(1.05, 1.05);-webkit-filter:blur(8px);filter:blur(8px)}.dropzone .dz-preview .dz-image{border-radius:20px;overflow:hidden;width:120px;height:120px;position:relative;display:block;z-index:10}.dropzone .dz-preview .dz-image img{display:block}.dropzone .dz-preview.dz-success .dz-success-mark{-webkit-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);-moz-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);-ms-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);-o-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1)}.dropzone .dz-preview.dz-error .dz-error-mark{opacity:1;-webkit-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);-moz-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);-ms-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);-o-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1)}.dropzone .dz-preview .dz-success-mark,.dropzone .dz-preview .dz-error-mark{pointer-events:none;opacity:0;z-index:500;position:absolute;display:block;top:50%;left:50%;margin-left:-27px;margin-top:-27px}.dropzone .dz-preview .dz-success-mark svg,.dropzone .dz-preview .dz-error-mark svg{display:block;width:54px;height:54px}.dropzone .dz-preview.dz-processing .dz-progress{opacity:1;-webkit-transition:all 0.2s linear;-moz-transition:all 0.2s linear;-ms-transition:all 0.2s linear;-o-transition:all 0.2s linear;transition:all 0.2s linear}.dropzone .dz-preview.dz-complete .dz-progress{opacity:0;-webkit-transition:opacity 0.4s ease-in;-moz-transition:opacity 0.4s ease-in;-ms-transition:opacity 0.4s ease-in;-o-transition:opacity 0.4s ease-in;transition:opacity 0.4s ease-in}.dropzone .dz-preview:not(.dz-processing) .dz-progress{-webkit-animation:pulse 6s ease infinite;-moz-animation:pulse 6s ease infinite;-ms-animation:pulse 6s ease infinite;-o-animation:pulse 6s ease infinite;animation:pulse 6s ease infinite}.dropzone .dz-preview .dz-progress{opacity:1;z-index:1000;pointer-events:none;position:absolute;height:16px;left:50%;top:50%;margin-top:-8px;width:80px;margin-left:-40px;background:rgba(255,255,255,0.9);-webkit-transform:scale(1);border-radius:8px;overflow:hidden}.dropzone .dz-preview .dz-progress .dz-upload{background:#333;background:linear-gradient(to bottom, #666, #444);position:absolute;top:0;left:0;bottom:0;width:0;-webkit-transition:width 300ms ease-in-out;-moz-transition:width 300ms ease-in-out;-ms-transition:width 300ms ease-in-out;-o-transition:width 300ms ease-in-out;transition:width 300ms ease-in-out}.dropzone .dz-preview.dz-error .dz-error-message{display:block}.dropzone .dz-preview.dz-error:hover .dz-error-message{opacity:1;pointer-events:auto}.dropzone .dz-preview .dz-error-message{pointer-events:none;z-index:1000;position:absolute;display:block;display:none;opacity:0;-webkit-transition:opacity 0.3s ease;-moz-transition:opacity 0.3s ease;-ms-transition:opacity 0.3s ease;-o-transition:opacity 0.3s ease;transition:opacity 0.3s ease;border-radius:8px;font-size:13px;top:130px;left:-10px;width:140px;background:#be2626;background:linear-gradient(to bottom, #be2626, #a92222);padding:0.5em 1.2em;color:white}.dropzone .dz-preview .dz-error-message:after{content:'';position:absolute;top:-6px;left:64px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid #be2626}\n"
-
-/***/ },
-/* 6 */
-/***/ function(module, exports) {
-
-module.exports = ".dropzone.dz-wrapper {\n  position: relative;\n  padding: 0;\n  border: none;\n  color: #666;\n  background: transparent; }\n  .dropzone.dz-wrapper .dz-message {\n    position: relative;\n    overflow: auto;\n    min-height: 40px;\n    max-width: 100%;\n    max-height: 320px;\n    margin: 0;\n    border: 2px dashed #aaa;\n    background: #eee; }\n    .dropzone.dz-wrapper .dz-message .dz-text {\n      padding: 9px;\n      text-align: center; }\n    .dropzone.dz-wrapper .dz-message .dz-image {\n      width: 100%;\n      height: auto; }\n    .dropzone.dz-wrapper .dz-message.disabled {\n      cursor: not-allowed; }\n      .dropzone.dz-wrapper .dz-message.disabled .dz-text {\n        opacity: 0.5; }\n    .dropzone.dz-wrapper .dz-message.dz-placeholder {\n      border-color: rgba(170, 170, 170, 0); }\n      .dropzone.dz-wrapper .dz-message.dz-placeholder .dz-text {\n        position: absolute;\n        z-index: 1;\n        top: 50%;\n        right: 5%;\n        left: 5%;\n        opacity: 0;\n        font-weight: bold;\n        background: rgba(255, 255, 255, 0.3);\n        transform: translateY(-50%);\n        transition: filter 150ms ease-in-out, opacity 150ms ease-in-out, border-color 150ms ease-in-out; }\n      .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) {\n        border-color: #aaa; }\n        .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) .dz-text {\n          opacity: 1; }\n        .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) .dz-image {\n          -webkit-filter: blur(8px);\n          filter: blur(8px); }\n  .dropzone.dz-wrapper .dz-preview {\n    overflow: auto;\n    width: 100%;\n    height: auto;\n    min-height: 40px;\n    max-width: 100%;\n    max-height: 320px;\n    padding: 9px;\n    margin: 0;\n    background: transparent; }\n    .dropzone.dz-wrapper .dz-preview .dz-image {\n      width: 100%;\n      height: auto;\n      border-radius: 0; }\n      .dropzone.dz-wrapper .dz-preview .dz-image img {\n        width: 100%;\n        height: auto;\n        margin: 0 auto; }\n    .dropzone.dz-wrapper .dz-preview .dz-progress {\n      width: 90%;\n      margin-left: -45%;\n      border-radius: 4px;\n      border: 1px solid #aaa; }\n      .dropzone.dz-wrapper .dz-preview .dz-progress .dz-upload {\n        background: #666; }\n    .dropzone.dz-wrapper .dz-preview .dz-error-mark,\n    .dropzone.dz-wrapper .dz-preview .dz-success-mark {\n      display: none; }\n    .dropzone.dz-wrapper .dz-preview .dz-error-message {\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      opacity: 1;\n      width: 100%;\n      min-height: 40px;\n      padding: 10px;\n      border-radius: 0;\n      border: 2px solid #aaa;\n      color: #666;\n      font-weight: bold;\n      text-align: center;\n      background: #eee; }\n      .dropzone.dz-wrapper .dz-preview .dz-error-message::after {\n        display: none; }\n    .dropzone.dz-wrapper .dz-preview.dz-file-preview .dz-image {\n      display: none; }\n    .dropzone.dz-wrapper .dz-preview.dz-file-preview .dz-details {\n      display: none; }\n"
-
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
-
-module.exports = "<div class=\"dz-message\" [ngClass]=\"{'disabled': disabled, 'dz-placeholder': placeholder}\">\n  <div class=\"dz-text\">{{message}}</div>\n\n  <img *ngIf=\"placeholder\" class=\"dz-image\" [src]=\"placeholder\">\n</div>\n"
-
-/***/ },
 /* 8 */
 /***/ function(module, exports) {
 
@@ -54284,9 +54553,8 @@ __export(__webpack_require__(3));
 
 
 /***/ }
-/******/ ])
+/******/ ]);
 });
-;
 //# sourceMappingURL=index.js.map
 
 /***/ },
