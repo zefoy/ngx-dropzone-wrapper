@@ -47461,7 +47461,8 @@ var core_1 = __webpack_require__(1);
 var AppComponent = (function () {
     function AppComponent() {
         this.config = {
-            params: 'directory=images'
+            params: 'directory=images',
+            dictDefaultMessage: 'Please place a file here!'
         };
     }
     AppComponent.prototype.onUploadError = function (event) {
@@ -50534,13 +50535,13 @@ process.umask = function() { return 0; };
 /* 543 */
 /***/ function(module, exports) {
 
-module.exports = ".app-title {\n  font-size: 24px;\n}\n\n.box-container {\n  display: flex;\n  box-sizing: border-box;\n  flex-direction: column;\n  width: 800px;\n  height: 500px;\n  max-width: 90%;\n  max-height: 90%;\n  padding: 24px;\n  margin: 24px auto;\n  border-radius: 4px;\n\n  color: #555;\n  font-family: sans-serif;\n  box-shadow:\n    0 6px 20px rgba(0, 0, 0, 0.18),\n    0 6px 6px rgba(0, 0, 0, 0.25);\n  background-color: #eee;\n}\n\n.info-container {\n  padding: 12px 16px;\n\n  line-height: 24px;\n}\n\n.upload-container {\n  overflow: auto;\n  flex: 1 1 auto;\n  padding: 24px;\n  border-radius: 4px;\n\n  background-color: #fff;\n}\n"
+module.exports = ".app-title {\n  font-size: 24px;\n}\n\n.box-title {\n  font-size: 20px;\n}\n\n.box-container {\n  display: flex;\n  box-sizing: border-box;\n  flex-direction: column;\n  width: 800px;\n  height: 500px;\n  max-width: 90%;\n  max-height: 90%;\n  padding: 24px;\n  margin: 24px auto;\n  border-radius: 4px;\n\n  color: #555;\n  font-family: sans-serif;\n  box-shadow:\n    0 6px 20px rgba(0, 0, 0, 0.18),\n    0 6px 6px rgba(0, 0, 0, 0.25);\n  background-color: #eee;\n}\n\n.info-container {\n  padding: 12px 16px;\n\n  line-height: 24px;\n}\n\n.vertical-container {\n  display: flex;\n  flex: 1 1 50%;\n  flex-direction: column;\n  align-items: stretch;\n}\n\n.horizontal-container {\n  display: flex;\n  flex: 1 1 auto;\n  flex-direction: row;\n  align-items: stretch;\n}\n\n@media all and (max-width: 800px) {\n  .horizontal-container {\n    flex-direction: column;\n  }\n}\n\n.content-container {\n  position: relative;\n\n  display: flex;\n  overflow: auto;\n  flex: 1 1 auto;\n  flex-direction: column;\n  align-items: stretch;\n  padding: 16px 24px;\n  margin: 8px 16px;\n  border-radius: 4px;\n\n  background-color: #fff;\n}\n\n.dropzone.dz-clickable {\n  height: 100%;\n}\n\n.dropzone:not(.dz-clickable) {\n  opacity: 0.5;\n  cursor: not-allowed;\n}\n"
 
 /***/ },
 /* 544 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"box-container\">\n  <div class=\"app-title\">Simple example application for the angular2-dropzone-wrapper</div>\n\n  <div class=\"info-container\">\n    This example does not actually upload any of the selected files, only simulates the upload process.\n  </div>\n\n  <div class=\"upload-container\">\n    <dropzone class=\"upload-area\" [config]=\"config\" [message]=\"'Click or drag images here to upload'\" (uploadError)=\"onUploadError($event)\" (uploadSuccess)=\"onUploadSuccess($event)\"></dropzone>\n  </div>\n</div>\n"
+module.exports = "<div class=\"box-container\">\n  <div class=\"app-title\">Simple example application for the angular2-dropzone-wrapper</div>\n\n  <div class=\"info-container\">\n    This example does not actually upload any of the selected files, only simulates the upload process.\n  </div>\n  <div class =\"horizontal-container\">\n    <div class=\"vertical-container\">\n      <div class=\"box-title\">Component</div>\n\n      <div class=\"content-container\">\n        <dropzone class=\"upload-area\" [config]=\"config\" [message]=\"'Click or drag images here to upload'\" (error)=\"onUploadError($args)\" (success)=\"onUploadSuccess($args)\"></dropzone>\n      </div>\n    </div>\n\n    <div class=\"vertical-container\">\n      <div class=\"box-title\">Directive</div>\n\n      <div class=\"content-container\">\n        <div class=\"upload-area\" [dropzone]=\"config\" (error)=\"onUploadError($args)\" (success)=\"onUploadSuccess($args)\"></div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 545 */
@@ -52211,7 +52212,7 @@ if (_global['navigator'] && _global['navigator'].geolocation) {
 		exports["angular2-dropzone-wrapper"] = factory(require("@angular/common"), require("@angular/core"), require("@angular/http"));
 	else
 		root["angular2-dropzone-wrapper"] = factory(root["@angular/common"], root["@angular/core"], root["@angular/http"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_10__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_11__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -52275,55 +52276,23 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ function(module, exports) {
 
-"use strict";
-"use strict";
-var DropzoneConfig = (function () {
-    function DropzoneConfig(config) {
-        if (config === void 0) { config = {}; }
-        this.assign(config);
-    }
-    DropzoneConfig.prototype.assign = function (config) {
-        if (config === void 0) { config = {}; }
-        for (var key in config) {
-            this[key] = config[key];
-        }
-        if (this.server) {
-            this.url = this.server + (this.params ? ('?' + this.params) : '');
-        }
-    };
-    return DropzoneConfig;
-}());
-exports.DropzoneConfig = DropzoneConfig;
-
+module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 "use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-var Dropzone = __webpack_require__(7);
 // http://www.dropzonejs.com/#event-list
-var dropzoneEvents = [
+"use strict";
+exports.DropzoneEvents = [
     'drop',
     'dragstart',
     'dragend',
@@ -52351,8 +52320,48 @@ var dropzoneEvents = [
     'reset',
     'queuecomplete'
 ];
-var core_1 = __webpack_require__(2);
-var dropzone_interfaces_1 = __webpack_require__(0);
+var DropzoneConfig = (function () {
+    function DropzoneConfig(config) {
+        if (config === void 0) { config = {}; }
+        this.assign(config);
+    }
+    DropzoneConfig.prototype.assign = function (config) {
+        if (config === void 0) { config = {}; }
+        for (var key in config) {
+            this[key] = config[key];
+        }
+        if (this.server) {
+            this.url = this.server + (this.params ? ('?' + this.params) : '');
+        }
+    };
+    return DropzoneConfig;
+}());
+exports.DropzoneConfig = DropzoneConfig;
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var Dropzone = __webpack_require__(4);
+var core_1 = __webpack_require__(0);
+var core_2 = __webpack_require__(0);
+var core_3 = __webpack_require__(0);
+var dropzone_interfaces_1 = __webpack_require__(1);
 var DropzoneComponent = (function () {
     function DropzoneComponent(elementRef, differs, defaults) {
         this.elementRef = elementRef;
@@ -52361,37 +52370,37 @@ var DropzoneComponent = (function () {
         this.disabled = false;
         this.message = 'Click or drag files to upload';
         this.placeholder = '';
-        this.uploadError = new core_1.EventEmitter();
-        this.uploadSuccess = new core_1.EventEmitter();
-        this.uploadCanceled = new core_1.EventEmitter();
-        this.dz_drop = new core_1.EventEmitter();
-        this.dz_dragstart = new core_1.EventEmitter();
-        this.dz_dragend = new core_1.EventEmitter();
-        this.dz_dragenter = new core_1.EventEmitter();
-        this.dz_dragover = new core_1.EventEmitter();
-        this.dz_dragleave = new core_1.EventEmitter();
-        this.dz_addedfile = new core_1.EventEmitter();
-        this.dz_removedfile = new core_1.EventEmitter();
-        this.dz_thumbnail = new core_1.EventEmitter();
-        this.dz_error = new core_1.EventEmitter();
-        this.dz_processing = new core_1.EventEmitter();
-        this.dz_uploadprogress = new core_1.EventEmitter();
-        this.dz_sending = new core_1.EventEmitter();
-        this.dz_success = new core_1.EventEmitter();
-        this.dz_complete = new core_1.EventEmitter();
-        this.dz_canceled = new core_1.EventEmitter();
-        this.dz_maxfilesreached = new core_1.EventEmitter();
-        this.dz_maxfilesexceeded = new core_1.EventEmitter();
-        this.dz_processingmultiple = new core_1.EventEmitter();
-        this.dz_sendingmultiple = new core_1.EventEmitter();
-        this.dz_successmultiple = new core_1.EventEmitter();
-        this.dz_completemultiple = new core_1.EventEmitter();
-        this.dz_canceledmultiple = new core_1.EventEmitter();
-        this.dz_totaluploadprogress = new core_1.EventEmitter();
-        this.dz_reset = new core_1.EventEmitter();
-        this.dz_queuecomplete = new core_1.EventEmitter();
+        this.uploadError = new core_3.EventEmitter();
+        this.uploadSuccess = new core_3.EventEmitter();
+        this.uploadCanceled = new core_3.EventEmitter();
         this.useDropzoneClass = true;
         this.useDzWrapperClass = true;
+        this.dz_drop = new core_3.EventEmitter();
+        this.dz_dragstart = new core_3.EventEmitter();
+        this.dz_dragend = new core_3.EventEmitter();
+        this.dz_dragenter = new core_3.EventEmitter();
+        this.dz_dragover = new core_3.EventEmitter();
+        this.dz_dragleave = new core_3.EventEmitter();
+        this.dz_addedfile = new core_3.EventEmitter();
+        this.dz_removedfile = new core_3.EventEmitter();
+        this.dz_thumbnail = new core_3.EventEmitter();
+        this.dz_error = new core_3.EventEmitter();
+        this.dz_processing = new core_3.EventEmitter();
+        this.dz_uploadprogress = new core_3.EventEmitter();
+        this.dz_sending = new core_3.EventEmitter();
+        this.dz_success = new core_3.EventEmitter();
+        this.dz_complete = new core_3.EventEmitter();
+        this.dz_canceled = new core_3.EventEmitter();
+        this.dz_maxfilesreached = new core_3.EventEmitter();
+        this.dz_maxfilesexceeded = new core_3.EventEmitter();
+        this.dz_processingmultiple = new core_3.EventEmitter();
+        this.dz_sendingmultiple = new core_3.EventEmitter();
+        this.dz_successmultiple = new core_3.EventEmitter();
+        this.dz_completemultiple = new core_3.EventEmitter();
+        this.dz_canceledmultiple = new core_3.EventEmitter();
+        this.dz_totaluploadprogress = new core_3.EventEmitter();
+        this.dz_reset = new core_3.EventEmitter();
+        this.dz_queuecomplete = new core_3.EventEmitter();
         Dropzone.autoDiscover = false;
     }
     DropzoneComponent.prototype.ngOnInit = function () {
@@ -52421,8 +52430,8 @@ var DropzoneComponent = (function () {
                 setTimeout(function () { return _this.reset(); }, options.cancelReset);
             }
         });
-        // Trigger native dropzone events
-        dropzoneEvents.forEach(function (eventName) {
+        // Add native dropzone event handling
+        dropzone_interfaces_1.DropzoneEvents.forEach(function (eventName) {
             var self = _this;
             _this.dropzone.on(eventName, function (event) {
                 var args = Array.prototype.slice.call(arguments);
@@ -52437,7 +52446,7 @@ var DropzoneComponent = (function () {
         }
     };
     DropzoneComponent.prototype.ngDoCheck = function () {
-        var changes = this.configDiff.diff(this.config);
+        var changes = this.configDiff.diff(this.config || {});
         if (changes) {
             this.ngOnDestroy();
             this.ngOnInit();
@@ -52462,167 +52471,161 @@ var DropzoneComponent = (function () {
         this.dropzone.removeAllFiles();
     };
     __decorate([
-        core_1.Input(), 
+        core_3.Input(), 
         __metadata('design:type', Boolean)
     ], DropzoneComponent.prototype, "disabled", void 0);
     __decorate([
-        core_1.Input(), 
+        core_3.Input(), 
         __metadata('design:type', Object)
     ], DropzoneComponent.prototype, "config", void 0);
     __decorate([
-        core_1.Input(), 
+        core_3.Input(), 
         __metadata('design:type', String)
     ], DropzoneComponent.prototype, "message", void 0);
     __decorate([
-        core_1.Input(), 
+        core_3.Input(), 
         __metadata('design:type', String)
     ], DropzoneComponent.prototype, "placeholder", void 0);
     __decorate([
-        core_1.Output(), 
+        core_3.Output(), 
         __metadata('design:type', Object)
     ], DropzoneComponent.prototype, "uploadError", void 0);
     __decorate([
-        core_1.Output(), 
+        core_3.Output(), 
         __metadata('design:type', Object)
     ], DropzoneComponent.prototype, "uploadSuccess", void 0);
     __decorate([
-        core_1.Output(), 
+        core_3.Output(), 
         __metadata('design:type', Object)
     ], DropzoneComponent.prototype, "uploadCanceled", void 0);
     __decorate([
-        core_1.Output('drop'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_drop", void 0);
-    __decorate([
-        core_1.Output('dragstart'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_dragstart", void 0);
-    __decorate([
-        core_1.Output('dragend'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_dragend", void 0);
-    __decorate([
-        core_1.Output('dragenter'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_dragenter", void 0);
-    __decorate([
-        core_1.Output('dragover'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_dragover", void 0);
-    __decorate([
-        core_1.Output('dragleave'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_dragleave", void 0);
-    __decorate([
-        core_1.Output('addedfile'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_addedfile", void 0);
-    __decorate([
-        core_1.Output('removedfile'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_removedfile", void 0);
-    __decorate([
-        core_1.Output('thumbnail'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_thumbnail", void 0);
-    __decorate([
-        core_1.Output('error'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_error", void 0);
-    __decorate([
-        core_1.Output('processing'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_processing", void 0);
-    __decorate([
-        core_1.Output('uploadprogress'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_uploadprogress", void 0);
-    __decorate([
-        core_1.Output('sending'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_sending", void 0);
-    __decorate([
-        core_1.Output('success'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_success", void 0);
-    __decorate([
-        core_1.Output('complete'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_complete", void 0);
-    __decorate([
-        core_1.Output('canceled'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_canceled", void 0);
-    __decorate([
-        core_1.Output('maxfilesreached'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_maxfilesreached", void 0);
-    __decorate([
-        core_1.Output('maxfilesexceeded'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_maxfilesexceeded", void 0);
-    __decorate([
-        core_1.Output('processingmultiple'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_processingmultiple", void 0);
-    __decorate([
-        core_1.Output('sendingmultiple'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_sendingmultiple", void 0);
-    __decorate([
-        core_1.Output('successmultiple'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_successmultiple", void 0);
-    __decorate([
-        core_1.Output('completemultiple'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_completemultiple", void 0);
-    __decorate([
-        core_1.Output('canceledmultiple'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_canceledmultiple", void 0);
-    __decorate([
-        core_1.Output('totaluploadprogress'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_totaluploadprogress", void 0);
-    __decorate([
-        core_1.Output('reset'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_reset", void 0);
-    __decorate([
-        core_1.Output('queuecomplete'), 
-        __metadata('design:type', Object)
-    ], DropzoneComponent.prototype, "dz_queuecomplete", void 0);
-    __decorate([
-        core_1.HostBinding('class.dropzone'),
-        core_1.Input(), 
+        core_3.HostBinding('class.dropzone'),
+        core_3.Input(), 
         __metadata('design:type', Boolean)
     ], DropzoneComponent.prototype, "useDropzoneClass", void 0);
     __decorate([
-        core_1.HostBinding('class.dz-wrapper'),
-        core_1.Input(), 
+        core_3.HostBinding('class.dz-wrapper'),
+        core_3.Input(), 
         __metadata('design:type', Boolean)
     ], DropzoneComponent.prototype, "useDzWrapperClass", void 0);
+    __decorate([
+        core_3.Output('drop'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_drop", void 0);
+    __decorate([
+        core_3.Output('dragstart'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_dragstart", void 0);
+    __decorate([
+        core_3.Output('dragend'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_dragend", void 0);
+    __decorate([
+        core_3.Output('dragenter'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_dragenter", void 0);
+    __decorate([
+        core_3.Output('dragover'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_dragover", void 0);
+    __decorate([
+        core_3.Output('dragleave'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_dragleave", void 0);
+    __decorate([
+        core_3.Output('addedfile'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_addedfile", void 0);
+    __decorate([
+        core_3.Output('removedfile'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_removedfile", void 0);
+    __decorate([
+        core_3.Output('thumbnail'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_thumbnail", void 0);
+    __decorate([
+        core_3.Output('error'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_error", void 0);
+    __decorate([
+        core_3.Output('processing'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_processing", void 0);
+    __decorate([
+        core_3.Output('uploadprogress'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_uploadprogress", void 0);
+    __decorate([
+        core_3.Output('sending'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_sending", void 0);
+    __decorate([
+        core_3.Output('success'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_success", void 0);
+    __decorate([
+        core_3.Output('complete'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_complete", void 0);
+    __decorate([
+        core_3.Output('canceled'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_canceled", void 0);
+    __decorate([
+        core_3.Output('maxfilesreached'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_maxfilesreached", void 0);
+    __decorate([
+        core_3.Output('maxfilesexceeded'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_maxfilesexceeded", void 0);
+    __decorate([
+        core_3.Output('processingmultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_processingmultiple", void 0);
+    __decorate([
+        core_3.Output('sendingmultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_sendingmultiple", void 0);
+    __decorate([
+        core_3.Output('successmultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_successmultiple", void 0);
+    __decorate([
+        core_3.Output('completemultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_completemultiple", void 0);
+    __decorate([
+        core_3.Output('canceledmultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_canceledmultiple", void 0);
+    __decorate([
+        core_3.Output('totaluploadprogress'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_totaluploadprogress", void 0);
+    __decorate([
+        core_3.Output('reset'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_reset", void 0);
+    __decorate([
+        core_3.Output('queuecomplete'), 
+        __metadata('design:type', Object)
+    ], DropzoneComponent.prototype, "dz_queuecomplete", void 0);
     DropzoneComponent = __decorate([
-        core_1.Component({
+        core_2.Component({
             selector: 'dropzone',
-            template: __webpack_require__(6),
-            styles: [__webpack_require__(5), __webpack_require__(4)],
-            encapsulation: core_1.ViewEncapsulation.None
+            template: __webpack_require__(8),
+            styles: [__webpack_require__(7), __webpack_require__(6)],
+            encapsulation: core_3.ViewEncapsulation.None
         }),
-        __param(2, core_1.Optional()), 
-        __metadata('design:paramtypes', [core_1.ElementRef, core_1.KeyValueDiffers, dropzone_interfaces_1.DropzoneConfig])
+        __param(2, core_2.Optional()), 
+        __metadata('design:paramtypes', [core_3.ElementRef, core_1.KeyValueDiffers, dropzone_interfaces_1.DropzoneConfig])
     ], DropzoneComponent);
     return DropzoneComponent;
 }());
 exports.DropzoneComponent = DropzoneComponent;
 
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ },
 /* 3 */
@@ -52642,92 +52645,220 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = __webpack_require__(2);
-var http_1 = __webpack_require__(10);
-var common_1 = __webpack_require__(9);
-var dropzone_component_1 = __webpack_require__(1);
-var dropzone_interfaces_1 = __webpack_require__(0);
-exports.DROPZONE_GUARD = new core_1.OpaqueToken('DROPZONE_GUARD');
-exports.DROPZONE_CONFIG = new core_1.OpaqueToken('DROPZONE_CONFIG');
-var DropzoneModule = (function () {
-    function DropzoneModule(guard) {
+var Dropzone = __webpack_require__(4);
+var core_1 = __webpack_require__(0);
+var core_2 = __webpack_require__(0);
+var dropzone_interfaces_1 = __webpack_require__(1);
+var DropzoneDirective = (function () {
+    function DropzoneDirective(renderer, elementRef, differs, defaults) {
+        this.elementRef = elementRef;
+        this.differs = differs;
+        this.defaults = defaults;
+        this.disabled = false;
+        this.dz_drop = new core_2.EventEmitter();
+        this.dz_dragstart = new core_2.EventEmitter();
+        this.dz_dragend = new core_2.EventEmitter();
+        this.dz_dragenter = new core_2.EventEmitter();
+        this.dz_dragover = new core_2.EventEmitter();
+        this.dz_dragleave = new core_2.EventEmitter();
+        this.dz_addedfile = new core_2.EventEmitter();
+        this.dz_removedfile = new core_2.EventEmitter();
+        this.dz_thumbnail = new core_2.EventEmitter();
+        this.dz_error = new core_2.EventEmitter();
+        this.dz_processing = new core_2.EventEmitter();
+        this.dz_uploadprogress = new core_2.EventEmitter();
+        this.dz_sending = new core_2.EventEmitter();
+        this.dz_success = new core_2.EventEmitter();
+        this.dz_complete = new core_2.EventEmitter();
+        this.dz_canceled = new core_2.EventEmitter();
+        this.dz_maxfilesreached = new core_2.EventEmitter();
+        this.dz_maxfilesexceeded = new core_2.EventEmitter();
+        this.dz_processingmultiple = new core_2.EventEmitter();
+        this.dz_sendingmultiple = new core_2.EventEmitter();
+        this.dz_successmultiple = new core_2.EventEmitter();
+        this.dz_completemultiple = new core_2.EventEmitter();
+        this.dz_canceledmultiple = new core_2.EventEmitter();
+        this.dz_totaluploadprogress = new core_2.EventEmitter();
+        this.dz_reset = new core_2.EventEmitter();
+        this.dz_queuecomplete = new core_2.EventEmitter();
+        Dropzone.autoDiscover = false;
+        renderer.setElementClass(elementRef.nativeElement, 'dropzone', true);
     }
-    DropzoneModule.forRoot = function (config) {
-        return {
-            ngModule: DropzoneModule,
-            providers: [
-                {
-                    provide: exports.DROPZONE_GUARD,
-                    useFactory: provideForRootGuard,
-                    deps: [
-                        [
-                            dropzone_interfaces_1.DropzoneConfig,
-                            new core_1.Optional(),
-                            new core_1.SkipSelf()
-                        ]
-                    ]
-                },
-                {
-                    provide: exports.DROPZONE_CONFIG,
-                    useValue: config ? config : {}
-                },
-                {
-                    provide: dropzone_interfaces_1.DropzoneConfig,
-                    useFactory: function (config) { return new dropzone_interfaces_1.DropzoneConfig(config); },
-                    deps: [
-                        exports.DROPZONE_CONFIG
-                    ]
+    DropzoneDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        var element = this.elementRef.nativeElement;
+        var options = new dropzone_interfaces_1.DropzoneConfig(this.defaults);
+        options.assign(this.config); // Custom config
+        this.dropzone = new Dropzone(element, options);
+        if (this.disabled) {
+            this.dropzone.disable();
+        }
+        // Add native dropzone event handling
+        dropzone_interfaces_1.DropzoneEvents.forEach(function (eventName) {
+            var self = _this;
+            _this.dropzone.on(eventName, function (event) {
+                var args = Array.prototype.slice.call(arguments);
+                if (args.length === 1) {
+                    args = args[0];
                 }
-            ]
-        };
+                self[("dz_" + eventName)].emit(args);
+            });
+        });
+        if (!this.configDiff) {
+            this.configDiff = this.differs.find(this.config || {}).create(null);
+        }
     };
-    DropzoneModule.forChild = function () {
-        return {
-            ngModule: DropzoneModule
-        };
+    DropzoneDirective.prototype.ngDoCheck = function () {
+        var changes = this.configDiff.diff(this.config || {});
+        if (changes) {
+            this.ngOnDestroy();
+            this.ngOnInit();
+        }
     };
-    DropzoneModule = __decorate([
-        core_1.NgModule({
-            imports: [common_1.CommonModule, http_1.HttpModule],
-            declarations: [dropzone_component_1.DropzoneComponent],
-            exports: [common_1.CommonModule, http_1.HttpModule, dropzone_component_1.DropzoneComponent]
+    DropzoneDirective.prototype.ngOnDestroy = function () {
+        this.dropzone.destroy();
+    };
+    DropzoneDirective.prototype.ngOnChanges = function (changes) {
+        if (this.dropzone && changes['disabled']) {
+            if (changes['disabled'].currentValue != changes['disabled'].previousValue) {
+                if (changes['disabled'].currentValue === true) {
+                    this.dropzone.enable();
+                }
+                else if (changes['disabled'].currentValue === false) {
+                    this.dropzone.disable();
+                }
+            }
+        }
+    };
+    DropzoneDirective.prototype.reset = function () {
+        this.dropzone.removeAllFiles();
+    };
+    __decorate([
+        core_2.Input(), 
+        __metadata('design:type', Boolean)
+    ], DropzoneDirective.prototype, "disabled", void 0);
+    __decorate([
+        core_2.Input('dropzone'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "config", void 0);
+    __decorate([
+        core_2.Output('drop'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_drop", void 0);
+    __decorate([
+        core_2.Output('dragstart'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_dragstart", void 0);
+    __decorate([
+        core_2.Output('dragend'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_dragend", void 0);
+    __decorate([
+        core_2.Output('dragenter'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_dragenter", void 0);
+    __decorate([
+        core_2.Output('dragover'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_dragover", void 0);
+    __decorate([
+        core_2.Output('dragleave'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_dragleave", void 0);
+    __decorate([
+        core_2.Output('addedfile'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_addedfile", void 0);
+    __decorate([
+        core_2.Output('removedfile'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_removedfile", void 0);
+    __decorate([
+        core_2.Output('thumbnail'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_thumbnail", void 0);
+    __decorate([
+        core_2.Output('error'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_error", void 0);
+    __decorate([
+        core_2.Output('processing'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_processing", void 0);
+    __decorate([
+        core_2.Output('uploadprogress'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_uploadprogress", void 0);
+    __decorate([
+        core_2.Output('sending'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_sending", void 0);
+    __decorate([
+        core_2.Output('success'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_success", void 0);
+    __decorate([
+        core_2.Output('complete'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_complete", void 0);
+    __decorate([
+        core_2.Output('canceled'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_canceled", void 0);
+    __decorate([
+        core_2.Output('maxfilesreached'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_maxfilesreached", void 0);
+    __decorate([
+        core_2.Output('maxfilesexceeded'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_maxfilesexceeded", void 0);
+    __decorate([
+        core_2.Output('processingmultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_processingmultiple", void 0);
+    __decorate([
+        core_2.Output('sendingmultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_sendingmultiple", void 0);
+    __decorate([
+        core_2.Output('successmultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_successmultiple", void 0);
+    __decorate([
+        core_2.Output('completemultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_completemultiple", void 0);
+    __decorate([
+        core_2.Output('canceledmultiple'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_canceledmultiple", void 0);
+    __decorate([
+        core_2.Output('totaluploadprogress'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_totaluploadprogress", void 0);
+    __decorate([
+        core_2.Output('reset'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_reset", void 0);
+    __decorate([
+        core_2.Output('queuecomplete'), 
+        __metadata('design:type', Object)
+    ], DropzoneDirective.prototype, "dz_queuecomplete", void 0);
+    DropzoneDirective = __decorate([
+        core_2.Directive({
+            selector: '[dropzone]'
         }),
-        __param(0, core_1.Optional()),
-        __param(0, core_1.Inject(exports.DROPZONE_GUARD)), 
-        __metadata('design:paramtypes', [Object])
-    ], DropzoneModule);
-    return DropzoneModule;
+        __param(3, core_2.Optional()), 
+        __metadata('design:paramtypes', [core_1.Renderer, core_2.ElementRef, core_1.KeyValueDiffers, dropzone_interfaces_1.DropzoneConfig])
+    ], DropzoneDirective);
+    return DropzoneDirective;
 }());
-exports.DropzoneModule = DropzoneModule;
-function provideForRootGuard(config) {
-    if (config) {
-        throw new Error("\n      Application called DropzoneModule.forRoot() twice.\n      For submodules use DropzoneModule.forChild() instead.\n    ");
-    }
-    return 'guarded';
-}
-exports.provideForRootGuard = provideForRootGuard;
+exports.DropzoneDirective = DropzoneDirective;
 
 
 /***/ },
 /* 4 */
-/***/ function(module, exports) {
-
-module.exports = "@-webkit-keyframes passing-through{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%, 70%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}100%{opacity:0;-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px)}}@-moz-keyframes passing-through{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%, 70%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}100%{opacity:0;-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px)}}@keyframes passing-through{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%, 70%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}100%{opacity:0;-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px)}}@-webkit-keyframes slide-in{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}}@-moz-keyframes slide-in{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}}@keyframes slide-in{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}}@-webkit-keyframes pulse{0%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}10%{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}20%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}@-moz-keyframes pulse{0%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}10%{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}20%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}@keyframes pulse{0%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}10%{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}20%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}.dropzone,.dropzone *{box-sizing:border-box}.dropzone{min-height:150px;border:2px solid rgba(0,0,0,0.3);background:white;padding:20px 20px}.dropzone.dz-clickable{cursor:pointer}.dropzone.dz-clickable *{cursor:default}.dropzone.dz-clickable .dz-message,.dropzone.dz-clickable .dz-message *{cursor:pointer}.dropzone.dz-started .dz-message{display:none}.dropzone.dz-drag-hover{border-style:solid}.dropzone.dz-drag-hover .dz-message{opacity:0.5}.dropzone .dz-message{text-align:center;margin:2em 0}.dropzone .dz-preview{position:relative;display:inline-block;vertical-align:top;margin:16px;min-height:100px}.dropzone .dz-preview:hover{z-index:1000}.dropzone .dz-preview:hover .dz-details{opacity:1}.dropzone .dz-preview.dz-file-preview .dz-image{border-radius:20px;background:#999;background:linear-gradient(to bottom, #eee, #ddd)}.dropzone .dz-preview.dz-file-preview .dz-details{opacity:1}.dropzone .dz-preview.dz-image-preview{background:white}.dropzone .dz-preview.dz-image-preview .dz-details{-webkit-transition:opacity 0.2s linear;-moz-transition:opacity 0.2s linear;-ms-transition:opacity 0.2s linear;-o-transition:opacity 0.2s linear;transition:opacity 0.2s linear}.dropzone .dz-preview .dz-remove{font-size:14px;text-align:center;display:block;cursor:pointer;border:none}.dropzone .dz-preview .dz-remove:hover{text-decoration:underline}.dropzone .dz-preview:hover .dz-details{opacity:1}.dropzone .dz-preview .dz-details{z-index:20;position:absolute;top:0;left:0;opacity:0;font-size:13px;min-width:100%;max-width:100%;padding:2em 1em;text-align:center;color:rgba(0,0,0,0.9);line-height:150%}.dropzone .dz-preview .dz-details .dz-size{margin-bottom:1em;font-size:16px}.dropzone .dz-preview .dz-details .dz-filename{white-space:nowrap}.dropzone .dz-preview .dz-details .dz-filename:hover span{border:1px solid rgba(200,200,200,0.8);background-color:rgba(255,255,255,0.8)}.dropzone .dz-preview .dz-details .dz-filename:not(:hover){overflow:hidden;text-overflow:ellipsis}.dropzone .dz-preview .dz-details .dz-filename:not(:hover) span{border:1px solid transparent}.dropzone .dz-preview .dz-details .dz-filename span,.dropzone .dz-preview .dz-details .dz-size span{background-color:rgba(255,255,255,0.4);padding:0 0.4em;border-radius:3px}.dropzone .dz-preview:hover .dz-image img{-webkit-transform:scale(1.05, 1.05);-moz-transform:scale(1.05, 1.05);-ms-transform:scale(1.05, 1.05);-o-transform:scale(1.05, 1.05);transform:scale(1.05, 1.05);-webkit-filter:blur(8px);filter:blur(8px)}.dropzone .dz-preview .dz-image{border-radius:20px;overflow:hidden;width:120px;height:120px;position:relative;display:block;z-index:10}.dropzone .dz-preview .dz-image img{display:block}.dropzone .dz-preview.dz-success .dz-success-mark{-webkit-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);-moz-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);-ms-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);-o-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1)}.dropzone .dz-preview.dz-error .dz-error-mark{opacity:1;-webkit-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);-moz-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);-ms-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);-o-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1)}.dropzone .dz-preview .dz-success-mark,.dropzone .dz-preview .dz-error-mark{pointer-events:none;opacity:0;z-index:500;position:absolute;display:block;top:50%;left:50%;margin-left:-27px;margin-top:-27px}.dropzone .dz-preview .dz-success-mark svg,.dropzone .dz-preview .dz-error-mark svg{display:block;width:54px;height:54px}.dropzone .dz-preview.dz-processing .dz-progress{opacity:1;-webkit-transition:all 0.2s linear;-moz-transition:all 0.2s linear;-ms-transition:all 0.2s linear;-o-transition:all 0.2s linear;transition:all 0.2s linear}.dropzone .dz-preview.dz-complete .dz-progress{opacity:0;-webkit-transition:opacity 0.4s ease-in;-moz-transition:opacity 0.4s ease-in;-ms-transition:opacity 0.4s ease-in;-o-transition:opacity 0.4s ease-in;transition:opacity 0.4s ease-in}.dropzone .dz-preview:not(.dz-processing) .dz-progress{-webkit-animation:pulse 6s ease infinite;-moz-animation:pulse 6s ease infinite;-ms-animation:pulse 6s ease infinite;-o-animation:pulse 6s ease infinite;animation:pulse 6s ease infinite}.dropzone .dz-preview .dz-progress{opacity:1;z-index:1000;pointer-events:none;position:absolute;height:16px;left:50%;top:50%;margin-top:-8px;width:80px;margin-left:-40px;background:rgba(255,255,255,0.9);-webkit-transform:scale(1);border-radius:8px;overflow:hidden}.dropzone .dz-preview .dz-progress .dz-upload{background:#333;background:linear-gradient(to bottom, #666, #444);position:absolute;top:0;left:0;bottom:0;width:0;-webkit-transition:width 300ms ease-in-out;-moz-transition:width 300ms ease-in-out;-ms-transition:width 300ms ease-in-out;-o-transition:width 300ms ease-in-out;transition:width 300ms ease-in-out}.dropzone .dz-preview.dz-error .dz-error-message{display:block}.dropzone .dz-preview.dz-error:hover .dz-error-message{opacity:1;pointer-events:auto}.dropzone .dz-preview .dz-error-message{pointer-events:none;z-index:1000;position:absolute;display:block;display:none;opacity:0;-webkit-transition:opacity 0.3s ease;-moz-transition:opacity 0.3s ease;-ms-transition:opacity 0.3s ease;-o-transition:opacity 0.3s ease;transition:opacity 0.3s ease;border-radius:8px;font-size:13px;top:130px;left:-10px;width:140px;background:#be2626;background:linear-gradient(to bottom, #be2626, #a92222);padding:0.5em 1.2em;color:white}.dropzone .dz-preview .dz-error-message:after{content:'';position:absolute;top:-6px;left:64px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid #be2626}\n"
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-module.exports = ".dropzone.dz-wrapper {\n  position: relative;\n  padding: 0;\n  border: none;\n  color: #666;\n  background: transparent; }\n  .dropzone.dz-wrapper .dz-message {\n    position: relative;\n    overflow: auto;\n    min-height: 40px;\n    max-width: 100%;\n    max-height: 320px;\n    margin: 0;\n    border: 2px dashed #aaa;\n    background: #eee; }\n    .dropzone.dz-wrapper .dz-message .dz-text {\n      padding: 9px;\n      text-align: center; }\n    .dropzone.dz-wrapper .dz-message .dz-image {\n      width: 100%;\n      height: auto; }\n    .dropzone.dz-wrapper .dz-message.disabled {\n      cursor: not-allowed; }\n      .dropzone.dz-wrapper .dz-message.disabled .dz-text {\n        opacity: 0.5; }\n    .dropzone.dz-wrapper .dz-message.dz-placeholder {\n      border-color: rgba(170, 170, 170, 0); }\n      .dropzone.dz-wrapper .dz-message.dz-placeholder .dz-text {\n        position: absolute;\n        z-index: 1;\n        top: 50%;\n        right: 5%;\n        left: 5%;\n        opacity: 0;\n        font-weight: bold;\n        background: rgba(255, 255, 255, 0.3);\n        transform: translateY(-50%);\n        transition: filter 150ms ease-in-out, opacity 150ms ease-in-out, border-color 150ms ease-in-out; }\n      .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) {\n        border-color: #aaa; }\n        .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) .dz-text {\n          opacity: 1; }\n        .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) .dz-image {\n          -webkit-filter: blur(8px);\n          filter: blur(8px); }\n  .dropzone.dz-wrapper .dz-preview {\n    overflow: auto;\n    width: 100%;\n    height: auto;\n    min-height: 40px;\n    max-width: 100%;\n    max-height: 320px;\n    padding: 9px;\n    margin: 0;\n    background: transparent; }\n    .dropzone.dz-wrapper .dz-preview .dz-image {\n      width: 100%;\n      height: auto;\n      border-radius: 0; }\n      .dropzone.dz-wrapper .dz-preview .dz-image img {\n        width: 100%;\n        height: auto;\n        margin: 0 auto; }\n    .dropzone.dz-wrapper .dz-preview .dz-progress {\n      width: 90%;\n      margin-left: -45%;\n      border-radius: 4px;\n      border: 1px solid #aaa; }\n      .dropzone.dz-wrapper .dz-preview .dz-progress .dz-upload {\n        background: #666; }\n    .dropzone.dz-wrapper .dz-preview .dz-error-mark,\n    .dropzone.dz-wrapper .dz-preview .dz-success-mark {\n      display: none; }\n    .dropzone.dz-wrapper .dz-preview .dz-error-message {\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      opacity: 1;\n      width: 100%;\n      min-height: 40px;\n      padding: 10px;\n      border-radius: 0;\n      border: 2px solid #aaa;\n      color: #666;\n      font-weight: bold;\n      text-align: center;\n      background: #eee; }\n      .dropzone.dz-wrapper .dz-preview .dz-error-message::after {\n        display: none; }\n    .dropzone.dz-wrapper .dz-preview.dz-file-preview .dz-image {\n      display: none; }\n    .dropzone.dz-wrapper .dz-preview.dz-file-preview .dz-details {\n      display: none; }\n"
-
-/***/ },
-/* 6 */
-/***/ function(module, exports) {
-
-module.exports = "<div class=\"dz-message\" [ngClass]=\"{'disabled': disabled, 'dz-placeholder': placeholder}\">\n  <div class=\"dz-text\">{{message}}</div>\n\n  <img *ngIf=\"placeholder\" class=\"dz-image\" [src]=\"placeholder\">\n</div>\n"
-
-/***/ },
-/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {
@@ -54498,10 +54629,113 @@ module.exports = "<div class=\"dz-message\" [ngClass]=\"{'disabled': disabled, '
 
 }).call(this);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)(module)))
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var core_1 = __webpack_require__(0);
+var http_1 = __webpack_require__(11);
+var common_1 = __webpack_require__(10);
+var dropzone_component_1 = __webpack_require__(2);
+var dropzone_directive_1 = __webpack_require__(3);
+var dropzone_interfaces_1 = __webpack_require__(1);
+exports.DROPZONE_GUARD = new core_1.OpaqueToken('DROPZONE_GUARD');
+exports.DROPZONE_CONFIG = new core_1.OpaqueToken('DROPZONE_CONFIG');
+var DropzoneModule = (function () {
+    function DropzoneModule(guard) {
+    }
+    DropzoneModule.forRoot = function (config) {
+        return {
+            ngModule: DropzoneModule,
+            providers: [
+                {
+                    provide: exports.DROPZONE_GUARD,
+                    useFactory: provideForRootGuard,
+                    deps: [
+                        [
+                            dropzone_interfaces_1.DropzoneConfig,
+                            new core_1.Optional(),
+                            new core_1.SkipSelf()
+                        ]
+                    ]
+                },
+                {
+                    provide: exports.DROPZONE_CONFIG,
+                    useValue: config ? config : {}
+                },
+                {
+                    provide: dropzone_interfaces_1.DropzoneConfig,
+                    useFactory: function (config) { return new dropzone_interfaces_1.DropzoneConfig(config); },
+                    deps: [
+                        exports.DROPZONE_CONFIG
+                    ]
+                }
+            ]
+        };
+    };
+    DropzoneModule.forChild = function () {
+        return {
+            ngModule: DropzoneModule
+        };
+    };
+    DropzoneModule = __decorate([
+        core_1.NgModule({
+            imports: [common_1.CommonModule, http_1.HttpModule],
+            declarations: [dropzone_component_1.DropzoneComponent, dropzone_directive_1.DropzoneDirective],
+            exports: [common_1.CommonModule, http_1.HttpModule, dropzone_component_1.DropzoneComponent, dropzone_directive_1.DropzoneDirective]
+        }),
+        __param(0, core_1.Optional()),
+        __param(0, core_1.Inject(exports.DROPZONE_GUARD)), 
+        __metadata('design:paramtypes', [Object])
+    ], DropzoneModule);
+    return DropzoneModule;
+}());
+exports.DropzoneModule = DropzoneModule;
+function provideForRootGuard(config) {
+    if (config) {
+        throw new Error("\n      Application called DropzoneModule.forRoot() twice.\n      For submodules use DropzoneModule.forChild() instead.\n    ");
+    }
+    return 'guarded';
+}
+exports.provideForRootGuard = provideForRootGuard;
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+module.exports = "@-webkit-keyframes passing-through{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%, 70%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}100%{opacity:0;-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px)}}@-moz-keyframes passing-through{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%, 70%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}100%{opacity:0;-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px)}}@keyframes passing-through{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%, 70%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}100%{opacity:0;-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px)}}@-webkit-keyframes slide-in{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}}@-moz-keyframes slide-in{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}}@keyframes slide-in{0%{opacity:0;-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px);transform:translateY(40px)}30%{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px)}}@-webkit-keyframes pulse{0%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}10%{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}20%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}@-moz-keyframes pulse{0%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}10%{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}20%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}@keyframes pulse{0%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}10%{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}20%{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}.dropzone,.dropzone *{box-sizing:border-box}.dropzone{min-height:150px;border:2px solid rgba(0,0,0,0.3);background:white;padding:20px 20px}.dropzone.dz-clickable{cursor:pointer}.dropzone.dz-clickable *{cursor:default}.dropzone.dz-clickable .dz-message,.dropzone.dz-clickable .dz-message *{cursor:pointer}.dropzone.dz-started .dz-message{display:none}.dropzone.dz-drag-hover{border-style:solid}.dropzone.dz-drag-hover .dz-message{opacity:0.5}.dropzone .dz-message{text-align:center;margin:2em 0}.dropzone .dz-preview{position:relative;display:inline-block;vertical-align:top;margin:16px;min-height:100px}.dropzone .dz-preview:hover{z-index:1000}.dropzone .dz-preview:hover .dz-details{opacity:1}.dropzone .dz-preview.dz-file-preview .dz-image{border-radius:20px;background:#999;background:linear-gradient(to bottom, #eee, #ddd)}.dropzone .dz-preview.dz-file-preview .dz-details{opacity:1}.dropzone .dz-preview.dz-image-preview{background:white}.dropzone .dz-preview.dz-image-preview .dz-details{-webkit-transition:opacity 0.2s linear;-moz-transition:opacity 0.2s linear;-ms-transition:opacity 0.2s linear;-o-transition:opacity 0.2s linear;transition:opacity 0.2s linear}.dropzone .dz-preview .dz-remove{font-size:14px;text-align:center;display:block;cursor:pointer;border:none}.dropzone .dz-preview .dz-remove:hover{text-decoration:underline}.dropzone .dz-preview:hover .dz-details{opacity:1}.dropzone .dz-preview .dz-details{z-index:20;position:absolute;top:0;left:0;opacity:0;font-size:13px;min-width:100%;max-width:100%;padding:2em 1em;text-align:center;color:rgba(0,0,0,0.9);line-height:150%}.dropzone .dz-preview .dz-details .dz-size{margin-bottom:1em;font-size:16px}.dropzone .dz-preview .dz-details .dz-filename{white-space:nowrap}.dropzone .dz-preview .dz-details .dz-filename:hover span{border:1px solid rgba(200,200,200,0.8);background-color:rgba(255,255,255,0.8)}.dropzone .dz-preview .dz-details .dz-filename:not(:hover){overflow:hidden;text-overflow:ellipsis}.dropzone .dz-preview .dz-details .dz-filename:not(:hover) span{border:1px solid transparent}.dropzone .dz-preview .dz-details .dz-filename span,.dropzone .dz-preview .dz-details .dz-size span{background-color:rgba(255,255,255,0.4);padding:0 0.4em;border-radius:3px}.dropzone .dz-preview:hover .dz-image img{-webkit-transform:scale(1.05, 1.05);-moz-transform:scale(1.05, 1.05);-ms-transform:scale(1.05, 1.05);-o-transform:scale(1.05, 1.05);transform:scale(1.05, 1.05);-webkit-filter:blur(8px);filter:blur(8px)}.dropzone .dz-preview .dz-image{border-radius:20px;overflow:hidden;width:120px;height:120px;position:relative;display:block;z-index:10}.dropzone .dz-preview .dz-image img{display:block}.dropzone .dz-preview.dz-success .dz-success-mark{-webkit-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);-moz-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);-ms-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);-o-animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);animation:passing-through 3s cubic-bezier(0.77, 0, 0.175, 1)}.dropzone .dz-preview.dz-error .dz-error-mark{opacity:1;-webkit-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);-moz-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);-ms-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);-o-animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);animation:slide-in 3s cubic-bezier(0.77, 0, 0.175, 1)}.dropzone .dz-preview .dz-success-mark,.dropzone .dz-preview .dz-error-mark{pointer-events:none;opacity:0;z-index:500;position:absolute;display:block;top:50%;left:50%;margin-left:-27px;margin-top:-27px}.dropzone .dz-preview .dz-success-mark svg,.dropzone .dz-preview .dz-error-mark svg{display:block;width:54px;height:54px}.dropzone .dz-preview.dz-processing .dz-progress{opacity:1;-webkit-transition:all 0.2s linear;-moz-transition:all 0.2s linear;-ms-transition:all 0.2s linear;-o-transition:all 0.2s linear;transition:all 0.2s linear}.dropzone .dz-preview.dz-complete .dz-progress{opacity:0;-webkit-transition:opacity 0.4s ease-in;-moz-transition:opacity 0.4s ease-in;-ms-transition:opacity 0.4s ease-in;-o-transition:opacity 0.4s ease-in;transition:opacity 0.4s ease-in}.dropzone .dz-preview:not(.dz-processing) .dz-progress{-webkit-animation:pulse 6s ease infinite;-moz-animation:pulse 6s ease infinite;-ms-animation:pulse 6s ease infinite;-o-animation:pulse 6s ease infinite;animation:pulse 6s ease infinite}.dropzone .dz-preview .dz-progress{opacity:1;z-index:1000;pointer-events:none;position:absolute;height:16px;left:50%;top:50%;margin-top:-8px;width:80px;margin-left:-40px;background:rgba(255,255,255,0.9);-webkit-transform:scale(1);border-radius:8px;overflow:hidden}.dropzone .dz-preview .dz-progress .dz-upload{background:#333;background:linear-gradient(to bottom, #666, #444);position:absolute;top:0;left:0;bottom:0;width:0;-webkit-transition:width 300ms ease-in-out;-moz-transition:width 300ms ease-in-out;-ms-transition:width 300ms ease-in-out;-o-transition:width 300ms ease-in-out;transition:width 300ms ease-in-out}.dropzone .dz-preview.dz-error .dz-error-message{display:block}.dropzone .dz-preview.dz-error:hover .dz-error-message{opacity:1;pointer-events:auto}.dropzone .dz-preview .dz-error-message{pointer-events:none;z-index:1000;position:absolute;display:block;display:none;opacity:0;-webkit-transition:opacity 0.3s ease;-moz-transition:opacity 0.3s ease;-ms-transition:opacity 0.3s ease;-o-transition:opacity 0.3s ease;transition:opacity 0.3s ease;border-radius:8px;font-size:13px;top:130px;left:-10px;width:140px;background:#be2626;background:linear-gradient(to bottom, #be2626, #a92222);padding:0.5em 1.2em;color:white}.dropzone .dz-preview .dz-error-message:after{content:'';position:absolute;top:-6px;left:64px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid #be2626}\n"
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+module.exports = ".dropzone.dz-wrapper {\n  position: relative;\n  padding: 0;\n  border: none;\n  color: #666;\n  background: transparent; }\n  .dropzone.dz-wrapper .dz-message {\n    position: relative;\n    overflow: auto;\n    min-height: 40px;\n    max-width: 100%;\n    max-height: 320px;\n    margin: 0;\n    border: 2px dashed #aaa;\n    background: #eee; }\n    .dropzone.dz-wrapper .dz-message .dz-text {\n      padding: 9px;\n      text-align: center; }\n    .dropzone.dz-wrapper .dz-message .dz-image {\n      width: 100%;\n      height: auto; }\n    .dropzone.dz-wrapper .dz-message.disabled {\n      cursor: not-allowed; }\n      .dropzone.dz-wrapper .dz-message.disabled .dz-text {\n        opacity: 0.5; }\n    .dropzone.dz-wrapper .dz-message.dz-placeholder {\n      border-color: rgba(170, 170, 170, 0); }\n      .dropzone.dz-wrapper .dz-message.dz-placeholder .dz-text {\n        position: absolute;\n        z-index: 1;\n        top: 50%;\n        right: 5%;\n        left: 5%;\n        opacity: 0;\n        font-weight: bold;\n        background: rgba(255, 255, 255, 0.3);\n        transform: translateY(-50%);\n        transition: filter 150ms ease-in-out, opacity 150ms ease-in-out, border-color 150ms ease-in-out; }\n      .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) {\n        border-color: #aaa; }\n        .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) .dz-text {\n          opacity: 1; }\n        .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) .dz-image {\n          -webkit-filter: blur(8px);\n          filter: blur(8px); }\n  .dropzone.dz-wrapper .dz-preview {\n    overflow: auto;\n    width: 100%;\n    height: auto;\n    min-height: 40px;\n    max-width: 100%;\n    max-height: 320px;\n    padding: 9px;\n    margin: 0;\n    background: transparent; }\n    .dropzone.dz-wrapper .dz-preview .dz-image {\n      width: 100%;\n      height: auto;\n      border-radius: 0; }\n      .dropzone.dz-wrapper .dz-preview .dz-image img {\n        width: 100%;\n        height: auto;\n        margin: 0 auto; }\n    .dropzone.dz-wrapper .dz-preview .dz-progress {\n      width: 90%;\n      margin-left: -45%;\n      border-radius: 4px;\n      border: 1px solid #aaa; }\n      .dropzone.dz-wrapper .dz-preview .dz-progress .dz-upload {\n        background: #666; }\n    .dropzone.dz-wrapper .dz-preview .dz-error-mark,\n    .dropzone.dz-wrapper .dz-preview .dz-success-mark {\n      display: none; }\n    .dropzone.dz-wrapper .dz-preview .dz-error-message {\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      opacity: 1;\n      width: 100%;\n      min-height: 40px;\n      padding: 10px;\n      border-radius: 0;\n      border: 2px solid #aaa;\n      color: #666;\n      font-weight: bold;\n      text-align: center;\n      background: #eee; }\n      .dropzone.dz-wrapper .dz-preview .dz-error-message::after {\n        display: none; }\n    .dropzone.dz-wrapper .dz-preview.dz-file-preview .dz-image {\n      display: none; }\n    .dropzone.dz-wrapper .dz-preview.dz-file-preview .dz-details {\n      display: none; }\n"
 
 /***/ },
 /* 8 */
+/***/ function(module, exports) {
+
+module.exports = "<div class=\"dz-message\" [ngClass]=\"{'disabled': disabled, 'dz-placeholder': placeholder}\">\n  <div class=\"dz-text\">{{message || config?.dictDefaultMessage}}</div>\n\n  <img *ngIf=\"placeholder\" class=\"dz-image\" [src]=\"placeholder\">\n</div>\n"
+
+/***/ },
+/* 9 */
 /***/ function(module, exports) {
 
 module.exports = function(module) {
@@ -54527,12 +54761,6 @@ module.exports = function(module) {
 
 
 /***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
-
-/***/ },
 /* 10 */
 /***/ function(module, exports) {
 
@@ -54540,6 +54768,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
 
 /***/ },
 /* 11 */
+/***/ function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
+
+/***/ },
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54547,9 +54781,10 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__(1));
-__export(__webpack_require__(0));
+__export(__webpack_require__(2));
 __export(__webpack_require__(3));
+__export(__webpack_require__(1));
+__export(__webpack_require__(5));
 
 
 /***/ }
