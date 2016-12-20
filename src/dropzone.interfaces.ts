@@ -115,3 +115,33 @@ export class DropzoneConfig implements DropzoneConfigInterface {
     }
   }
 }
+
+export const DropzoneEvents = [
+    // http://www.dropzonejs.com/#event-list
+    'drop',
+    'dragstart',
+    'dragend',
+    'dragenter',
+    'dragover',
+    'dragleave',
+    'addedfile',
+    'removedfile',
+    'thumbnail',
+    'error',
+    'processing',
+    'uploadprogress',
+    'sending',
+    'success',
+    'complete',
+    'canceled',
+    'maxfilesreached',
+    'maxfilesexceeded',
+    'processingmultiple',
+    'sendingmultiple',
+    'successmultiple',
+    'completemultiple',
+    'canceledmultiple',
+    'totaluploadprogress',
+    'reset',
+    'queuecomplete',
+];

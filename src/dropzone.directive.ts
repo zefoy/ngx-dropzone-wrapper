@@ -2,33 +2,18 @@ declare var require: any;
 
 const Dropzone = require('dropzone');
 
-import { Component, Optional, OnInit, DoCheck, OnDestroy, OnChanges, SimpleChanges, Input, Output, HostBinding, EventEmitter, ElementRef, KeyValueDiffers, ViewEncapsulation } from '@angular/core';
+import { Directive, Optional, OnInit, DoCheck, OnDestroy, OnChanges, SimpleChanges, Input, Output, HostBinding, EventEmitter, ElementRef, KeyValueDiffers, ViewEncapsulation, TemplateRef, ViewContainerRef, Renderer } from '@angular/core';
 
 import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces'
 
-@Component({
-  selector: 'dropzone',
-  template: require('dropzone.component.html'),
-  styles: [require('dropzone.component.scss'), require('dropzone/dist/min/dropzone.min.css')],
-  encapsulation: ViewEncapsulation.None
-})
-export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges {
-  public dropzone: any;
-
+@Directive({ selector: '[dropzone]' })
+export class DropzoneDirective {
+  private dropzone: any;
   private configDiff: any;
 
   @Input() disabled: boolean = false;
-
   @Input() config: DropzoneConfigInterface;
 
-  @Input() message: string = 'Click or drag files to upload';
-  @Input() placeholder: string = '';
-
-  @Output() uploadError = new EventEmitter<any>();
-  @Output() uploadSuccess = new EventEmitter<any>();
-  @Output() uploadCanceled = new EventEmitter<any>();
-
-  //dropzone event emitters
   @Output('drop'               ) dz_drop                = new EventEmitter<any>();
   @Output('dragstart'          ) dz_dragstart           = new EventEmitter<any>();
   @Output('dragend'            ) dz_dragend             = new EventEmitter<any>();
@@ -56,12 +41,9 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
   @Output('reset'              ) dz_reset               = new EventEmitter<any>();
   @Output('queuecomplete'      ) dz_queuecomplete       = new EventEmitter<any>();
 
-
-  @HostBinding('class.dropzone') @Input() useDropzoneClass: boolean = true;
-  @HostBinding('class.dz-wrapper') @Input() useDzWrapperClass: boolean = true;
-
-  constructor( private elementRef: ElementRef, private differs : KeyValueDiffers, @Optional() private defaults: DropzoneConfig ) {
+  constructor(renderer: Renderer, private elementRef: ElementRef, private differs : KeyValueDiffers, @Optional() private defaults: DropzoneConfig ) {
     Dropzone.autoDiscover = false;
+    renderer.setElementClass(elementRef.nativeElement, 'dropzone', true);
   }
 
   ngOnInit() {

@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 
 import { DropzoneComponent } from './dropzone.component';
+import { DropzoneDirective } from './dropzone.directive';
 import { DropzoneConfig, DropzoneConfigInterface} from './dropzone.interfaces';
 
 export const DROPZONE_GUARD = new OpaqueToken('DROPZONE_GUARD');
@@ -11,8 +12,8 @@ export const DROPZONE_CONFIG = new OpaqueToken('DROPZONE_CONFIG');
 
 @NgModule({
   imports: [CommonModule, HttpModule],
-  declarations: [DropzoneComponent],
-  exports: [CommonModule, HttpModule, DropzoneComponent]
+  declarations: [DropzoneComponent, DropzoneDirective],
+  exports: [CommonModule, HttpModule, DropzoneComponent, DropzoneDirective]
 })
 export class DropzoneModule {
   constructor (@Optional() @Inject(DROPZONE_GUARD) guard: any) {}
