@@ -52363,11 +52363,13 @@ var core_2 = __webpack_require__(0);
 var core_3 = __webpack_require__(0);
 var dropzone_interfaces_1 = __webpack_require__(1);
 var DropzoneComponent = (function () {
-    function DropzoneComponent(elementRef, differs, defaults) {
+    function DropzoneComponent(zone, elementRef, differs, defaults) {
+        this.zone = zone;
         this.elementRef = elementRef;
         this.differs = differs;
         this.defaults = defaults;
         this.disabled = false;
+        this.runInsideAngular = false;
         this.message = 'Click or drag files to upload';
         this.placeholder = '';
         this.uploadError = new core_3.EventEmitter();
@@ -52408,7 +52410,14 @@ var DropzoneComponent = (function () {
         var element = this.elementRef.nativeElement;
         var options = new dropzone_interfaces_1.DropzoneConfig(this.defaults);
         options.assign(this.config); // Custom config
-        this.dropzone = new Dropzone(element, options);
+        if (this.runInsideAngular) {
+            this.dropzone = new Dropzone(element, options);
+        }
+        else {
+            this.zone.runOutsideAngular(function () {
+                _this.dropzone = new Dropzone(element, options);
+            });
+        }
         if (this.disabled) {
             this.dropzone.disable();
         }
@@ -52478,6 +52487,10 @@ var DropzoneComponent = (function () {
         core_3.Input(), 
         __metadata('design:type', Object)
     ], DropzoneComponent.prototype, "config", void 0);
+    __decorate([
+        core_3.Input(), 
+        __metadata('design:type', Boolean)
+    ], DropzoneComponent.prototype, "runInsideAngular", void 0);
     __decorate([
         core_3.Input(), 
         __metadata('design:type', String)
@@ -52619,8 +52632,8 @@ var DropzoneComponent = (function () {
             styles: [__webpack_require__(7), __webpack_require__(6)],
             encapsulation: core_3.ViewEncapsulation.None
         }),
-        __param(2, core_2.Optional()), 
-        __metadata('design:paramtypes', [core_3.ElementRef, core_1.KeyValueDiffers, dropzone_interfaces_1.DropzoneConfig])
+        __param(3, core_2.Optional()), 
+        __metadata('design:paramtypes', [core_1.NgZone, core_3.ElementRef, core_1.KeyValueDiffers, dropzone_interfaces_1.DropzoneConfig])
     ], DropzoneComponent);
     return DropzoneComponent;
 }());
@@ -52650,11 +52663,14 @@ var core_1 = __webpack_require__(0);
 var core_2 = __webpack_require__(0);
 var dropzone_interfaces_1 = __webpack_require__(1);
 var DropzoneDirective = (function () {
-    function DropzoneDirective(renderer, elementRef, differs, defaults) {
+    function DropzoneDirective(zone, renderer, elementRef, differs, defaults) {
+        this.zone = zone;
+        this.renderer = renderer;
         this.elementRef = elementRef;
         this.differs = differs;
         this.defaults = defaults;
         this.disabled = false;
+        this.runInsideAngular = false;
         this.dz_drop = new core_2.EventEmitter();
         this.dz_dragstart = new core_2.EventEmitter();
         this.dz_dragend = new core_2.EventEmitter();
@@ -52689,7 +52705,14 @@ var DropzoneDirective = (function () {
         var element = this.elementRef.nativeElement;
         var options = new dropzone_interfaces_1.DropzoneConfig(this.defaults);
         options.assign(this.config); // Custom config
-        this.dropzone = new Dropzone(element, options);
+        if (this.runInsideAngular) {
+            this.dropzone = new Dropzone(element, options);
+        }
+        else {
+            this.zone.runOutsideAngular(function () {
+                _this.dropzone = new Dropzone(element, options);
+            });
+        }
         if (this.disabled) {
             this.dropzone.disable();
         }
@@ -52737,6 +52760,10 @@ var DropzoneDirective = (function () {
         core_2.Input(), 
         __metadata('design:type', Boolean)
     ], DropzoneDirective.prototype, "disabled", void 0);
+    __decorate([
+        core_2.Input(), 
+        __metadata('design:type', Boolean)
+    ], DropzoneDirective.prototype, "runInsideAngular", void 0);
     __decorate([
         core_2.Input('dropzone'), 
         __metadata('design:type', Object)
@@ -52849,8 +52876,8 @@ var DropzoneDirective = (function () {
         core_2.Directive({
             selector: '[dropzone]'
         }),
-        __param(3, core_2.Optional()), 
-        __metadata('design:paramtypes', [core_1.Renderer, core_2.ElementRef, core_1.KeyValueDiffers, dropzone_interfaces_1.DropzoneConfig])
+        __param(4, core_2.Optional()), 
+        __metadata('design:paramtypes', [core_1.NgZone, core_1.Renderer, core_2.ElementRef, core_1.KeyValueDiffers, dropzone_interfaces_1.DropzoneConfig])
     ], DropzoneDirective);
     return DropzoneDirective;
 }());
