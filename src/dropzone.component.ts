@@ -2,7 +2,7 @@ declare var require: any;
 
 const Dropzone = require('dropzone');
 
-import { SimpleChanges, KeyValueDiffers } from '@angular/core';
+import { NgZone, SimpleChanges, KeyValueDiffers } from '@angular/core';
 import { Component, Optional, OnInit, DoCheck, OnDestroy, OnChanges } from '@angular/core';
 import { Input, Output, HostBinding, EventEmitter, ElementRef, ViewEncapsulation } from '@angular/core';
 
@@ -22,6 +22,8 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
   @Input() disabled: boolean = false;
 
   @Input() config: DropzoneConfigInterface;
+
+  @Input() runInsideAngular: boolean = false;
 
   @Input() message: string = 'Click or drag files to upload';
   @Input() placeholder: string = '';
@@ -60,7 +62,7 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
   @Output('reset'              ) dz_reset               = new EventEmitter<any>();
   @Output('queuecomplete'      ) dz_queuecomplete       = new EventEmitter<any>();
 
-  constructor( private elementRef: ElementRef, private differs: KeyValueDiffers,
+  constructor( private zone: NgZone, private elementRef: ElementRef, private differs: KeyValueDiffers,
     @Optional() private defaults: DropzoneConfig ) {
     Dropzone.autoDiscover = false;
   }
@@ -72,7 +74,13 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
 
     options.assign(this.config); // Custom config
 
-    this.dropzone = new Dropzone(element, options);
+    if (this.runInsideAngular) {
+      this.dropzone = new Dropzone(element, options);
+    } else {
+       this.zone.runOutsideAngular(() => {
+         this.dropzone = new Dropzone(element, options);
+      });
+    }
 
     if (this.disabled) {
       this.dropzone.disable();

@@ -2,7 +2,7 @@ declare var require: any;
 
 const Dropzone = require('dropzone');
 
-import { Renderer, SimpleChanges, KeyValueDiffers } from '@angular/core';
+import { NgZone, Renderer, SimpleChanges, KeyValueDiffers } from '@angular/core';
 import { Directive, Optional, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 
 import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces';
@@ -16,6 +16,8 @@ export class DropzoneDirective {
   private configDiff: any;
 
   @Input() disabled: boolean = false;
+
+  @Input() runInsideAngular: boolean = false;
 
   @Input('dropzone') config: DropzoneConfigInterface;
 
@@ -46,8 +48,8 @@ export class DropzoneDirective {
   @Output('reset'              ) dz_reset               = new EventEmitter<any>();
   @Output('queuecomplete'      ) dz_queuecomplete       = new EventEmitter<any>();
 
-  constructor(renderer: Renderer, private elementRef: ElementRef, private differs: KeyValueDiffers,
-    @Optional() private defaults: DropzoneConfig ) {
+  constructor(private zone: NgZone, private renderer: Renderer, private elementRef: ElementRef,
+    private differs: KeyValueDiffers, @Optional() private defaults: DropzoneConfig ) {
     Dropzone.autoDiscover = false;
 
     renderer.setElementClass(elementRef.nativeElement, 'dropzone', true);
@@ -60,7 +62,13 @@ export class DropzoneDirective {
 
     options.assign(this.config); // Custom config
 
-    this.dropzone = new Dropzone(element, options);
+    if (this.runInsideAngular) {
+      this.dropzone = new Dropzone(element, options);
+    } else {
+       this.zone.runOutsideAngular(() => {
+         this.dropzone = new Dropzone(element, options);
+      });
+    }
 
     if (this.disabled) {
       this.dropzone.disable();

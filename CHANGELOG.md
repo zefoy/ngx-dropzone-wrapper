@@ -1,3 +1,7 @@
+1.2.0 Feature release
+
+  - Added runInsideAngular option
+
 1.1.0 Feature release
 
   - Added support for using via directive
