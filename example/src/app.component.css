@@ -67,6 +67,10 @@
   background-color: #fff;
 }
 
+.dropzone.dz-clickable {
+  height: 100%;
+}
+
 .dropzone:not(.dz-clickable) {
   opacity: 0.5;
   cursor: not-allowed;
