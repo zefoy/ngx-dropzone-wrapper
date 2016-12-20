@@ -1,5 +1,5 @@
 <div class="dz-message" [ngClass]="{'disabled': disabled, 'dz-placeholder': placeholder}">
-  <div class="dz-text">{{message}}</div>
+  <div class="dz-text">{{message || config?.dictDefaultMessage}}</div>
 
   <img *ngIf="placeholder" class="dz-image" [src]="placeholder">
 </div>

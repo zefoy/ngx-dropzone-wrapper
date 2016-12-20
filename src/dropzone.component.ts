@@ -2,9 +2,11 @@ declare var require: any;
 
 const Dropzone = require('dropzone');
 
-import { Component, Optional, OnInit, DoCheck, OnDestroy, OnChanges, SimpleChanges, Input, Output, HostBinding, EventEmitter, ElementRef, KeyValueDiffers, ViewEncapsulation } from '@angular/core';
+import { SimpleChanges, KeyValueDiffers } from '@angular/core';
+import { Component, Optional, OnInit, DoCheck, OnDestroy, OnChanges } from '@angular/core';
+import { Input, Output, HostBinding, EventEmitter, ElementRef, ViewEncapsulation } from '@angular/core';
 
-import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces'
+import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces';
 
 @Component({
   selector: 'dropzone',
@@ -28,37 +30,38 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
   @Output() uploadSuccess = new EventEmitter<any>();
   @Output() uploadCanceled = new EventEmitter<any>();
 
-  @Output('drop') dz_drop = new EventEmitter<any>();
-  @Output('dragstart') dz_dragstart = new EventEmitter<any>();
-  @Output('dragend') dz_dragend = new EventEmitter<any>();
-  @Output('dragenter') dz_dragenter = new EventEmitter<any>();
-  @Output('dragover') dz_dragover = new EventEmitter<any>();
-  @Output('dragleave') dz_dragleave = new EventEmitter<any>();
-  @Output('addedfile') dz_addedfile = new EventEmitter<any>();
-  @Output('removedfile') dz_removedfile = new EventEmitter<any>();
-  @Output('thumbnail') dz_thumbnail = new EventEmitter<any>();
-  @Output('error') dz_error = new EventEmitter<any>();
-  @Output('processing') dz_processing = new EventEmitter<any>();
-  @Output('uploadprogress') dz_uploadprogress = new EventEmitter<any>();
-  @Output('sending') dz_sending = new EventEmitter<any>();
-  @Output('success') dz_success = new EventEmitter<any>();
-  @Output('complete') dz_complete = new EventEmitter<any>();
-  @Output('canceled') dz_canceled = new EventEmitter<any>();
-  @Output('maxfilesreached') dz_maxfilesreached = new EventEmitter<any>();
-  @Output('maxfilesexceeded') dz_maxfilesexceeded = new EventEmitter<any>();
-  @Output('processingmultiple') dz_processingmultiple = new EventEmitter<any>();
-  @Output('sendingmultiple') dz_sendingmultiple = new EventEmitter<any>();
-  @Output('successmultiple') dz_successmultiple = new EventEmitter<any>();
-  @Output('completemultiple') dz_completemultiple = new EventEmitter<any>();
-  @Output('canceledmultiple') dz_canceledmultiple = new EventEmitter<any>();
-  @Output('totaluploadprogress') dz_totaluploadprogress = new EventEmitter<any>();
-  @Output('reset') dz_reset = new EventEmitter<any>();
-  @Output('queuecomplete') dz_queuecomplete = new EventEmitter<any>();
-
   @HostBinding('class.dropzone') @Input() useDropzoneClass: boolean = true;
   @HostBinding('class.dz-wrapper') @Input() useDzWrapperClass: boolean = true;
 
-  constructor( private elementRef: ElementRef, private differs : KeyValueDiffers, @Optional() private defaults: DropzoneConfig ) {
+  @Output('drop'               ) dz_drop                = new EventEmitter<any>();
+  @Output('dragstart'          ) dz_dragstart           = new EventEmitter<any>();
+  @Output('dragend'            ) dz_dragend             = new EventEmitter<any>();
+  @Output('dragenter'          ) dz_dragenter           = new EventEmitter<any>();
+  @Output('dragover'           ) dz_dragover            = new EventEmitter<any>();
+  @Output('dragleave'          ) dz_dragleave           = new EventEmitter<any>();
+  @Output('addedfile'          ) dz_addedfile           = new EventEmitter<any>();
+  @Output('removedfile'        ) dz_removedfile         = new EventEmitter<any>();
+  @Output('thumbnail'          ) dz_thumbnail           = new EventEmitter<any>();
+  @Output('error'              ) dz_error               = new EventEmitter<any>();
+  @Output('processing'         ) dz_processing          = new EventEmitter<any>();
+  @Output('uploadprogress'     ) dz_uploadprogress      = new EventEmitter<any>();
+  @Output('sending'            ) dz_sending             = new EventEmitter<any>();
+  @Output('success'            ) dz_success             = new EventEmitter<any>();
+  @Output('complete'           ) dz_complete            = new EventEmitter<any>();
+  @Output('canceled'           ) dz_canceled            = new EventEmitter<any>();
+  @Output('maxfilesreached'    ) dz_maxfilesreached     = new EventEmitter<any>();
+  @Output('maxfilesexceeded'   ) dz_maxfilesexceeded    = new EventEmitter<any>();
+  @Output('processingmultiple' ) dz_processingmultiple  = new EventEmitter<any>();
+  @Output('sendingmultiple'    ) dz_sendingmultiple     = new EventEmitter<any>();
+  @Output('successmultiple'    ) dz_successmultiple     = new EventEmitter<any>();
+  @Output('completemultiple'   ) dz_completemultiple    = new EventEmitter<any>();
+  @Output('canceledmultiple'   ) dz_canceledmultiple    = new EventEmitter<any>();
+  @Output('totaluploadprogress') dz_totaluploadprogress = new EventEmitter<any>();
+  @Output('reset'              ) dz_reset               = new EventEmitter<any>();
+  @Output('queuecomplete'      ) dz_queuecomplete       = new EventEmitter<any>();
+
+  constructor( private elementRef: ElementRef, private differs: KeyValueDiffers,
+    @Optional() private defaults: DropzoneConfig ) {
     Dropzone.autoDiscover = false;
   }
 
@@ -99,8 +102,8 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
       }
     });
 
-    // trigger native dropzone events
-    DropzoneEvents.forEach((eventName)=>{
+    // Add native dropzone event handling
+    DropzoneEvents.forEach((eventName) => {
       let self = this;
 
       this.dropzone.on(eventName, function(event) {
@@ -116,12 +119,12 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
 
 
     if (!this.configDiff) {
-      this.configDiff = this.differs.find(this.config || {}).create(null);
+      this.configDiff = this.differs.find(this.config || {}).create(null);
     }
   }
 
   ngDoCheck() {
-    let changes = this.configDiff.diff(this.config);
+    let changes = this.configDiff.diff(this.config || {});
 
     if (changes) {
       this.ngOnDestroy();

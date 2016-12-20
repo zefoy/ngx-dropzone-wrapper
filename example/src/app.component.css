@@ -67,8 +67,6 @@
   background-color: #fff;
 }
 
-/* Styling for directive */
-
 .dropzone:not(.dz-clickable) {
   opacity: 0.5;
   cursor: not-allowed;

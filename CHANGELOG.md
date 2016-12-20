@@ -1,3 +1,7 @@
+1.1.0 Feature release
+
+  - Added support for using via directive
+
 1.0.0 Feature release
 
   - Added outputs for all dropzone events

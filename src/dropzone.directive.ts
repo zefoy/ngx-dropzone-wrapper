@@ -2,21 +2,22 @@ declare var require: any;
 
 const Dropzone = require('dropzone');
 
-import { Directive, Optional, OnInit, DoCheck, OnDestroy, OnChanges, SimpleChanges, Input, Output, HostBinding, EventEmitter, ElementRef, KeyValueDiffers, ViewEncapsulation, TemplateRef, ViewContainerRef, Renderer } from '@angular/core';
+import { Renderer, SimpleChanges, KeyValueDiffers } from '@angular/core';
+import { Directive, Optional, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 
-import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces'
+import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces';
 
-@Directive({ selector: '[dropzone]' })
+@Directive({
+  selector: '[dropzone]'
+})
 export class DropzoneDirective {
   private dropzone: any;
+
   private configDiff: any;
 
   @Input() disabled: boolean = false;
-  @Input('dropzone') config: DropzoneConfigInterface;
 
-  @Output() uploadError = new EventEmitter<any>();
-  @Output() uploadSuccess = new EventEmitter<any>();
-  @Output() uploadCanceled = new EventEmitter<any>();
+  @Input('dropzone') config: DropzoneConfigInterface;
 
   @Output('drop'               ) dz_drop                = new EventEmitter<any>();
   @Output('dragstart'          ) dz_dragstart           = new EventEmitter<any>();
@@ -45,8 +46,10 @@ export class DropzoneDirective {
   @Output('reset'              ) dz_reset               = new EventEmitter<any>();
   @Output('queuecomplete'      ) dz_queuecomplete       = new EventEmitter<any>();
 
-  constructor(renderer: Renderer, private elementRef: ElementRef, private differs : KeyValueDiffers, @Optional() private defaults: DropzoneConfig ) {
+  constructor(renderer: Renderer, private elementRef: ElementRef, private differs: KeyValueDiffers,
+    @Optional() private defaults: DropzoneConfig ) {
     Dropzone.autoDiscover = false;
+
     renderer.setElementClass(elementRef.nativeElement, 'dropzone', true);
   }
 
@@ -63,32 +66,8 @@ export class DropzoneDirective {
       this.dropzone.disable();
     }
 
-    this.dropzone.on('error', (err) => {
-      this.uploadError.emit(err);
-
-      if (options.errorReset != null) {
-        setTimeout(() => this.reset(), options.errorReset);
-      }
-    });
-
-    this.dropzone.on('success', (res) => {
-      this.uploadSuccess.emit(res);
-
-      if (options.autoReset != null) {
-        setTimeout(() => this.reset(), options.autoReset);
-      }
-    });
-
-    this.dropzone.on('canceled', (res) => {
-      this.uploadCanceled.emit(res);
-
-      if (options.cancelReset != null) {
-        setTimeout(() => this.reset(), options.cancelReset);
-      }
-    });
-
-    // trigger native dropzone events
-    DropzoneEvents.forEach((eventName)=>{
+    // Add native dropzone event handling
+    DropzoneEvents.forEach((eventName) => {
       let self = this;
 
       this.dropzone.on(eventName, function(event) {
@@ -104,12 +83,12 @@ export class DropzoneDirective {
 
 
     if (!this.configDiff) {
-      this.configDiff = this.differs.find(this.config || {}).create(null);
+      this.configDiff = this.differs.find(this.config || {}).create(null);
     }
   }
 
   ngDoCheck() {
-    let changes = this.configDiff.diff(this.config);
+    let changes = this.configDiff.diff(this.config || {});
 
     if (changes) {
       this.ngOnDestroy();

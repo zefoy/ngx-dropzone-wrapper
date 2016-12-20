@@ -9,7 +9,7 @@
       <div class="box-title">Component</div>
 
       <div class="content-container">
-        <dropzone class="upload-area" [config]="config" [message]="'Click or drag images here to upload'" (uploadError)="onUploadError($event)" (uploadSuccess)="onUploadSuccess($event)"></dropzone>
+        <dropzone class="upload-area" [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($args)" (success)="onUploadSuccess($args)"></dropzone>
       </div>
     </div>
 
@@ -17,7 +17,7 @@
       <div class="box-title">Directive</div>
 
       <div class="content-container">
-        <div class="upload-area" [dropzone]="config" (uploadError)="onUploadError($event)" (uploadSuccess)="onUploadSuccess($event)"></div>
+        <div class="upload-area" [dropzone]="config" (error)="onUploadError($args)" (success)="onUploadSuccess($args)"></div>
       </div>
     </div>
   </div>

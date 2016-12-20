@@ -1,3 +1,34 @@
+// http://www.dropzonejs.com/#event-list
+
+export const DropzoneEvents = [
+  'drop',
+  'dragstart',
+  'dragend',
+  'dragenter',
+  'dragover',
+  'dragleave',
+  'addedfile',
+  'removedfile',
+  'thumbnail',
+  'error',
+  'processing',
+  'uploadprogress',
+  'sending',
+  'success',
+  'complete',
+  'canceled',
+  'maxfilesreached',
+  'maxfilesexceeded',
+  'processingmultiple',
+  'sendingmultiple',
+  'successmultiple',
+  'completemultiple',
+  'canceledmultiple',
+  'totaluploadprogress',
+  'reset',
+  'queuecomplete'
+];
+
 export interface DropzoneConfigInterface {
   server?: string,
   params?: string,
@@ -33,8 +64,6 @@ export interface DropzoneConfigInterface {
   autoProcessQueue?: boolean,
   maxThumbnailFilesize?: number,
   createImageThumbnails?: boolean,
-
-  // TODO: Remove once proper localization support is added...
 
   dictDefaultMessage?: string,
   dictFallbackMessage?: string,
@@ -86,8 +115,6 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   maxThumbnailFilesize: number;
   createImageThumbnails: boolean;
 
-  // TODO: Remove once proper localization support is added...
-
   dictDefaultMessage: string;
   dictFallbackMessage: string;
 
@@ -106,7 +133,7 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   }
 
   public assign(config: DropzoneConfigInterface = {}) {
-    for (var key in config) {
+    for (let key in config) {
       this[key] = config[key];
     }
 
@@ -115,34 +142,3 @@ export class DropzoneConfig implements DropzoneConfigInterface {
     }
   }
 }
-
-// http://www.dropzonejs.com/#event-list
-
-export const DropzoneEvents = [
-  'drop',
-  'dragstart',
-  'dragend',
-  'dragenter',
-  'dragover',
-  'dragleave',
-  'addedfile',
-  'removedfile',
-  'thumbnail',
-  'error',
-  'processing',
-  'uploadprogress',
-  'sending',
-  'success',
-  'complete',
-  'canceled',
-  'maxfilesreached',
-  'maxfilesexceeded',
-  'processingmultiple',
-  'sendingmultiple',
-  'successmultiple',
-  'completemultiple',
-  'canceledmultiple',
-  'totaluploadprogress',
-  'reset',
-  'queuecomplete'
-];
