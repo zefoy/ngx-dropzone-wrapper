@@ -2,6 +2,10 @@
   font-size: 24px;
 }
 
+.box-title {
+  font-size: 20px;
+}
+
 .box-container {
   display: flex;
   box-sizing: border-box;
@@ -28,11 +32,44 @@
   line-height: 24px;
 }
 
-.upload-container {
+.vertical-container {
+  display: flex;
+  flex: 1 1 50%;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.horizontal-container {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+@media all and (max-width: 800px) {
+  .horizontal-container {
+    flex-direction: column;
+  }
+}
+
+.content-container {
+  position: relative;
+
+  display: flex;
   overflow: auto;
   flex: 1 1 auto;
-  padding: 24px;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 16px 24px;
+  margin: 8px 16px;
   border-radius: 4px;
 
   background-color: #fff;
+}
+
+/* Styling for directive */
+
+.dropzone:not(.dz-clickable) {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

@@ -12,7 +12,7 @@ export class DropzoneDirective {
   private configDiff: any;
 
   @Input() disabled: boolean = false;
-  @Input() config: DropzoneConfigInterface;
+  @Input('dropzone') config: DropzoneConfigInterface;
 
   @Output() uploadError = new EventEmitter<any>();
   @Output() uploadSuccess = new EventEmitter<any>();

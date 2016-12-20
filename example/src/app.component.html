@@ -4,9 +4,21 @@
   <div class="info-container">
     This example does not actually upload any of the selected files, only simulates the upload process.
   </div>
+  <div class ="horizontal-container">
+    <div class="vertical-container">
+      <div class="box-title">Component</div>
 
-  <div class="upload-container">
-    <dropzone class="upload-area" [config]="config" [message]="'Click or drag images here to upload'" (uploadError)="onUploadError($event)" (uploadSuccess)="onUploadSuccess($event)"></dropzone>
-    <div class="upload-area" dropzone [config]="config" (uploadError)="onUploadError($event)" (uploadSuccess)="onUploadSuccess($event)"></div>
+      <div class="content-container">
+        <dropzone class="upload-area" [config]="config" [message]="'Click or drag images here to upload'" (uploadError)="onUploadError($event)" (uploadSuccess)="onUploadSuccess($event)"></dropzone>
+      </div>
+    </div>
+
+    <div class="vertical-container">
+      <div class="box-title">Directive</div>
+
+      <div class="content-container">
+        <div class="upload-area" [dropzone]="config" (uploadError)="onUploadError($event)" (uploadSuccess)="onUploadSuccess($event)"></div>
+      </div>
+    </div>
   </div>
 </div>
