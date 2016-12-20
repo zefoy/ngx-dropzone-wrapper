@@ -86,13 +86,15 @@ export class DropzoneDirective {
     // trigger native dropzone events
     DropzoneEvents.forEach((eventName)=>{
       let self = this;
-      this.dropzone.on(eventName, function(e){
+
+      this.dropzone.on(eventName, function(event) {
         let args = Array.prototype.slice.call(arguments);
-        if (args.length == 1){
+
+        if (args.length === 1) {
           args = args[0];
         }
-        let emitter = self[`dz_${eventName}`];
-        emitter.emit(args);
+
+        self[`dz_${eventName}`].emit(args);
       });
     });
 
