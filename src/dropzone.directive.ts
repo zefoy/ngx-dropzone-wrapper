@@ -14,6 +14,10 @@ export class DropzoneDirective {
   @Input() disabled: boolean = false;
   @Input() config: DropzoneConfigInterface;
 
+  @Output() uploadError = new EventEmitter<any>();
+  @Output() uploadSuccess = new EventEmitter<any>();
+  @Output() uploadCanceled = new EventEmitter<any>();
+
   @Output('drop'               ) dz_drop                = new EventEmitter<any>();
   @Output('dragstart'          ) dz_dragstart           = new EventEmitter<any>();
   @Output('dragend'            ) dz_dragend             = new EventEmitter<any>();

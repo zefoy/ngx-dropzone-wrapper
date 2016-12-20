@@ -7,6 +7,6 @@
 
   <div class="upload-container">
     <dropzone class="upload-area" [config]="config" [message]="'Click or drag images here to upload'" (uploadError)="onUploadError($event)" (uploadSuccess)="onUploadSuccess($event)"></dropzone>
-    <div class="upload-area" dropzone [config]="config" (complete)="onUploadSuccess($event)"></div>
+    <div class="upload-area" dropzone [config]="config" (uploadError)="onUploadError($event)" (uploadSuccess)="onUploadSuccess($event)"></div>
   </div>
 </div>
