@@ -15,9 +15,8 @@ import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropz
   encapsulation: ViewEncapsulation.None
 })
 export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges {
-  public dropzone: any;
-
-  private configDiff: any;
+  public  dropzone   : any;
+  private configDiff : any;
 
   @Input() disabled: boolean = false;
 
@@ -25,15 +24,16 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
 
   @Input() runInsideAngular: boolean = false;
 
-  @Input() message: string = 'Click or drag files to upload';
-  @Input() placeholder: string = '';
+  @Input() message     : string = 'Click or drag files to upload';
+  @Input() placeholder : string = '';
 
-  @Output() uploadError = new EventEmitter<any>();
-  @Output() uploadSuccess = new EventEmitter<any>();
+  @Output() init           = new EventEmitter<any>();
+  @Output() uploadError    = new EventEmitter<any>();
+  @Output() uploadSuccess  = new EventEmitter<any>();
   @Output() uploadCanceled = new EventEmitter<any>();
 
-  @HostBinding('class.dropzone') @Input() useDropzoneClass: boolean = true;
-  @HostBinding('class.dz-wrapper') @Input() useDzWrapperClass: boolean = true;
+  @HostBinding('class.dropzone')   @Input() useDropzoneClass  : boolean = true;
+  @HostBinding('class.dz-wrapper') @Input() useDzWrapperClass : boolean = true;
 
   @Output('drop'               ) dz_drop                = new EventEmitter<any>();
   @Output('dragstart'          ) dz_dragstart           = new EventEmitter<any>();
@@ -62,17 +62,20 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
   @Output('reset'              ) dz_reset               = new EventEmitter<any>();
   @Output('queuecomplete'      ) dz_queuecomplete       = new EventEmitter<any>();
 
-  constructor( private zone: NgZone, private elementRef: ElementRef, private differs: KeyValueDiffers,
-    @Optional() private defaults: DropzoneConfig ) {
+  constructor(
+    private zone: NgZone,
+    private elementRef: ElementRef,
+    private differs: KeyValueDiffers,
+    @Optional() private defaults: DropzoneConfig
+  ) {
     Dropzone.autoDiscover = false;
   }
 
   ngOnInit() {
-    let element = this.elementRef.nativeElement;
-
     let options = new DropzoneConfig(this.defaults);
-
     options.assign(this.config); // Custom config
+
+    let element = this.elementRef.nativeElement;
 
     if (this.runInsideAngular) {
       this.dropzone = new Dropzone(element, options);
@@ -129,6 +132,9 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
     if (!this.configDiff) {
       this.configDiff = this.differs.find(this.config || {}).create(null);
     }
+
+    //trigger init event to allow user to grab dropzone instance
+    this.init.emit(this.dropzone);
   }
 
   ngDoCheck() {
