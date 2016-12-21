@@ -1,3 +1,7 @@
+1.3.0 Feature release
+
+  - Allow usage of html in the message
+
 1.2.0 Feature release
 
   - Added runInsideAngular option
