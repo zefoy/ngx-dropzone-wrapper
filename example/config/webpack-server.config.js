@@ -6,6 +6,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
+  performance: {
+    hints: false
+  },
   entry: {
     app: [
       './src/polyfills.ts',

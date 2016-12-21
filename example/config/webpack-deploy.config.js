@@ -6,6 +6,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
+  performance: {
+    hints: false
+  },
   entry: {
     app: [
       './src/polyfills.ts',
@@ -47,6 +50,10 @@ module.exports = {
       from: '**/*',
       to: './assets'
     }]),
+
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false }
+    }),
 
     new webpack.ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
