@@ -1,6 +1,4 @@
-declare var require: any;
-
-const Dropzone = require('dropzone');
+import * as Dropzone from 'dropzone';
 
 import { NgZone, SimpleChanges, KeyValueDiffers } from '@angular/core';
 import { Component, Optional, OnInit, DoCheck, OnDestroy, OnChanges } from '@angular/core';
@@ -10,8 +8,11 @@ import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropz
 
 @Component({
   selector: 'dropzone',
-  template: require('dropzone.component.html'),
-  styles: [require('dropzone.component.scss'), require('dropzone/dist/min/dropzone.min.css')],
+  templateUrl: './dropzone.component.html',
+  styleUrls: [
+    './dropzone.component.css',
+    '../../node_modules/dropzone/dist/min/dropzone.min.css'
+  ],
   encapsulation: ViewEncapsulation.None
 })
 export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges {

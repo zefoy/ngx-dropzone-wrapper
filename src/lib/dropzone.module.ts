@@ -21,6 +21,7 @@ export class DropzoneModule {
   static forRoot(config?: DropzoneConfigInterface): ModuleWithProviders {
     return {
       ngModule: DropzoneModule,
+
       providers: [
         {
           provide: DROPZONE_GUARD,
@@ -39,7 +40,7 @@ export class DropzoneModule {
         },
         {
           provide: DropzoneConfig,
-          useFactory: (config) => new DropzoneConfig(config),
+          useFactory: provideDefaultConfig,
           deps: [
             DROPZONE_CONFIG
           ]
@@ -64,4 +65,8 @@ export function provideForRootGuard(config: DropzoneConfig): any {
   }
 
   return 'guarded';
+}
+
+export function provideDefaultConfig(config: DropzoneConfigInterface): DropzoneConfig {
+  return new DropzoneConfig(config);
 }

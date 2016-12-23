@@ -21,11 +21,18 @@ module.exports = {
     publicPath: 'https://zefoy.github.io/angular2-dropzone-wrapper/'
   },
   module: {
-    loaders: [
+    rules: [
+      {
+        test: /\.js$/,
+        loaders: [
+          'angular2-template-loader'
+        ],
+        exclude: /node_modules/
+      },
       {
         test: /\.ts$/,
         loaders: [
-          'awesome-typescript-loader',
+          'awesome-typescript-loader?tsconfig=src/tsconfig.json',
           'angular2-template-loader',
           'angular2-router-loader'
         ]

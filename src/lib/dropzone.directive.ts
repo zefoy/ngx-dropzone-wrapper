@@ -1,6 +1,4 @@
-declare var require: any;
-
-const Dropzone = require('dropzone');
+import * as Dropzone from 'dropzone';
 
 import { NgZone, Renderer, SimpleChanges, KeyValueDiffers } from '@angular/core';
 import { Directive, Optional, Input, Output, EventEmitter, ElementRef } from '@angular/core';

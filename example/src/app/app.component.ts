@@ -9,8 +9,7 @@ import { DropzoneConfigInterface } from 'angular2-dropzone-wrapper';
 })
 export class AppComponent {
   private config: DropzoneConfigInterface = {
-    params: 'directory=images',
-    dictDefaultMessage: 'Please place a file here!'
+    params: 'directory=images'
   };
 
   constructor() {}

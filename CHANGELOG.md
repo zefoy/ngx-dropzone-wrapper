@@ -1,3 +1,9 @@
+2.0.0 Feature release
+
+  - Added minified bundle library
+
+  - Added support for AOT compilation
+
 1.3.0 Feature release
 
   - Allow usage of html in the message
