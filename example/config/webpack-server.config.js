@@ -59,7 +59,7 @@ module.exports = {
     new CopyWebpackPlugin([{
       context: './src/assets',
       from: '**/*',
-      to: './src/assets'
+      to: '../dist/assets'
     }]),
 
     new webpack.ContextReplacementPlugin(

@@ -38,6 +38,10 @@ module.exports = {
         ]
       },
       {
+        test: /\.scss$/,
+        loaders: ["raw-loader", "sass-loader"]
+      },
+      {
         test: /\.(html|css)$/,
         loader: 'raw-loader'
       }
@@ -49,13 +53,13 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html'
+      template: './src/index.html'
     }),
 
     new CopyWebpackPlugin([{
-      context: './assets',
+      context: './src/assets',
       from: '**/*',
-      to: './assets'
+      to: '../dist/assets'
     }]),
 
     new webpack.optimize.UglifyJsPlugin({

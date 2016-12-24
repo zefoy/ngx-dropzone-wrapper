@@ -3,6 +3,7 @@
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "inlineSources": true,
     "lib": ["dom", "es2015"],
     "module": "commonjs",
     "moduleResolution": "node",
