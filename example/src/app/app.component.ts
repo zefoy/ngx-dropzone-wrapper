@@ -14,11 +14,11 @@ export class AppComponent {
 
   constructor() {}
 
-  onUploadError(event: any) {
-    console.log('onUploadError:', event);
+  onUploadError(args: any) {
+    console.log('onUploadError:', args);
   }
 
-  onUploadSuccess(event: any) {
-    console.log('onUploadSuccess:', event);
+  onUploadSuccess(args: any) {
+    console.log('onUploadSuccess:', args);
   }
 }

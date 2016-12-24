@@ -50,7 +50,7 @@ This library provides two ways to create a Dropzone element, simple component an
 **COMPONENT USAGE**
 
 ```html
-<dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($args)" (success)="onUploadSuccess($args)"></dropzone>
+<dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
 ```
 
 ```javascript
@@ -74,7 +74,7 @@ When using the directive you need to provide your own theming or import the defa
 Dropzone directive can be used with form or div element with optional custom configuration:
 
 ```html
-<div [dropzone]="config" (error)="onUploadError($args)" (success)="onUploadSuccess($args)"></div>
+<div [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
 ```
 
 ```javascript

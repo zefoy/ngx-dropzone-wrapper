@@ -26,10 +26,6 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
   @Input() message: string = 'Click or drag files to upload';
   @Input() placeholder: string = '';
 
-  @Output() uploadError = new EventEmitter<any>();
-  @Output() uploadSuccess = new EventEmitter<any>();
-  @Output() uploadCanceled = new EventEmitter<any>();
-
   @HostBinding('class.dropzone') @Input() useDropzoneClass: boolean = true;
   @HostBinding('class.dz-wrapper') @Input() useDzWrapperClass: boolean = true;
 
@@ -85,24 +81,18 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
     }
 
     this.dropzone.on('error', (err) => {
-      this.uploadError.emit(err);
-
       if (options.errorReset != null) {
         setTimeout(() => this.reset(), options.errorReset);
       }
     });
 
     this.dropzone.on('success', (res) => {
-      this.uploadSuccess.emit(res);
-
       if (options.autoReset != null) {
         setTimeout(() => this.reset(), options.autoReset);
       }
     });
 
     this.dropzone.on('canceled', (res) => {
-      this.uploadCanceled.emit(res);
-
       if (options.cancelReset != null) {
         setTimeout(() => this.reset(), options.cancelReset);
       }
