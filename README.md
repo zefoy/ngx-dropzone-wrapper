@@ -2,7 +2,7 @@
 
 <a href="https://badge.fury.io/js/angular2-dropzone-wrapper"><img src="https://badge.fury.io/js/angular2-dropzone-wrapper.svg" align="right" alt="npm version" height="18"></a>
 
-This is an Angular 2 wrapper library for [dropzone](http://www.dropzonejs.com/).
+This is an Angular 2 wrapper library for [Dropzone](http://www.dropzonejs.com/).
 
 See a live example application <a href="https://zefoy.github.io/angular2-dropzone-wrapper/">here</a>.
 
@@ -49,6 +49,8 @@ This library provides two ways to create a Dropzone element, simple component an
 
 **COMPONENT USAGE**
 
+Simply replace the element that would oridinarily be passed to `Dropzone` with the dropzone component.
+
 ```html
 <dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
 ```
@@ -65,7 +67,7 @@ This library provides two ways to create a Dropzone element, simple component an
 
 **DIRECTIVE USAGE**
 
-When using the directive you need to provide your own theming or import the default theme:
+When using only the directive you need to provide your own theming or import the default theme:
 
 ```css
 @import 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.min.css';
@@ -110,4 +112,4 @@ maxFilesize       // Maximum file size for the upload files in megabytes (Defaul
 acceptedFiles     // Comma separated list of mime types or file extensions (Default: null).
 ```
 
-For more detailed documentation with all the supported dropzone options see [dropzone documentation](http://www.dropzonejs.com/#configuration-options).
+For more detailed documentation with all the supported dropzone options see [Dropzone documentation](http://www.dropzonejs.com/#configuration-options).
