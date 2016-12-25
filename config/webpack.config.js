@@ -15,7 +15,7 @@ module.exports = {
     umdNamedDefine: true
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         loaders: [

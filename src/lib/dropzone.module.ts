@@ -21,7 +21,6 @@ export class DropzoneModule {
   static forRoot(config?: DropzoneConfigInterface): ModuleWithProviders {
     return {
       ngModule: DropzoneModule,
-
       providers: [
         {
           provide: DROPZONE_GUARD,

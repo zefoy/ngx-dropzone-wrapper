@@ -10,7 +10,10 @@ import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropz
   selector: 'dropzone',
   templateUrl: './dropzone.component.html',
   styleUrls: ['./dropzone.component.css', '../../node_modules/dropzone/dist/min/dropzone.min.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    style: 'display: block;'
+  }
 })
 export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges {
   public dropzone: any;
