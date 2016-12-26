@@ -3,6 +3,9 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
+  performance: {
+    hints: false
+  },
   entry: {
     'angular2-dropzone-wrapper.umd': './src/index.ts',
     'angular2-dropzone-wrapper.umd.min': './src/index.ts'
