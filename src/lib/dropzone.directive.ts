@@ -63,13 +63,19 @@ export class DropzoneDirective {
     if (this.runInsideAngular) {
       this.dropzone = new Dropzone(element, options);
     } else {
-       this.zone.runOutsideAngular(() => {
+      this.zone.runOutsideAngular(() => {
          this.dropzone = new Dropzone(element, options);
       });
     }
 
     if (this.disabled) {
-      this.dropzone.disable();
+      if (this.runInsideAngular) {
+        this.dropzone.disable();
+      } else {
+        this.zone.runOutsideAngular(() => {
+          this.dropzone.disable();
+        });
+      }
     }
 
     // Add native dropzone event handling
@@ -104,22 +110,46 @@ export class DropzoneDirective {
   }
 
   ngOnDestroy() {
-    this.dropzone.destroy();
+    if (this.runInsideAngular) {
+      this.dropzone.destroy();
+    } else {
+      this.zone.runOutsideAngular(() => {
+        this.dropzone.destroy();
+      });
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.dropzone && changes['disabled']) {
       if (changes['disabled'].currentValue != changes['disabled'].previousValue) {
         if (changes['disabled'].currentValue === true) {
-          this.dropzone.enable();
+          if (this.runInsideAngular) {
+            this.dropzone.enable();
+          } else {
+            this.zone.runOutsideAngular(() => {
+              this.dropzone.enable();
+            });
+          }
         } else if (changes['disabled'].currentValue === false) {
-          this.dropzone.disable();
+          if (this.runInsideAngular) {
+            this.dropzone.disable();
+          } else {
+            this.zone.runOutsideAngular(() => {
+              this.dropzone.disable();
+            });
+          }
         }
       }
     }
   }
 
   reset() {
-    this.dropzone.removeAllFiles();
+    if (this.runInsideAngular) {
+      this.dropzone.removeAllFiles();
+    } else {
+      this.zone.runOutsideAngular(() => {
+        this.dropzone.removeAllFiles();
+      });
+    }
   }
 }
