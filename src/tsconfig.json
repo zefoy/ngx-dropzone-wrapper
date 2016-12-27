@@ -19,6 +19,7 @@
   },
   "files": [
     "index.ts",
+    "types/dropzone.d.ts",
     "lib/dropzone.module.ts",
     "lib/dropzone.component.ts",
     "lib/dropzone.directive.ts",

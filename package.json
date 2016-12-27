@@ -3,7 +3,7 @@
   "description": "Angular 2 wrapper library for Dropzone",
   "bugs": "https://github.com/zefoy/angular2-dropzone-wrapper/issues",
   "license": "MIT",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "bundles/angular2-dropzone-wrapper.umd.js",
   "module": "./dist/index.js",
   "typings": "./dist/index.d.ts",
