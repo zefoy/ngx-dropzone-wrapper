@@ -1,6 +1,6 @@
 2.0.3 Bug fix release
 
-  - Fixed clickabe type in interfaces
+  - Fixed errors in the interface file
 
 2.0.2 Bug fix release
 
