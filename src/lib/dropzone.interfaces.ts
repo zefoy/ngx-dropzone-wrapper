@@ -48,7 +48,7 @@ export interface DropzoneConfigInterface {
   previewsContainer?: any,
   hiddenInputContainer?: any,
 
-  clickable?: string|string[]|boolean,
+  clickable?: string | string[] | boolean,
   paramName?: string,
   maxFiles?: number,
   maxFilesize?: number,
