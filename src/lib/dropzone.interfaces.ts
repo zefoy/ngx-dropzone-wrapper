@@ -39,12 +39,14 @@ export interface DropzoneConfigInterface {
 
   url?: string,
   method?: string,
-  headers?: any,
+  headers?: Object,
 
   init?: any,
   accept?: any,
+  resize?: any,
   fallback?: any,
   renameFilename?: any,
+
   previewsContainer?: any,
   hiddenInputContainer?: any,
 
@@ -89,16 +91,18 @@ export class DropzoneConfig implements DropzoneConfigInterface {
 
   url: string;
   method: string;
-  headers: any;
+  headers: Object;
 
   init: any;
   accept: any;
+  resize: any;
   fallback: any;
   renameFilename: any;
+  
   previewsContainer: any;
   hiddenInputContainer: any;
 
-  clickable: string|string[]|boolean;
+  clickable: string | string[] | boolean;
   paramName: string;
   maxFiles: number;
   maxFilesize: number;
