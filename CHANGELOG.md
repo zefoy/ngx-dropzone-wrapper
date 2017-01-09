@@ -1,3 +1,7 @@
+2.0.3 Bug fix release
+
+  - Fixed clickabe type in interfaces
+
 2.0.2 Bug fix release
 
   - Fixed errors for AOT compilations
