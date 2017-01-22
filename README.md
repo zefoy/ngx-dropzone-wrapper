@@ -73,7 +73,7 @@ When using only the directive you need to provide your own theming or import the
 @import 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.min.css';
 ```
 
-Dropzone directive can be used with form or div element with optional custom configuration:
+Dropzone directive can be used in form or div element with optional custom configuration:
 
 ```html
 <div [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
