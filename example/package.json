@@ -22,7 +22,7 @@
   },
   "config": {
     "deployToGit": {
-      "repository": "git@github.com:zefoy/angular2-dropzone-wrapper.git",
+      "repository": "git@github.com:zefoy/ngx-dropzone-wrapper.git",
       "branch": "gh-pages",
       "folder": "dist",
       "script": "npm run build",

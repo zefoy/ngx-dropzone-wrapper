@@ -4,7 +4,7 @@
 
 This is an Angular 2 wrapper library for [Dropzone](http://www.dropzonejs.com/).
 
-See a live example application <a href="https://zefoy.github.io/angular2-dropzone-wrapper/">here</a>.
+See a live example application <a href="https://zefoy.github.io/ngx-dropzone-wrapper/">here</a>.
 
 ### Building the library
 
