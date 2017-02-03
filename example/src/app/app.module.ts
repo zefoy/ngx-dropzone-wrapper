@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { DropzoneModule, DropzoneConfigInterface } from 'angular2-dropzone-wrapper';
 
 import { AppComponent } from './app.component';
@@ -25,6 +27,7 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
     ],
     imports: [
       BrowserModule,
+      FlexLayoutModule,
       DropzoneModule.forRoot(DROPZONE_CONFIG)
     ]
 })
