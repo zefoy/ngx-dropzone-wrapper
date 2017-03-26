@@ -1,4 +1,14 @@
-export * from './dropzone.component';
-export * from './dropzone.directive';
-export * from './dropzone.interfaces';
-export * from './dropzone.module';
+export { DropzoneComponent } from './dropzone.component';
+
+export { DropzoneDirective } from './dropzone.directive';
+
+export {
+  DropzoneConfig, DropzoneConfigInterface,
+  DropzoneEvents
+} from './dropzone.interfaces';
+
+export {
+  provideDefaultConfig, provideForRootGuard,
+  DROPZONE_CONFIG, DROPZONE_GUARD,
+  DropzoneModule
+} from './dropzone.module';
