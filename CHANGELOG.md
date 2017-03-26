@@ -1,3 +1,7 @@
+2.0.5 Name change release
+
+  - Changed from angular2 to ngx prefix
+
 2.0.3 Bug fix release
 
   - Fixed errors in the interface file
