@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { DropzoneModule, DropzoneConfigInterface } from 'angular2-dropzone-wrapper';
+import { DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 import { AppComponent } from './app.component';
 

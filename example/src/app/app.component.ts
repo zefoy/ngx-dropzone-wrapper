@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { DropzoneConfigInterface } from 'angular2-dropzone-wrapper';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 @Component({
   moduleId: module.id + '',
