@@ -7,13 +7,13 @@ module.exports = {
     hints: false
   },
   entry: {
-    'angular2-dropzone-wrapper.umd': './src/index.ts',
-    'angular2-dropzone-wrapper.umd.min': './src/index.ts'
+    'ngx-dropzone-wrapper.umd': './src/index.ts',
+    'ngx-dropzone-wrapper.umd.min': './src/index.ts'
   },
   output: {
     path: './bundles',
     filename: '[name].js',
-    library: 'angular2-dropzone-wrapper',
+    library: 'ngx-dropzone-wrapper',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
