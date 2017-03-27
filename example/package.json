@@ -2,7 +2,7 @@
   "name": "ngx-dropzone-wrapper-example",
   "description": "Example app for the ngx-dropzone-wrapper",
   "license": "MIT",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "tslint": {
     "extends": "./tslint.json"
   },
