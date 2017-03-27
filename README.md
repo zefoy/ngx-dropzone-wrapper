@@ -1,8 +1,8 @@
-# Angular 2 Dropzone Wrapper
+# Angular Dropzone Wrapper
 
-<a href="https://badge.fury.io/js/angular2-dropzone-wrapper"><img src="https://badge.fury.io/js/angular2-dropzone-wrapper.svg" align="right" alt="npm version" height="18"></a>
+<a href="https://badge.fury.io/js/ngx-dropzone-wrapper"><img src="https://badge.fury.io/js/ngx-dropzone-wrapper.svg" align="right" alt="npm version" height="18"></a>
 
-This is an Angular 2 wrapper library for [Dropzone](http://www.dropzonejs.com/).
+This is an Angular wrapper library for the [Dropzone](http://www.dropzonejs.com/).
 
 See a live example application <a href="https://zefoy.github.io/ngx-dropzone-wrapper/">here</a>.
 
@@ -19,13 +19,13 @@ See a live example application <a href="https://zefoy.github.io/ngx-dropzone-wra
 
 ### Installing and usage
 
-    npm install angular2-dropzone-wrapper --save-dev
+    npm install ngx-dropzone-wrapper --save-dev
 
 ##### Load the module for your app (with global configuration):
 
 ```javascript
-import { DropzoneModule } from 'angular2-dropzone-wrapper';
-import { DropzoneConfigInterface } from 'angular2-dropzone-wrapper';
+import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 const DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
