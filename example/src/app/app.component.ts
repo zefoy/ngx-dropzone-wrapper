@@ -9,7 +9,7 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
   styleUrls: ['app.component.css']
 })
 export class AppComponent {
-  private config: DropzoneConfigInterface = {
+  public config: DropzoneConfigInterface = {
     params: 'directory=images'
   };
 
