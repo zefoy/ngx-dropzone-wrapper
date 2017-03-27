@@ -27,7 +27,7 @@
       'rxjs': 'npm:rxjs',
       'ts': 'npm:plugin-typescript/lib/plugin.js',
       'typescript': 'npm:typescript/lib/typescript.js',
-      'angular2-dropzone-wrapper': 'node_modules/angular2-dropzone-wrapper'
+      'ngx-dropzone-wrapper': 'node_modules/ngx-dropzone-wrapper'
     },
     packages: {
       'app': {
@@ -42,8 +42,8 @@
       'rxjs': {
         defaultExtension: 'js'
       },
-      'angular2-dropzone-wrapper': {
-        main: 'bundles/angular2-dropzone-wrapper.umd.js',
+      'ngx-dropzone-wrapper': {
+        main: 'bundles/ngx-dropzone-wrapper.umd.js',
         defaultExtension: 'js'
       }
     }
