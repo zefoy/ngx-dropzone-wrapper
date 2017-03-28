@@ -102,7 +102,7 @@ export class DropzoneDirective {
   ngDoCheck() {
     let changes = this.configDiff.diff(this.config || {});
 
-    if (changes) {
+    if (changes && this.dropzone) {
       this.ngOnDestroy();
 
       this.ngOnInit();

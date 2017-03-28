@@ -1,3 +1,7 @@
+4.0.2 Bug fix release
+
+  - Added the fix for the directive as well
+
 4.0.1 Bug fix release
 
   - Fixed possible error with changes check
