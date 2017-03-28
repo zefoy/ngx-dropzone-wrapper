@@ -16,6 +16,7 @@
     "lint": "npm run lint:ts && npm run lint:css",
     "build": "rm -rf dist/* && npm run build:aot",
     "deploy": "rm -rf dist && deploy-to-git",
+    "release": "npm version -m 'New release with version %s'",
     "lint:ts": "tslint 'src/**/*.ts'",
     "lint:css": "stylelint 'src/**/*.css' --syntax css",
     "start:sjs": "lite-server -c config/lite-server-bs-config.js",
