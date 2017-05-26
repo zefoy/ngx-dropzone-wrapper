@@ -178,4 +178,8 @@ export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges 
       });
     }
   }
+
+  getPlaceholder() {
+    return 'url(' + encodeURI(this.placeholder) + ')';
+  }
 }

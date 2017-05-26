@@ -28,7 +28,10 @@
 
       .dz-image {
         width: 100%;
-        height: auto;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
       }
 
       &.disabled {

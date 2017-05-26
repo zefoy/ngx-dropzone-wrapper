@@ -1,5 +1,5 @@
 <div class="dz-message" [class.disabled]="disabled" [class.dz-placeholder]="placeholder">
   <div class="dz-text" [innerHTML]="message || config?.dictDefaultMessage"></div>
 
-  <img *ngIf="placeholder" class="dz-image" [src]="placeholder">
+  <div *ngIf="placeholder" class="dz-image" [style.background-image]="getPlaceholder()"></div>
 </div>
