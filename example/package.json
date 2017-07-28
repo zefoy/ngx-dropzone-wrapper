@@ -16,7 +16,6 @@
     "lint": "npm run lint:ts && npm run lint:css",
     "build": "rm -rf dist/* && npm run build:aot",
     "deploy": "rm -rf dist && deploy-to-git",
-    "release": "npm version -m 'New release with version %s'",
     "lint:ts": "tslint 'src/**/*.ts'",
     "lint:css": "stylelint 'src/**/*.css' --syntax css",
     "start:sjs": "lite-server -c config/lite-server-bs-config.js",
@@ -53,7 +52,7 @@
   },
   "devDependencies": {
     "@angular/compiler-cli": "^4.0.0",
-    "@ngtools/webpack": "^1.5.5",
+    "@ngtools/webpack": "^1.5.0",
     "@types/core-js": "~0.9.0",
     "@types/node": "~6.0.0",
     "angular2-router-loader": "~0.3.0",
