@@ -111,3 +111,11 @@ acceptedFiles     // Comma separated list of mime types or file extensions (Defa
 ```
 
 For more detailed documentation with all the supported dropzone options see [Dropzone documentation](http://www.dropzonejs.com/#configuration-options).
+
+##### Available control / helper functions (provided by the directive):
+
+```javascript
+reset()                         // Resets the Dropzone (removes all files).
+```
+
+Above functions can be accessed through the directive reference (available as directiveRef in the component).
