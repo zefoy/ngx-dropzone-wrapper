@@ -1,10 +1,8 @@
-import * as Dropzone from 'dropzone';
+import { Component, ViewChild } from '@angular/core';
+import { Input, HostBinding, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
-import { NgZone, SimpleChanges, KeyValueDiffers } from '@angular/core';
-import { Component, Optional, OnInit, DoCheck, OnDestroy, OnChanges } from '@angular/core';
-import { Input, Output, HostBinding, EventEmitter, ElementRef, ViewEncapsulation } from '@angular/core';
-
-import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces';
+import { DropzoneDirective } from './dropzone.directive';
+import { DropzoneConfigInterface } from './dropzone.interfaces';
 
 @Component({
   selector: 'dropzone',
@@ -12,171 +10,58 @@ import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropz
   styleUrls: ['./dropzone.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class DropzoneComponent implements OnInit, DoCheck, OnDestroy, OnChanges {
-  public dropzone: any;
-
-  private configDiff: any;
-
+export class DropzoneComponent {
   @Input() disabled: boolean = false;
 
   @Input() config: DropzoneConfigInterface;
 
-  @Input() runInsideAngular: boolean = false;
-
   @Input() message: string = 'Click or drag files to upload';
   @Input() placeholder: string = '';
 
-  @HostBinding('class.dropzone') @Input() useDropzoneClass: boolean = true;
-  @HostBinding('class.dz-wrapper') @Input() useDzWrapperClass: boolean = true;
+  @Input() runInsideAngular: boolean = false;
+  @Input() useDropzoneClass: boolean = true;
 
-  @Output('drop'               ) dz_drop                = new EventEmitter<any>();
-  @Output('dragstart'          ) dz_dragstart           = new EventEmitter<any>();
-  @Output('dragend'            ) dz_dragend             = new EventEmitter<any>();
-  @Output('dragenter'          ) dz_dragenter           = new EventEmitter<any>();
-  @Output('dragover'           ) dz_dragover            = new EventEmitter<any>();
-  @Output('dragleave'          ) dz_dragleave           = new EventEmitter<any>();
-  @Output('addedfile'          ) dz_addedfile           = new EventEmitter<any>();
-  @Output('removedfile'        ) dz_removedfile         = new EventEmitter<any>();
-  @Output('thumbnail'          ) dz_thumbnail           = new EventEmitter<any>();
-  @Output('error'              ) dz_error               = new EventEmitter<any>();
-  @Output('processing'         ) dz_processing          = new EventEmitter<any>();
-  @Output('uploadprogress'     ) dz_uploadprogress      = new EventEmitter<any>();
-  @Output('sending'            ) dz_sending             = new EventEmitter<any>();
-  @Output('success'            ) dz_success             = new EventEmitter<any>();
-  @Output('complete'           ) dz_complete            = new EventEmitter<any>();
-  @Output('canceled'           ) dz_canceled            = new EventEmitter<any>();
-  @Output('maxfilesreached'    ) dz_maxfilesreached     = new EventEmitter<any>();
-  @Output('maxfilesexceeded'   ) dz_maxfilesexceeded    = new EventEmitter<any>();
-  @Output('processingmultiple' ) dz_processingmultiple  = new EventEmitter<any>();
-  @Output('sendingmultiple'    ) dz_sendingmultiple     = new EventEmitter<any>();
-  @Output('successmultiple'    ) dz_successmultiple     = new EventEmitter<any>();
-  @Output('completemultiple'   ) dz_completemultiple    = new EventEmitter<any>();
-  @Output('canceledmultiple'   ) dz_canceledmultiple    = new EventEmitter<any>();
-  @Output('totaluploadprogress') dz_totaluploadprogress = new EventEmitter<any>();
-  @Output('reset'              ) dz_reset               = new EventEmitter<any>();
-  @Output('queuecomplete'      ) dz_queuecomplete       = new EventEmitter<any>();
+  @HostBinding('class.dz-wrapper')
+  @Input() useDzWrapperClass: boolean = true;
 
-  constructor( private zone: NgZone, private elementRef: ElementRef, private differs: KeyValueDiffers,
-    @Optional() private defaults: DropzoneConfig ) {
-    Dropzone.autoDiscover = false;
-  }
+  @ViewChild(DropzoneDirective) directiveRef: DropzoneDirective;
 
-  ngOnInit() {
-    let element = this.elementRef.nativeElement;
+  @Output('drop'               ) DZ_DROP                = new EventEmitter<any>();
+  @Output('dragstart'          ) DZ_DRAGSTART           = new EventEmitter<any>();
+  @Output('dragend'            ) DZ_DRAGEND             = new EventEmitter<any>();
+  @Output('dragenter'          ) DZ_DRAGENTER           = new EventEmitter<any>();
+  @Output('dragover'           ) DZ_DRAGOVER            = new EventEmitter<any>();
+  @Output('dragleave'          ) DZ_DRAGLEAVE           = new EventEmitter<any>();
 
-    let options = new DropzoneConfig(this.defaults);
+  @Output('addedfile'          ) DZ_ADDEDFILE           = new EventEmitter<any>();
+  @Output('removedfile'        ) DZ_REMOVEDFILE         = new EventEmitter<any>();
+  @Output('thumbnail'          ) DZ_THUMBNAIL           = new EventEmitter<any>();
+  @Output('error'              ) DZ_ERROR               = new EventEmitter<any>();
+  @Output('processing'         ) DZ_PROCESSING          = new EventEmitter<any>();
+  @Output('uploadprogress'     ) DZ_UPLOADPROGRESS      = new EventEmitter<any>();
+  @Output('sending'            ) DZ_SENDING             = new EventEmitter<any>();
+  @Output('success'            ) DZ_SUCCESS             = new EventEmitter<any>();
+  @Output('complete'           ) DZ_COMPLETE            = new EventEmitter<any>();
+  @Output('canceled'           ) DZ_CANCELED            = new EventEmitter<any>();
+  @Output('maxfilesreached'    ) DZ_MAXFILESREACHED     = new EventEmitter<any>();
+  @Output('maxfilesexceeded'   ) DZ_MAXFILESEXCEEDED    = new EventEmitter<any>();
 
-    options.assign(this.config); // Custom config
+  @Output('processingmultiple' ) DZ_PROCESSINGMULTIPLE  = new EventEmitter<any>();
+  @Output('sendingmultiple'    ) DZ_SENDINGMULTIPLE     = new EventEmitter<any>();
+  @Output('successmultiple'    ) DZ_SUCCESSMULTIPLE     = new EventEmitter<any>();
+  @Output('completemultiple'   ) DZ_COMPLETEMULTIPLE    = new EventEmitter<any>();
+  @Output('canceledmultiple'   ) DZ_CANCELEDMULTIPLE    = new EventEmitter<any>();
 
-    if (this.runInsideAngular) {
-      this.dropzone = new Dropzone(element, options);
-    } else {
-      this.zone.runOutsideAngular(() => {
-        this.dropzone = new Dropzone(element, options);
-      });
-    }
+  @Output('totaluploadprogress') DZ_TOTALUPLOADPROGRESS = new EventEmitter<any>();
+  @Output('reset'              ) DZ_RESET               = new EventEmitter<any>();
+  @Output('queuecomplete'      ) DZ_QUEUECOMPLETE       = new EventEmitter<any>();
 
-    if (this.disabled) {
-      if (this.runInsideAngular) {
-        this.dropzone.disable();
-      } else {
-        this.zone.runOutsideAngular(() => {
-          this.dropzone.disable();
-        });
-      }
-    }
-
-    this.dropzone.on('error', (err) => {
-      if (options.errorReset != null) {
-        setTimeout(() => this.reset(), options.errorReset);
-      }
-    });
-
-    this.dropzone.on('success', (res) => {
-      if (options.autoReset != null) {
-        setTimeout(() => this.reset(), options.autoReset);
-      }
-    });
-
-    this.dropzone.on('canceled', (res) => {
-      if (options.cancelReset != null) {
-        setTimeout(() => this.reset(), options.cancelReset);
-      }
-    });
-
-    // Add native dropzone event handling
-    DropzoneEvents.forEach((eventName) => {
-      let self = this;
-
-      this.dropzone.on(eventName, function(event) {
-        let args = Array.prototype.slice.call(arguments);
-
-        if (args.length === 1) {
-          args = args[0];
-        }
-
-        self[`dz_${eventName}`].emit(args);
-      });
-    });
-
-
-    if (!this.configDiff) {
-      this.configDiff = this.differs.find(this.config || {}).create(null);
-    }
-  }
-
-  ngDoCheck() {
-    let changes = this.configDiff.diff(this.config || {});
-
-    if (changes && this.dropzone) {
-      this.ngOnDestroy();
-
-      this.ngOnInit();
-    }
-  }
-
-  ngOnDestroy() {
-    if (this.runInsideAngular) {
-      this.dropzone.destroy();
-    } else {
-      this.zone.runOutsideAngular(() => {
-        this.dropzone.destroy();
-      });
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.dropzone && changes['disabled']) {
-      if (changes['disabled'].currentValue != changes['disabled'].previousValue) {
-        if (changes['disabled'].currentValue === true) {
-          if (this.runInsideAngular) {
-            this.dropzone.enable();
-          } else {
-            this.zone.runOutsideAngular(() => {
-              this.dropzone.enable();
-            });
-          }
-        } else if (changes['disabled'].currentValue === false) {
-          if (this.runInsideAngular) {
-            this.dropzone.disable();
-          } else {
-            this.zone.runOutsideAngular(() => {
-              this.dropzone.disable();
-            });
-          }
-        }
-      }
-    }
-  }
+  constructor() {}
 
   reset() {
-    if (this.runInsideAngular) {
-      this.dropzone.removeAllFiles();
-    } else {
-      this.zone.runOutsideAngular(() => {
-        this.dropzone.removeAllFiles();
-      });
-    }
+    console.warn('Deprecated function, reset needs to be called through directiveRef!');
+
+    this.directiveRef.reset();
   }
 
   getPlaceholder() {

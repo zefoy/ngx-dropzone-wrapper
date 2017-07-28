@@ -5,20 +5,32 @@
     This example does not actually upload any of the selected files, only simulates the upload process.
   </div>
 
-  <div class ="horizontal-container" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="stretch" fxFlex>
+  <div class ="horizontal-container" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="stretch" fxFlex="auto">
     <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="25%" fxFlex.gt-xs="50%">
-      <div class="box-title">Component</div>
+      <div class="box-title">Settings</div>
 
-      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex>
-        <dropzone class="upload-area" [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+        <div class="action-toggle-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleType()'>{{(type == "component") ? "Switch to directive" : "Switch to component"}}</div>
+
+        <div class="action-toggle-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleMultiUpload()'>{{(config.maxFiles !== 1) ? "Upload single file" : "Upload multiple files"}}</div>
+
+        <div class="action-toggle-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleDisabledState()'>Toggle disabled state</div>
+
+        <div class="action-toggle-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleAutoReset()'>{{config.autoReset ? "Turn off auto reset" : "Turn on auto reset"}}</div>
+
+        <div class="action-toggle-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleClickAction()'>{{config.clickable ? "Turn off click action" : "Turn on click action"}}</div>
+
+        <div class="action-toggle-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='reset()'>Reset Upload Area</div>
       </div>
     </div>
 
     <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="75%" fxFlex.gt-xs="50%">
-      <div class="box-title">Directive</div>
+      <div class="box-title">Dropzone</div>
 
-      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex>
-        <div class="upload-area" [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
+      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+        <dropzone *ngIf="type === 'component'" class="upload-container" [config]="config" [disabled]="disabled" fxLayout="row" fxLayoutAlign="start strech" fxFlex="auto" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+
+        <div *ngIf="type === 'directive'" class="upload-container" [dropzone]="config" [disabled]="disabled" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
       </div>
     </div>
   </div>

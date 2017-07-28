@@ -22,7 +22,6 @@
     "build": "npm run build:umd && npm run build:aot",
     "deploy": "npm run build && npm run inline && npm publish",
     "inline": "ng2-inline --compress -b dist/lib/ -o ./ 'dist/lib/*.js'",
-    "release": "npm version -m 'New release with version %s'",
     "lint:ts": "tslint 'src/**/*.ts'",
     "lint:scss": "stylelint 'src/**/*.scss' --syntax scss",
     "build:js": "ngc -p src/tsconfig.json",
@@ -36,7 +35,7 @@
     "url": "https://github.com/zefoy/ngx-dropzone-wrapper.git"
   },
   "dependencies": {
-    "dropzone": "~4.3.0"
+    "dropzone": "^5.0.0"
   },
   "devDependencies": {
     "@angular/common": "^4.0.0",

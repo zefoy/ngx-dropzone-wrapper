@@ -7,6 +7,7 @@ export const DropzoneEvents = [
   'dragenter',
   'dragover',
   'dragleave',
+
   'addedfile',
   'removedfile',
   'thumbnail',
@@ -19,19 +20,20 @@ export const DropzoneEvents = [
   'canceled',
   'maxfilesreached',
   'maxfilesexceeded',
+
   'processingmultiple',
   'sendingmultiple',
   'successmultiple',
   'completemultiple',
   'canceledmultiple',
+
   'totaluploadprogress',
   'reset',
   'queuecomplete'
 ];
 
 export interface DropzoneConfigInterface {
-  server?: string,
-  params?: string,
+  timeout?: number,
 
   autoReset?: number,
   errorReset?: number,
@@ -39,13 +41,15 @@ export interface DropzoneConfigInterface {
 
   url?: string,
   method?: string,
+
+  params?: Object,
   headers?: Object,
 
   init?: any,
   accept?: any,
   resize?: any,
   fallback?: any,
-  renameFilename?: any,
+  renameFile?: any,
 
   previewsContainer?: any,
   hiddenInputContainer?: any,
@@ -60,8 +64,14 @@ export interface DropzoneConfigInterface {
   addRemoveLinks?: boolean,
   uploadMultiple?: boolean,
   parallelUploads?: number,
+  resizeWidth?: number,
+  resizeHeight?: number,
+  resizeMethod?: string,
+  resizeQuality?: number,
+  resizeMimeType?: string,
   thumbnailWidth?: number,
   thumbnailHeight?: number,
+  thumbnailMethod?: string,
   previewTemplate?: string,
   autoProcessQueue?: boolean,
   maxThumbnailFilesize?: number,
@@ -82,8 +92,7 @@ export interface DropzoneConfigInterface {
 }
 
 export class DropzoneConfig implements DropzoneConfigInterface {
-  server: string;
-  params: string;
+  timeout: number;
 
   autoReset: number;
   errorReset: number;
@@ -91,14 +100,16 @@ export class DropzoneConfig implements DropzoneConfigInterface {
 
   url: string;
   method: string;
+
+  params: Object;
   headers: Object;
 
   init: any;
   accept: any;
   resize: any;
   fallback: any;
-  renameFilename: any;
-  
+  renameFile: any;
+
   previewsContainer: any;
   hiddenInputContainer: any;
 
@@ -112,8 +123,14 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   addRemoveLinks: boolean;
   uploadMultiple: boolean;
   parallelUploads: number;
+  resizeWidth: number;
+  resizeHeight: number;
+  resizeMethod: string;
+  resizeQuality: number;
+  resizeMimeType: string;
   thumbnailWidth: number;
   thumbnailHeight: number;
+  thumbnailMethod: string;
   previewTemplate: string;
   autoProcessQueue: boolean;
   maxThumbnailFilesize: number;
@@ -139,10 +156,6 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   public assign(config: DropzoneConfigInterface = {}) {
     for (let key in config) {
       this[key] = config[key];
-    }
-
-    if (this.server) {
-      this.url = this.server + (this.params ? ('?' + this.params) : '');
     }
   }
 }

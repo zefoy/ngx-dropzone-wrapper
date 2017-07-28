@@ -9,7 +9,7 @@ import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropz
   selector: '[dropzone]'
 })
 export class DropzoneDirective {
-  private dropzone: any;
+  public dropzone: any;
 
   private configDiff: any;
 
@@ -19,38 +19,41 @@ export class DropzoneDirective {
 
   @Input('dropzone') config: DropzoneConfigInterface;
 
-  @Output('drop'               ) dz_drop                = new EventEmitter<any>();
-  @Output('dragstart'          ) dz_dragstart           = new EventEmitter<any>();
-  @Output('dragend'            ) dz_dragend             = new EventEmitter<any>();
-  @Output('dragenter'          ) dz_dragenter           = new EventEmitter<any>();
-  @Output('dragover'           ) dz_dragover            = new EventEmitter<any>();
-  @Output('dragleave'          ) dz_dragleave           = new EventEmitter<any>();
-  @Output('addedfile'          ) dz_addedfile           = new EventEmitter<any>();
-  @Output('removedfile'        ) dz_removedfile         = new EventEmitter<any>();
-  @Output('thumbnail'          ) dz_thumbnail           = new EventEmitter<any>();
-  @Output('error'              ) dz_error               = new EventEmitter<any>();
-  @Output('processing'         ) dz_processing          = new EventEmitter<any>();
-  @Output('uploadprogress'     ) dz_uploadprogress      = new EventEmitter<any>();
-  @Output('sending'            ) dz_sending             = new EventEmitter<any>();
-  @Output('success'            ) dz_success             = new EventEmitter<any>();
-  @Output('complete'           ) dz_complete            = new EventEmitter<any>();
-  @Output('canceled'           ) dz_canceled            = new EventEmitter<any>();
-  @Output('maxfilesreached'    ) dz_maxfilesreached     = new EventEmitter<any>();
-  @Output('maxfilesexceeded'   ) dz_maxfilesexceeded    = new EventEmitter<any>();
-  @Output('processingmultiple' ) dz_processingmultiple  = new EventEmitter<any>();
-  @Output('sendingmultiple'    ) dz_sendingmultiple     = new EventEmitter<any>();
-  @Output('successmultiple'    ) dz_successmultiple     = new EventEmitter<any>();
-  @Output('completemultiple'   ) dz_completemultiple    = new EventEmitter<any>();
-  @Output('canceledmultiple'   ) dz_canceledmultiple    = new EventEmitter<any>();
-  @Output('totaluploadprogress') dz_totaluploadprogress = new EventEmitter<any>();
-  @Output('reset'              ) dz_reset               = new EventEmitter<any>();
-  @Output('queuecomplete'      ) dz_queuecomplete       = new EventEmitter<any>();
+  @Input('useDropzoneClass') useDropzoneClass: boolean = true;
+
+  @Output('drop'               ) DZ_DROP                = new EventEmitter<any>();
+  @Output('dragstart'          ) DZ_DRAGSTART           = new EventEmitter<any>();
+  @Output('dragend'            ) DZ_DRAGEND             = new EventEmitter<any>();
+  @Output('dragenter'          ) DZ_DRAGENTER           = new EventEmitter<any>();
+  @Output('dragover'           ) DZ_DRAGOVER            = new EventEmitter<any>();
+  @Output('dragleave'          ) DZ_DRAGLEAVE           = new EventEmitter<any>();
+
+  @Output('addedfile'          ) DZ_ADDEDFILE           = new EventEmitter<any>();
+  @Output('removedfile'        ) DZ_REMOVEDFILE         = new EventEmitter<any>();
+  @Output('thumbnail'          ) DZ_THUMBNAIL           = new EventEmitter<any>();
+  @Output('error'              ) DZ_ERROR               = new EventEmitter<any>();
+  @Output('processing'         ) DZ_PROCESSING          = new EventEmitter<any>();
+  @Output('uploadprogress'     ) DZ_UPLOADPROGRESS      = new EventEmitter<any>();
+  @Output('sending'            ) DZ_SENDING             = new EventEmitter<any>();
+  @Output('success'            ) DZ_SUCCESS             = new EventEmitter<any>();
+  @Output('complete'           ) DZ_COMPLETE            = new EventEmitter<any>();
+  @Output('canceled'           ) DZ_CANCELED            = new EventEmitter<any>();
+  @Output('maxfilesreached'    ) DZ_MAXFILESREACHED     = new EventEmitter<any>();
+  @Output('maxfilesexceeded'   ) DZ_MAXFILESEXCEEDED    = new EventEmitter<any>();
+
+  @Output('processingmultiple' ) DZ_PROCESSINGMULTIPLE  = new EventEmitter<any>();
+  @Output('sendingmultiple'    ) DZ_SENDINGMULTIPLE     = new EventEmitter<any>();
+  @Output('successmultiple'    ) DZ_SUCCESSMULTIPLE     = new EventEmitter<any>();
+  @Output('completemultiple'   ) DZ_COMPLETEMULTIPLE    = new EventEmitter<any>();
+  @Output('canceledmultiple'   ) DZ_CANCELEDMULTIPLE    = new EventEmitter<any>();
+
+  @Output('totaluploadprogress') DZ_TOTALUPLOADPROGRESS = new EventEmitter<any>();
+  @Output('reset'              ) DZ_RESET               = new EventEmitter<any>();
+  @Output('queuecomplete'      ) DZ_QUEUECOMPLETE       = new EventEmitter<any>();
 
   constructor(private zone: NgZone, private renderer: Renderer, private elementRef: ElementRef,
     private differs: KeyValueDiffers, @Optional() private defaults: DropzoneConfig ) {
     Dropzone.autoDiscover = false;
-
-    renderer.setElementClass(elementRef.nativeElement, 'dropzone', true);
   }
 
   ngOnInit() {
@@ -59,6 +62,15 @@ export class DropzoneDirective {
     let options = new DropzoneConfig(this.defaults);
 
     options.assign(this.config); // Custom config
+
+    this.renderer.setElementClass(this.elementRef.nativeElement,
+      'dropzone', this.useDropzoneClass);
+
+    this.renderer.setElementClass(this.elementRef.nativeElement,
+      'dz-single', (options.maxFiles === 1));
+
+    this.renderer.setElementClass(this.elementRef.nativeElement,
+      'dz-multiple', (options.maxFiles !== 1));
 
     if (this.runInsideAngular) {
       this.dropzone = new Dropzone(element, options);
@@ -78,6 +90,25 @@ export class DropzoneDirective {
       }
     }
 
+    // Add auto reset handling for events
+    this.dropzone.on('error', (error) => {
+      if (options.errorReset != null) {
+        setTimeout(() => this.reset(), options.errorReset);
+      }
+    });
+
+    this.dropzone.on('success', (result) => {
+      if (options.autoReset != null) {
+        setTimeout(() => this.reset(), options.autoReset);
+      }
+    });
+
+    this.dropzone.on('canceled', (result) => {
+      if (options.cancelReset != null) {
+        setTimeout(() => this.reset(), options.cancelReset);
+      }
+    });
+
     // Add native dropzone event handling
     DropzoneEvents.forEach((eventName) => {
       let self = this;
@@ -89,7 +120,7 @@ export class DropzoneDirective {
           args = args[0];
         }
 
-        self[`dz_${eventName}`].emit(args);
+        self[`DZ_${eventName.toUpperCase()}`].emit(args);
       });
     });
 
@@ -122,7 +153,7 @@ export class DropzoneDirective {
   ngOnChanges(changes: SimpleChanges) {
     if (this.dropzone && changes['disabled']) {
       if (changes['disabled'].currentValue != changes['disabled'].previousValue) {
-        if (changes['disabled'].currentValue === true) {
+        if (changes['disabled'].currentValue === false) {
           if (this.runInsideAngular) {
             this.dropzone.enable();
           } else {
@@ -130,7 +161,7 @@ export class DropzoneDirective {
               this.dropzone.enable();
             });
           }
-        } else if (changes['disabled'].currentValue === false) {
+        } else if (changes['disabled'].currentValue === true) {
           if (this.runInsideAngular) {
             this.dropzone.disable();
           } else {

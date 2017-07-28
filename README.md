@@ -49,7 +49,7 @@ This library provides two ways to create a Dropzone element, simple component an
 
 **COMPONENT USAGE**
 
-Simply replace the element that would oridinarily be passed to `Dropzone` with the dropzone component.
+Simply replace the element that would ordinarily be passed to `Dropzone` with the dropzone component.
 
 ```html
 <dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
@@ -70,7 +70,7 @@ Simply replace the element that would oridinarily be passed to `Dropzone` with t
 When using only the directive you need to provide your own theming or import the default theme:
 
 ```css
-@import 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.min.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.css';
 ```
 
 Dropzone directive can be used in form or div element with optional custom configuration:
@@ -94,9 +94,6 @@ This library supports all Dropzone configuration options and few custom extra op
 **LIBRARY OPTIONS**
 
 ```javascript
-server            // Server url for sending the upload request (Default: '').
-params            // Url parameters to be added to the server url (Default: null).
-
 autoReset         // Time for resetting component after upload (Default: null).
 errorReset        // Time for resetting component after an error (Default: null).
 cancelReset       // Time for resetting component after canceling (Default: null).
@@ -105,6 +102,7 @@ cancelReset       // Time for resetting component after canceling (Default: null
 **DROPZONE OPTIONS**
 
 ```javascript
+url               // Upload url where to send the upload request (Default: '').
 method            // HTTP method to use communicating with the server (Default: 'post').
 headers           // Object of additional headers to send to the server (Default: null).
 paramName         // Name of the file parameter that gets transferred (Default: 'file').
