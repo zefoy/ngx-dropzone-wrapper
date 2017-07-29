@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { Input, HostBinding, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, Input, HostBinding, Output, EventEmitter, ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { DropzoneDirective } from './dropzone.directive';
 import { DropzoneConfigInterface } from './dropzone.interfaces';
