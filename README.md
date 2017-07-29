@@ -57,6 +57,8 @@ Simply replace the element that would ordinarily be passed to `Dropzone` with th
 
 ```javascript
 [config]          // Custom config to override the global defaults.
+[disabled]        // Disables / detaches Dropzone from the element.
+
 [message]         // Message to show for the user on the upload area.
 [placeholder]     // Placeholder image to be shown as the upload area.
 
@@ -81,6 +83,7 @@ Dropzone directive can be used in form or div element with optional custom confi
 
 ```javascript
 [dropzone]        // Can be used to provide optional custom config.
+[disabled]        // Disables / detaches Dropzone from the element.
 
 (error)           // Event handler for the dropzone upload error event.
 (success)         // Event handler for the dropzone upload success event.
