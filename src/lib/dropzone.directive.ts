@@ -80,16 +80,6 @@ export class DropzoneDirective {
       });
     }
 
-    if (this.disabled) {
-      if (this.runInsideAngular) {
-        this.dropzone.disable();
-      } else {
-        this.zone.runOutsideAngular(() => {
-          this.dropzone.disable();
-        });
-      }
-    }
-
     // Add auto reset handling for events
     this.dropzone.on('error', (error) => {
       if (options.errorReset != null) {
