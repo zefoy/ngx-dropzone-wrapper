@@ -111,16 +111,12 @@ export class DropzoneDirective {
 
     // Add native dropzone event handling
     DropzoneEvents.forEach((eventName) => {
-      let self = this;
-
-      this.dropzone.on(eventName, function(event) {
-        let args = Array.prototype.slice.call(arguments);
-
+      this.dropzone.on(eventName, (...args) => {
         if (args.length === 1) {
           args = args[0];
         }
 
-        self[`DZ_${eventName.toUpperCase()}`].emit(args);
+        this[`DZ_${eventName.toUpperCase()}`].emit(args);
       });
     });
 
