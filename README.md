@@ -56,15 +56,21 @@ Simply replace the element that would ordinarily be passed to `Dropzone` with th
 ```
 
 ```javascript
-[config]          // Custom config to override the global defaults.
-[disabled]        // Disables / detaches Dropzone from the element.
+[config]            // Custom config to override the global defaults.
+[disabled]          // Disables / detaches Dropzone from the element.
 
-[message]         // Message to show for the user on the upload area.
-[placeholder]     // Placeholder image to be shown as the upload area.
+[message]           // Message to show for the user on the upload area.
+[placeholder]       // Placeholder image to be shown as the upload area.
 
-(error)           // Event handler for the dropzone upload error event.
-(success)         // Event handler for the dropzone upload success event.
-(canceled)        // Event handler for the dropzone upload canceled event.
+[useDropzoneClass]  // Use dropzone class (needed by the default styles).
+
+[runInsideAngular]  // Run dropzone function calls inside the angular zone.
+
+(error)             // Event handler for the dropzone upload error event.
+(success)           // Event handler for the dropzone upload success event.
+(canceled)          // Event handler for the dropzone upload canceled event.
+
+(<dropzone-event>)  // All other dropzone events are also supported as bindings.
 ```
 
 **DIRECTIVE USAGE**
@@ -82,12 +88,18 @@ Dropzone directive can be used in form or div element with optional custom confi
 ```
 
 ```javascript
-[dropzone]        // Can be used to provide optional custom config.
-[disabled]        // Disables / detaches Dropzone from the element.
+[dropzone]          // Can be used to provide optional custom config.
+[disabled]          // Disables / detaches Dropzone from the element.
 
-(error)           // Event handler for the dropzone upload error event.
-(success)         // Event handler for the dropzone upload success event.
-(canceled)        // Event handler for the dropzone upload canceled event.
+[useDropzoneClass]  // Use dropzone class (needed by the default styles).
+
+[runInsideAngular]  // Run dropzone function calls inside the angular zone.
+
+(error)             // Event handler for the dropzone upload error event.
+(success)           // Event handler for the dropzone upload success event.
+(canceled)          // Event handler for the dropzone upload canceled event.
+
+(<dropzone-event>)  // All other dropzone events are also supported as bindings.
 ```
 
 ##### Available configuration options (custom / global configuration):
@@ -113,7 +125,7 @@ maxFilesize       // Maximum file size for the upload files in megabytes (Defaul
 acceptedFiles     // Comma separated list of mime types or file extensions (Default: null).
 ```
 
-For more detailed documentation with all the supported dropzone options see [Dropzone documentation](http://www.dropzonejs.com/#configuration-options).
+For more detailed documentation with all the supported dropzone events / options see [Dropzone documentation](http://www.dropzonejs.com/#configuration-options).
 
 ##### Available control / helper functions (provided by the directive):
 
