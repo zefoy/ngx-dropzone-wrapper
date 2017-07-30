@@ -106,7 +106,9 @@ export class DropzoneDirective {
           args = args[0];
         }
 
-        this[`DZ_${eventName.toUpperCase()}`].emit(args);
+        if (this[`DZ_${eventName.toUpperCase()}`]) {
+          this[`DZ_${eventName.toUpperCase()}`].emit(args);
+        }
       });
     });
 
