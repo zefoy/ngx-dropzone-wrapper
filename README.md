@@ -57,7 +57,7 @@ Simply replace the element that would ordinarily be passed to `Dropzone` with th
 
 ```javascript
 [config]            // Custom config to override the global defaults.
-[disabled]          // Disables / detaches Dropzone from the element.
+[disabled]          // Disables / detaches dropzone from the element.
 
 [message]           // Message to show for the user on the upload area.
 [placeholder]       // Placeholder image to be shown as the upload area.
@@ -89,7 +89,7 @@ Dropzone directive can be used in form or div element with optional custom confi
 
 ```javascript
 [dropzone]          // Can be used to provide optional custom config.
-[disabled]          // Disables / detaches Dropzone from the element.
+[disabled]          // Disables / detaches dropzone from the element.
 
 [useDropzoneClass]  // Use dropzone class (needed by the default styles).
 
@@ -130,7 +130,7 @@ For more detailed documentation with all the supported dropzone events / options
 ##### Available control / helper functions (provided by the directive):
 
 ```javascript
-reset()                         // Resets the Dropzone (removes all files).
+reset()            // Resets the dropzone upload area (removes all finished preview files).
 ```
 
 Above functions can be accessed through the directive reference (available as directiveRef in the component).
