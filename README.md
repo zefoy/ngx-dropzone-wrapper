@@ -8,18 +8,24 @@ See a live example application <a href="https://zefoy.github.io/ngx-dropzone-wra
 
 ### Building the library
 
-    npm install
-    npm run build
+```bash
+npm install
+npm run build
+```
 
 ### Running the example
 
-    cd example
-    npm install
-    npm start
+```bash
+cd example
+npm install
+npm start
+```
 
 ### Installing and usage
 
-    npm install ngx-dropzone-wrapper --save-dev
+```bash
+npm install ngx-dropzone-wrapper --save-dev
+```
 
 ##### Load the module for your app (with global configuration):
 
@@ -50,6 +56,8 @@ This library provides two ways to create a Dropzone element, simple component an
 **COMPONENT USAGE**
 
 Simply replace the element that would ordinarily be passed to `Dropzone` with the dropzone component.
+
+**NOTE:** Component provides couple additional features from directive. Such as the placeholder image, if you don't need them or are heavily customizing the dropzone then you might want to use the directive instead.
 
 ```html
 <dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
