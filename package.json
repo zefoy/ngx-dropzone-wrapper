@@ -3,7 +3,7 @@
   "description": "Angular wrapper library for Dropzone",
   "bugs": "https://github.com/zefoy/ngx-dropzone-wrapper/issues",
   "license": "MIT",
-  "version": "4.5.4",
+  "version": "4.6.0",
   "main": "bundles/ngx-dropzone-wrapper.umd.js",
   "module": "./dist/index.js",
   "typings": "./dist/index.d.ts",
@@ -42,7 +42,6 @@
     "@angular/compiler": "^4.0.0",
     "@angular/compiler-cli": "^4.0.0",
     "@angular/core": "^4.0.0",
-    "@angular/http": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
     "@types/node": "~6.0.0",
     "angular2-inline-template-style": "~1.0.0",
@@ -67,7 +66,6 @@
   },
   "peerDependencies": {
     "@angular/common": ">=2.0.0",
-    "@angular/core": ">=2.0.0",
-    "@angular/http": ">=2.0.0"
+    "@angular/core": ">=2.0.0"
   }
 }
