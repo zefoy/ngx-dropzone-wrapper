@@ -72,12 +72,14 @@ dropzone {
 
         .dz-text {
           padding: 12px 24px;
+
           text-align: center;
         }
 
         .dz-image {
           width: 100%;
           height: 100%;
+
           background-size: contain;
           background-repeat: no-repeat;
           background-position: 50% 50%;
@@ -136,8 +138,8 @@ dropzone {
         .dz-progress {
           width: 80%;
           margin-left: -40%;
-          border-radius: 4px;
           border: 1px solid #aaa;
+          border-radius: 4px;
 
           .dz-upload {
             background: #666;
@@ -147,10 +149,10 @@ dropzone {
         .dz-filename {
           span {
             display: block;
+            overflow: hidden;
             width: 100%;
             max-width: 100%;
 
-            overflow: hidden;
             text-overflow: ellipsis;
 
             &:hover {
@@ -202,6 +204,7 @@ dropzone {
         .dz-error-message {
           top: 50%;
           left: 50%;
+
           transform: translateX(-50%) translateY(100%);
         }
       }

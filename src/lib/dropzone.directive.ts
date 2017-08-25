@@ -1,14 +1,14 @@
 import * as Dropzone from 'dropzone';
 
-import { NgZone, Renderer, SimpleChanges, KeyValueDiffers } from '@angular/core';
-import { Directive, Optional, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Directive, Optional, OnInit, DoCheck, OnChanges, OnDestroy, Input, Output } from '@angular/core';
+import { NgZone, EventEmitter, ElementRef, Renderer, SimpleChanges, KeyValueDiffers } from '@angular/core';
 
 import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces';
 
 @Directive({
   selector: '[dropzone]'
 })
-export class DropzoneDirective {
+export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy {
   public dropzone: any;
 
   private configDiff: any;
@@ -57,9 +57,9 @@ export class DropzoneDirective {
   }
 
   ngOnInit() {
-    let element = this.elementRef.nativeElement;
+    const element = this.elementRef.nativeElement;
 
-    let options = new DropzoneConfig(this.defaults);
+    const options = new DropzoneConfig(this.defaults);
 
     options.assign(this.config); // Custom config
 
@@ -119,7 +119,7 @@ export class DropzoneDirective {
   }
 
   ngDoCheck() {
-    let changes = this.configDiff.diff(this.config || {});
+    const changes = this.configDiff.diff(this.config || {});
 
     if (changes && this.dropzone) {
       this.ngOnDestroy();
@@ -140,7 +140,7 @@ export class DropzoneDirective {
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.dropzone && changes['disabled']) {
-      if (changes['disabled'].currentValue != changes['disabled'].previousValue) {
+      if (changes['disabled'].currentValue !== changes['disabled'].previousValue) {
         if (changes['disabled'].currentValue === false) {
           if (this.runInsideAngular) {
             this.dropzone.enable();

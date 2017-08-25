@@ -154,7 +154,7 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   }
 
   public assign(config: DropzoneConfigInterface = {}) {
-    for (let key in config) {
+    for (const key in config) {
       this[key] = config[key];
     }
   }
