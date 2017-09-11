@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, OpaqueToken, Optional, SkipSelf, Inject } from '@angular/core';
+import { NgModule, ModuleWithProviders, InjectionToken, Optional, SkipSelf, Inject } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 
@@ -6,8 +6,8 @@ import { DropzoneComponent } from './dropzone.component';
 import { DropzoneDirective } from './dropzone.directive';
 import { DropzoneConfig, DropzoneConfigInterface} from './dropzone.interfaces';
 
-export const DROPZONE_GUARD = new OpaqueToken('DROPZONE_GUARD');
-export const DROPZONE_CONFIG = new OpaqueToken('DROPZONE_CONFIG');
+export const DROPZONE_GUARD = new InjectionToken('DROPZONE_GUARD');
+export const DROPZONE_CONFIG = new InjectionToken('DROPZONE_CONFIG');
 
 @NgModule({
   imports: [CommonModule],
