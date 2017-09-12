@@ -107,13 +107,13 @@
       "check-type"
     ],
     "directive-selector": [
-      true,
+      false,
       "attribute",
       false,
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       false,
       "kebab-case"

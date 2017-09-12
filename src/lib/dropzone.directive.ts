@@ -119,12 +119,14 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
   }
 
   ngDoCheck() {
-    const changes = this.configDiff.diff(this.config || {});
+    if (!this.disabled && this.configDiff) {
+      const changes = this.configDiff.diff(this.config || {});
 
-    if (changes && this.dropzone) {
-      this.ngOnDestroy();
+      if (changes && this.dropzone) {
+        this.ngOnDestroy();
 
-      this.ngOnInit();
+        this.ngOnInit();
+      }
     }
   }
 
