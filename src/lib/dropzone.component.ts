@@ -17,7 +17,6 @@ export class DropzoneComponent {
   @Input() message: string = 'Click or drag files to upload';
   @Input() placeholder: string = '';
 
-  @Input() runInsideAngular: boolean = false;
   @Input() useDropzoneClass: boolean = true;
 
   @HostBinding('class.dz-wrapper')
@@ -56,12 +55,6 @@ export class DropzoneComponent {
   @Output('queuecomplete'      ) DZ_QUEUECOMPLETE       = new EventEmitter<any>();
 
   constructor() {}
-
-  reset() {
-    console.warn('Deprecated function, reset needs to be called through directiveRef!');
-
-    this.directiveRef.reset();
-  }
 
   getPlaceholder() {
     return 'url(' + encodeURI(this.placeholder) + ')';

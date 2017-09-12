@@ -72,8 +72,6 @@ Simply replace the element that would ordinarily be passed to `Dropzone` with th
 
 [useDropzoneClass]  // Use dropzone class (needed by the default styles).
 
-[runInsideAngular]  // Run dropzone function calls inside the angular zone.
-
 (error)             // Event handler for the dropzone upload error event.
 (success)           // Event handler for the dropzone upload success event.
 (canceled)          // Event handler for the dropzone upload canceled event.
@@ -100,8 +98,6 @@ Dropzone directive can be used in form or div element with optional custom confi
 [disabled]          // Disables / detaches dropzone from the element.
 
 [useDropzoneClass]  // Use dropzone class (needed by the default styles).
-
-[runInsideAngular]  // Run dropzone function calls inside the angular zone.
 
 (error)             // Event handler for the dropzone upload error event.
 (success)           // Event handler for the dropzone upload success event.

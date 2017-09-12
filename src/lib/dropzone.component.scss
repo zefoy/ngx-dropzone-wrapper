@@ -2,6 +2,7 @@
 
 dropzone {
   &.dz-wrapper {
+    /* stylelint-disable */
     &[fxflex],
     &[fxlayout],
     &[fxflexfill] {
@@ -18,8 +19,8 @@ dropzone {
         &.dz-single {
           display: flex;
           flex: 1 1 auto;
-          -webkit-box-flex: 1;
           -ms-flex: 1 1 auto;
+          -webkit-box-flex: 1;
           flex-direction: column;
           -webkit-box-orient: column;
           -webkit-box-direction: column;
@@ -42,6 +43,7 @@ dropzone {
         }
       }
     }
+    /* stylelint-enable */
 
     & > .dropzone {
       position: relative;

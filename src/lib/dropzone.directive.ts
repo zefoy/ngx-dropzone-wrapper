@@ -1,7 +1,7 @@
 import * as Dropzone from 'dropzone';
 
-import { Directive, Optional, OnInit, DoCheck, OnChanges, OnDestroy, Input, Output } from '@angular/core';
-import { NgZone, EventEmitter, ElementRef, Renderer, SimpleChanges, KeyValueDiffers } from '@angular/core';
+import { Directive, Optional, OnInit, DoCheck, OnChanges, OnDestroy, Input, Output,
+  NgZone, EventEmitter, ElementRef, Renderer, SimpleChanges, KeyValueDiffers } from '@angular/core';
 
 import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces';
 
@@ -14,8 +14,6 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
   private configDiff: any;
 
   @Input() disabled: boolean = false;
-
-  @Input() runInsideAngular: boolean = false;
 
   @Input('dropzone') config: DropzoneConfigInterface;
 
@@ -72,24 +70,20 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
     this.renderer.setElementClass(this.elementRef.nativeElement,
       'dz-multiple', (options.maxFiles !== 1));
 
-    if (this.runInsideAngular) {
-      this.dropzone = new Dropzone(element, options);
-    } else {
-      this.zone.runOutsideAngular(() => {
-         this.dropzone = new Dropzone(element, options);
-      });
-    }
-
-    // Add auto reset handling for events
-    this.dropzone.on('error', (error) => {
-      if (options.errorReset != null) {
-        setTimeout(() => this.reset(), options.errorReset);
-      }
+    this.zone.runOutsideAngular(() => {
+       this.dropzone = new Dropzone(element, options);
     });
 
+    // Add auto reset handling for events
     this.dropzone.on('success', (result) => {
       if (options.autoReset != null) {
         setTimeout(() => this.reset(), options.autoReset);
+      }
+    });
+
+    this.dropzone.on('error', (error) => {
+      if (options.errorReset != null) {
+        setTimeout(() => this.reset(), options.errorReset);
       }
     });
 
@@ -107,7 +101,9 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
         }
 
         if (this[`DZ_${eventName.toUpperCase()}`]) {
-          this[`DZ_${eventName.toUpperCase()}`].emit(args);
+          this.zone.run(() => {
+            this[`DZ_${eventName.toUpperCase()}`].emit(args);
+          });
         }
       });
     });
@@ -124,53 +120,36 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
 
       if (changes && this.dropzone) {
         this.ngOnDestroy();
-
         this.ngOnInit();
       }
     }
   }
 
   ngOnDestroy() {
-    if (this.runInsideAngular) {
+    this.zone.runOutsideAngular(() => {
       this.dropzone.destroy();
-    } else {
-      this.zone.runOutsideAngular(() => {
-        this.dropzone.destroy();
-      });
-    }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.dropzone && changes['disabled']) {
       if (changes['disabled'].currentValue !== changes['disabled'].previousValue) {
         if (changes['disabled'].currentValue === false) {
-          if (this.runInsideAngular) {
+          this.zone.runOutsideAngular(() => {
             this.dropzone.enable();
-          } else {
-            this.zone.runOutsideAngular(() => {
-              this.dropzone.enable();
-            });
-          }
+          });
         } else if (changes['disabled'].currentValue === true) {
-          if (this.runInsideAngular) {
+          this.zone.runOutsideAngular(() => {
             this.dropzone.disable();
-          } else {
-            this.zone.runOutsideAngular(() => {
-              this.dropzone.disable();
-            });
-          }
+          });
         }
       }
     }
   }
 
   reset() {
-    if (this.runInsideAngular) {
+    this.zone.runOutsideAngular(() => {
       this.dropzone.removeAllFiles();
-    } else {
-      this.zone.runOutsideAngular(() => {
-        this.dropzone.removeAllFiles();
-      });
-    }
+    });
   }
 }
