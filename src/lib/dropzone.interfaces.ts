@@ -88,6 +88,7 @@ export interface DropzoneConfigInterface {
   dictCancelUpload?: string,
   dictFallbackText?: string,
   dictMaxFilesExceeded?: string,
+  dictRemoveFileConfirmation?: string,
   dictCancelUploadConfirmation?: string
 }
 
@@ -147,6 +148,7 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   dictCancelUpload: string;
   dictFallbackText: string;
   dictMaxFilesExceeded: string;
+  dictRemoveFileConfirmation: string;
   dictCancelUploadConfirmation: string;
 
   constructor(config: DropzoneConfigInterface = {}) {
