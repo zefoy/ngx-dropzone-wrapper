@@ -1,3 +1,5 @@
+import * as Dropzone from 'dropzone';
+
 // http://www.dropzonejs.com/#event-list
 
 export const DropzoneEvents = [
@@ -31,6 +33,10 @@ export const DropzoneEvents = [
   'reset',
   'queuecomplete'
 ];
+
+export class AngularDropzone extends Dropzone {
+  static autoDiscover = false;
+}
 
 export interface DropzoneConfigInterface {
   timeout?: number,
