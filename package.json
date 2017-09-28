@@ -35,7 +35,7 @@
     "url": "https://github.com/zefoy/ngx-dropzone-wrapper.git"
   },
   "dependencies": {
-    "dropzone": "^5.0.0"
+    "dropzone": "^5.1.0"
   },
   "devDependencies": {
     "@angular/common": "^4.0.0",
@@ -43,6 +43,7 @@
     "@angular/compiler-cli": "^4.0.0",
     "@angular/core": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
+    "@types/dropzone": "^5.0.0",
     "@types/node": "~6.0.0",
     "angular2-inline-template-style": "~1.0.0",
     "angular2-template-loader": "~0.6.0",

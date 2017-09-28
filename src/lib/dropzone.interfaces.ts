@@ -50,12 +50,16 @@ export interface DropzoneConfigInterface {
   resize?: any,
   fallback?: any,
   renameFile?: any,
+  transformFile?: any,
+
+  withCredentials?: boolean,
 
   previewsContainer?: any,
   hiddenInputContainer?: any,
 
   clickable?: string | string[] | boolean,
   paramName?: string,
+  capture?: string,
   maxFiles?: number,
   maxFilesize?: number,
   filesizeBase?: number,
@@ -73,9 +77,13 @@ export interface DropzoneConfigInterface {
   thumbnailHeight?: number,
   thumbnailMethod?: string,
   previewTemplate?: string,
+  autoQueue?: boolean,
   autoProcessQueue?: boolean,
+  ignoreHiddenFiles?: boolean,
   maxThumbnailFilesize?: number,
   createImageThumbnails?: boolean,
+
+  dictFileSizeUnits?: any,
 
   dictDefaultMessage?: string,
   dictFallbackMessage?: string,
@@ -110,12 +118,16 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   resize: any;
   fallback: any;
   renameFile: any;
+  transformFile: any;
+
+  withCredentials: boolean;
 
   previewsContainer: any;
   hiddenInputContainer: any;
 
   clickable: string | string[] | boolean;
   paramName: string;
+  capture: string;
   maxFiles: number;
   maxFilesize: number;
   filesizeBase: number;
@@ -133,9 +145,13 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   thumbnailHeight: number;
   thumbnailMethod: string;
   previewTemplate: string;
+  autoQueue: boolean;
   autoProcessQueue: boolean;
+  ignoreHiddenFiles: boolean;
   maxThumbnailFilesize: number;
   createImageThumbnails: boolean;
+
+  dictFileSizeUnits: any;
 
   dictDefaultMessage: string;
   dictFallbackMessage: string;
