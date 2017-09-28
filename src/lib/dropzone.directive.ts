@@ -103,7 +103,9 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
         }
 
         if (this[`DZ_${eventName.toUpperCase()}`]) {
-          this[`DZ_${eventName.toUpperCase()}`].emit(args);
+          this.zone.run(() => {
+            this[`DZ_${eventName.toUpperCase()}`].emit(args);
+          });
         }
       });
     });
