@@ -1,3 +1,5 @@
+import * as Dropzone from 'dropzone';
+
 // http://www.dropzonejs.com/#event-list
 
 export const DropzoneEvents = [
@@ -32,6 +34,10 @@ export const DropzoneEvents = [
   'queuecomplete'
 ];
 
+export class AngularDropzone extends Dropzone {
+  static autoDiscover = false;
+}
+
 export interface DropzoneConfigInterface {
   timeout?: number,
 
@@ -50,12 +56,16 @@ export interface DropzoneConfigInterface {
   resize?: any,
   fallback?: any,
   renameFile?: any,
+  transformFile?: any,
+
+  withCredentials?: boolean,
 
   previewsContainer?: any,
   hiddenInputContainer?: any,
 
   clickable?: string | string[] | boolean,
   paramName?: string,
+  capture?: string,
   maxFiles?: number,
   maxFilesize?: number,
   filesizeBase?: number,
@@ -73,9 +83,13 @@ export interface DropzoneConfigInterface {
   thumbnailHeight?: number,
   thumbnailMethod?: string,
   previewTemplate?: string,
+  autoQueue?: boolean,
   autoProcessQueue?: boolean,
+  ignoreHiddenFiles?: boolean,
   maxThumbnailFilesize?: number,
   createImageThumbnails?: boolean,
+
+  dictFileSizeUnits?: any,
 
   dictDefaultMessage?: string,
   dictFallbackMessage?: string,
@@ -110,12 +124,16 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   resize: any;
   fallback: any;
   renameFile: any;
+  transformFile: any;
+
+  withCredentials: boolean;
 
   previewsContainer: any;
   hiddenInputContainer: any;
 
   clickable: string | string[] | boolean;
   paramName: string;
+  capture: string;
   maxFiles: number;
   maxFilesize: number;
   filesizeBase: number;
@@ -133,9 +151,13 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   thumbnailHeight: number;
   thumbnailMethod: string;
   previewTemplate: string;
+  autoQueue: boolean;
   autoProcessQueue: boolean;
+  ignoreHiddenFiles: boolean;
   maxThumbnailFilesize: number;
   createImageThumbnails: boolean;
+
+  dictFileSizeUnits: any;
 
   dictDefaultMessage: string;
   dictFallbackMessage: string;
