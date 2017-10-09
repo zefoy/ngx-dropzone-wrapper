@@ -1,7 +1,9 @@
+import * as Dropzone from 'dropzone';
+
 import { Directive, Optional, OnInit, DoCheck, OnChanges, OnDestroy, Input, Output,
   NgZone, EventEmitter, ElementRef, Renderer, SimpleChanges, KeyValueDiffers } from '@angular/core';
 
-import { AngularDropzone, DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces';
+import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces';
 
 @Directive({
   selector: '[dropzone]'
@@ -48,7 +50,10 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
   @Output('queuecomplete'      ) DZ_QUEUECOMPLETE       = new EventEmitter<any>();
 
   constructor(private zone: NgZone, private renderer: Renderer, private elementRef: ElementRef,
-    private differs: KeyValueDiffers, @Optional() private defaults: DropzoneConfig ) {}
+    private differs: KeyValueDiffers, @Optional() private defaults: DropzoneConfig)
+  {
+    eval('Dropzone.autoDiscover = false');
+  }
 
   ngOnInit() {
     const element = this.elementRef.nativeElement;
@@ -67,7 +72,7 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
       'dz-multiple', (options.maxFiles !== 1));
 
     this.zone.runOutsideAngular(() => {
-       this.dropzone = new AngularDropzone(element, options);
+      this.dropzone = new Dropzone(element, options);
     });
 
     // Add auto reset handling for events
