@@ -34,10 +34,6 @@ export const DropzoneEvents = [
   'queuecomplete'
 ];
 
-export class AngularDropzone extends Dropzone {
-  static autoDiscover = false;
-}
-
 export interface DropzoneConfigInterface {
   timeout?: number,
 
