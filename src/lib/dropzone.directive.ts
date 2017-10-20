@@ -176,4 +176,10 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
       });
     }
   }
+  startUpload() {
+    this.zone.runOutsideAngular(() => {
+      this.dropzone.processQueue();
+    });
+  }
+
 }
