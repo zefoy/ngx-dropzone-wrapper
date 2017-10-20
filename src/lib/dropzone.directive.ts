@@ -6,8 +6,7 @@ import { NgZone, EventEmitter, ElementRef, Renderer, SimpleChanges, KeyValueDiff
 import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces';
 
 @Directive({
-  selector: '[dropzone]',
-  exportAs: 'dropzone',
+  selector: '[dropzone]'
 })
 export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy {
   public dropzone: any;
