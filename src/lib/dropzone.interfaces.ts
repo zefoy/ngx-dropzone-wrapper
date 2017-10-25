@@ -1,6 +1,6 @@
-import * as Dropzone from 'dropzone';
+import { InjectionToken } from '@angular/core';
 
-// http://www.dropzonejs.com/#event-list
+export const DROPZONE_CONFIG = new InjectionToken('DROPZONE_CONFIG');
 
 export const DropzoneEvents = [
   'drop',
@@ -44,15 +44,15 @@ export interface DropzoneConfigInterface {
   url?: string,
   method?: string,
 
-  params?: Object,
-  headers?: Object,
+  params?: any | DropzoneParamsFunction,
+  headers?: any | DropzoneHeadersFunction,
 
-  init?: any,
-  accept?: any,
-  resize?: any,
-  fallback?: any,
-  renameFile?: any,
-  transformFile?: any,
+  init?: DropzoneInitFunction,
+  accept?: DropzoneAcceptFunction,
+  resize?: DropzoneResizeFunction,
+  fallback?: DropzoneFallbackFunction,
+  renameFile?: DropzoneRenameFileFunction,
+  transformFile?: DropzoneTransformFileFunction,
 
   withCredentials?: boolean,
 
@@ -112,15 +112,15 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   url: string;
   method: string;
 
-  params: Object;
-  headers: Object;
+  params: any | DropzoneParamsFunction;
+  headers: any | DropzoneHeadersFunction;
 
-  init: any;
-  accept: any;
-  resize: any;
-  fallback: any;
-  renameFile: any;
-  transformFile: any;
+  init: DropzoneInitFunction;
+  accept: DropzoneAcceptFunction;
+  resize: DropzoneResizeFunction;
+  fallback: DropzoneFallbackFunction;
+  renameFile: DropzoneRenameFileFunction;
+  transformFile: DropzoneTransformFileFunction;
 
   withCredentials: boolean;
 
@@ -170,12 +170,20 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   dictCancelUploadConfirmation: string;
 
   constructor(config: DropzoneConfigInterface = {}) {
-    this.assign(config);
-  }
+    const copy = (JSON.parse(JSON.stringify(config || {})));
 
-  public assign(config: DropzoneConfigInterface = {}) {
-    for (const key in config) {
-      this[key] = config[key];
-    }
+    Object.assign(this, copy);
   }
 }
+
+export type DropzoneParamsFunction = (files: any, xhr: any, chunk: any) => any;
+export type DropzoneHeadersFunction = () => any;
+
+export type DropzoneInitFunction = () => any;
+export type DropzoneFallbackFunction = () => HTMLElement;
+
+export type DropzoneAcceptFunction = (file: File, done: Function) => any;
+export type DropzoneResizeFunction = (file: File, width: number, height: number, resizeMethod: string) => any;
+
+export type DropzoneRenameFileFunction = (file: File) => string;
+export type DropzoneTransformFileFunction = (file: File, done: Function) => any;

@@ -11,6 +11,7 @@ See a live example application <a href="https://zefoy.github.io/ngx-dropzone-wra
 ```bash
 npm install
 npm run build
+npm run inline
 ```
 
 ### Running the example
@@ -31,9 +32,10 @@ npm install ngx-dropzone-wrapper --save
 
 ```javascript
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
-const DROPZONE_CONFIG: DropzoneConfigInterface = {
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
   url: 'https://httpbin.org/post',
   maxFilesize: 50,
@@ -45,6 +47,12 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
   imports: [
     ...
     DropzoneModule.forRoot(DROPZONE_CONFIG)
+  ],
+  providers: [
+    {
+      provide: DROPZONE_CONFIG,
+      useValue: DEFAULT_DROPZONE_CONFIG
+    }
   ]
 })
 ```
@@ -84,7 +92,7 @@ Simply replace the element that would ordinarily be passed to `Dropzone` with th
 When using only the directive you need to provide your own theming or import the default theme:
 
 ```css
-@import 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.css';
+@import '~dropzone/dist/min/dropzone.min.css';
 ```
 
 Dropzone directive can be used in form or div element with optional custom configuration:

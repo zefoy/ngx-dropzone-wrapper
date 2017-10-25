@@ -4,11 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { DropzoneModule, DropzoneConfigInterface, DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 
 import { AppComponent } from './app.component';
 
-const DROPZONE_CONFIG: DropzoneConfigInterface = {
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
   url: 'https://httpbin.org/post',
   acceptedFiles: 'image/*',
@@ -23,9 +23,17 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
       AppComponent
     ],
     imports: [
+      DropzoneModule,
       BrowserModule,
       FlexLayoutModule,
-      DropzoneModule.forRoot(DROPZONE_CONFIG)
+    ],
+    exports: [
+    ],
+    providers: [
+      {
+        provide: DROPZONE_CONFIG,
+        useValue: DEFAULT_DROPZONE_CONFIG
+      }
     ]
 })
 export class AppModule {}

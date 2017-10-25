@@ -3,13 +3,24 @@
 dropzone {
   &.dz-wrapper {
     /* stylelint-disable */
-    &[fxflex],
-    &[fxlayout],
-    &[fxflexfill] {
+    &[fxflex] {
       display: flex;
       flex-direction: inherit;
       -webkit-box-orient: inherit;
       -webkit-box-direction: inherit;
+      min-width: 0;
+      min-height: 0;
+
+      & > .swiper {
+        flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+        -webkit-box-flex: 1;
+        min-width: 0;
+        min-height: 0;
+      }
+    }
+
+    &[fxlayout] {
       align-item: inherit;
       place-content: inherit;
       -webkit-box-pack: inherit;
@@ -18,9 +29,6 @@ dropzone {
       & > .dropzone {
         &.dz-single {
           display: flex;
-          flex: 1 1 auto;
-          -ms-flex: 1 1 auto;
-          -webkit-box-flex: 1;
           flex-direction: column;
           -webkit-box-orient: column;
           -webkit-box-direction: column;
