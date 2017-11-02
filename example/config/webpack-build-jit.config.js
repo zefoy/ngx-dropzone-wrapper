@@ -45,7 +45,7 @@ module.exports = {
   },
   resolve: {
     extensions: [ '.js', '.ts' ],
-    modules: [ '../src', '../node_modules' ]
+    modules: [ path.join(__dirname, '../node_modules') ]
   },
   plugins: [
     new UglifyJSPlugin({
