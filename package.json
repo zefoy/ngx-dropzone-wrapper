@@ -21,7 +21,7 @@
     "lint": "npm run lint:ts && npm run lint:scss",
     "build": "npm run build:umd && npm run build:aot",
     "deploy": "npm run build && npm run inline && npm publish",
-    "inline": "ng2-inline --compress -b dist/lib/ -o ./ \"dist/lib/*.js\"",
+    "inline": "ng2-inline --silent --compress -b dist/lib/ -o ./ \"dist/lib/*.js\"",
     "lint:ts": "tslint -p src/tsconfig.json 'src/**/*.ts'",
     "lint:scss": "stylelint --syntax scss 'src/**/*.scss'",
     "build:js": "ngc -p src/tsconfig.json",
@@ -38,11 +38,11 @@
     "dropzone": "^5.2.0"
   },
   "devDependencies": {
-    "@angular/common": "^4.4.0",
-    "@angular/compiler": "^4.4.0",
-    "@angular/compiler-cli": "^4.4.0",
-    "@angular/core": "^4.4.0",
-    "@angular/platform-browser": "^4.4.0",
+    "@angular/common": "^5.0.0",
+    "@angular/compiler": "^5.0.0",
+    "@angular/compiler-cli": "^5.0.0",
+    "@angular/core": "^5.0.0",
+    "@angular/platform-browser": "^5.0.0",
     "@ngtools/webpack": "^1.8.0",
     "@types/dropzone": "^5.0.0",
     "@types/node": "^8.0.0",
@@ -70,7 +70,7 @@
     "zone.js": "^0.8.0"
   },
   "peerDependencies": {
-    "@angular/common": ">=4.0.0",
-    "@angular/core": ">=4.0.0"
+    "@angular/common": ">=5.0.0",
+    "@angular/core": ">=5.0.0"
   }
 }

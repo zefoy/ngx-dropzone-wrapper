@@ -17,11 +17,6 @@
         "../dist/index.js"
       ]
     },
-    "rootDir": ".",
-    "rootDirs": [
-      ".",
-      "../dist"
-    ],
     "sourceMap": true,
     "target": "es5",
     "typeRoots": [

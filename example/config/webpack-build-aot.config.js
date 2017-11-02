@@ -27,20 +27,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'angular2-template-loader'
-      },
-      {
         test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
         use: '@ngtools/webpack'
       },
-
       {
         test: /\.scss$/,
         use: ['raw-loader', 'sass-loader']
       },
-
       {
         test: /\.(html|css)$/,
         use: 'raw-loader'
@@ -49,7 +42,7 @@ module.exports = {
   },
   resolve: {
     extensions: [ '.js', '.ts' ],
-    modules: [ '../src', path.join(__dirname, '../node_modules') ]
+    modules: [ '../src', '../node_modules' ]
   },
   plugins: [
     new UglifyJSPlugin({
@@ -67,8 +60,8 @@ module.exports = {
     }]),
 
     new ngtools.AngularCompilerPlugin({
-      entryModule: path.join(__dirname, '../src/app/app.module#AppModule'),
-      tsConfigPath: path.join(__dirname, '../src/tsconfig.json')
+      entryModule: './src/app/app.module#AppModule',
+      tsConfigPath: './src/tsconfig.json'
     }),
 
     new webpack.ContextReplacementPlugin(
