@@ -45,9 +45,7 @@ module.exports = {
     modules: [ path.join(__dirname, '../node_modules') ]
   },
   plugins: [
-    new UglifyJSPlugin({
-      include: /\.min\.js$/
-    }),
+    new UglifyJSPlugin(),
 
     new HtmlWebpackPlugin({
       template: './src/index.html'
