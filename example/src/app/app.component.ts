@@ -4,8 +4,9 @@ import { DropzoneComponent , DropzoneDirective, DropzoneConfigInterface } from '
 
 @Component({
   selector: 'my-app',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css']
+  moduleId: module.id.toString(),
+  templateUrl: './app.component.html',
+  styleUrls: [ './app.component.css' ]
 })
 export class AppComponent {
   public type: string = 'component';

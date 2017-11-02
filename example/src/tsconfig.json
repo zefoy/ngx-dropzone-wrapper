@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "",
+    "baseUrl": ".",
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -16,6 +16,11 @@
         "../node_modules/@angular/*"
       ]
     },
+    "rootDir": ".",
+    "rootDirs": [
+      ".",
+      "../dist"
+    ],
     "sourceMap": true,
     "target": "es5",
     "typeRoots": [

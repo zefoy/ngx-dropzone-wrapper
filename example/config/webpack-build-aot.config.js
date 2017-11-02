@@ -32,7 +32,7 @@ module.exports = {
         use: 'angular2-template-loader'
       },
       {
-        test: /\.ts$/,
+        test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
         use: '@ngtools/webpack'
       },
 
@@ -66,9 +66,9 @@ module.exports = {
       to: '../dist/assets'
     }]),
 
-    new ngtools.AotPlugin({
-      tsConfigPath: path.join(__dirname, '../src/tsconfig.json'),
-      entryModule: path.join(__dirname, '../src/app/app.module#AppModule')
+    new ngtools.AngularCompilerPlugin({
+      entryModule: path.join(__dirname, '../src/app/app.module#AppModule'),
+      tsConfigPath: path.join(__dirname, '../src/tsconfig.json')
     }),
 
     new webpack.ContextReplacementPlugin(
