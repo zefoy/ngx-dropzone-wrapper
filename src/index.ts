@@ -9,6 +9,7 @@ export {
 
   DropzoneParamsFunction,
   DropzoneHeadersFunction,
+
   DropzoneInitFunction,
   DropzoneFallbackFunction,
   DropzoneAcceptFunction,

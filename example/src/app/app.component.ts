@@ -25,16 +25,8 @@ export class AppComponent {
 
   constructor() {}
 
-  reset() {
-    if (this.type === 'component') {
-      this.componentRef.directiveRef.reset();
-    } else {
-      this.directiveRef.reset();
-    }
-  }
-
   toggleType() {
-    this.type = this.type == 'component' ? 'directive' : 'component';
+    this.type = this.type === 'component' ? 'directive' : 'component';
   }
 
   toggleAutoReset() {
@@ -53,6 +45,14 @@ export class AppComponent {
 
   toggleDisabledState() {
     this.disabled = !this.disabled;
+  }
+
+  resetDropzoneUploads() {
+    if (this.type === 'directive') {
+      this.directiveRef.reset();
+    } else {
+      this.componentRef.directiveRef.reset();
+    }
   }
 
   onUploadError(args: any) {

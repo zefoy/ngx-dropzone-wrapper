@@ -47,6 +47,11 @@
   background-color: #fff;
 }
 
+.vertical-container,
+.horizontal-container {
+  min-height: 0 !important;
+}
+
 .action-button {
   box-sizing: border-box;
   width: calc(100% - 16px);

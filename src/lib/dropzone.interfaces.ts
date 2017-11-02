@@ -10,28 +10,29 @@ export const DropzoneEvents = [
   'dragover',
   'dragleave',
 
+  'error',
+  'success',
+  'sending',
+  'canceled',
+  'complete',
+  'processing',
+
+  'thumbnail',
   'addedfile',
   'removedfile',
-  'thumbnail',
-  'error',
-  'processing',
   'uploadprogress',
-  'sending',
-  'success',
-  'complete',
-  'canceled',
   'maxfilesreached',
   'maxfilesexceeded',
 
-  'processingmultiple',
-  'sendingmultiple',
   'successmultiple',
-  'completemultiple',
+  'sendingmultiple',
   'canceledmultiple',
+  'completemultiple',
+  'processingmultiple',
 
-  'totaluploadprogress',
   'reset',
-  'queuecomplete'
+  'queuecomplete',
+  'totaluploadprogress'
 ];
 
 export interface DropzoneConfigInterface {
@@ -170,9 +171,13 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   dictCancelUploadConfirmation: string;
 
   constructor(config: DropzoneConfigInterface = {}) {
-    const copy = (JSON.parse(JSON.stringify(config || {})));
+    this.assign(config);
+  }
 
-    Object.assign(this, copy);
+  assign(config: DropzoneConfigInterface = {}) {
+    for (const key in config) {
+      this[key] = config[key];
+    }
   }
 }
 

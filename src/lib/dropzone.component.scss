@@ -1,17 +1,17 @@
 @import '../../node_modules/dropzone/dist/min/dropzone.min';
 
 dropzone {
-  &.dz-wrapper {
-    /* stylelint-disable */
-    &[fxflex] {
-      display: flex;
-      flex-direction: inherit;
-      -webkit-box-orient: inherit;
-      -webkit-box-direction: inherit;
-      min-width: 0;
-      min-height: 0;
+  /* stylelint-disable */
+  &[fxflex] {
+    display: flex;
+    flex-direction: inherit;
+    -webkit-box-orient: inherit;
+    -webkit-box-direction: inherit;
+    min-width: 0;
+    min-height: 0;
 
-      & > .swiper {
+    & > .dropzone {
+      &.dz-wrapper {
         flex: 1 1 auto;
         -ms-flex: 1 1 auto;
         -webkit-box-flex: 1;
@@ -19,14 +19,16 @@ dropzone {
         min-height: 0;
       }
     }
+  }
 
-    &[fxlayout] {
-      align-item: inherit;
-      place-content: inherit;
-      -webkit-box-pack: inherit;
-      -webkit-box-align: inherit;
+  &[fxlayout] {
+    align-item: inherit;
+    place-content: inherit;
+    -webkit-box-pack: inherit;
+    -webkit-box-align: inherit;
 
-      & > .dropzone {
+    & > .dropzone {
+      &.dz-wrapper {
         &.dz-single {
           display: flex;
           flex-direction: column;
@@ -51,14 +53,17 @@ dropzone {
         }
       }
     }
-    /* stylelint-enable */
+  }
+  /* stylelint-enable */
 
-    & > .dropzone {
+  & > .dropzone {
+    &.dz-wrapper {
       position: relative;
 
       overflow: auto;
       width: 100%;
       min-height: 0;
+      max-height: 100%;
       padding: 0;
       border: none;
 
@@ -78,7 +83,7 @@ dropzone {
         margin: 8px;
         border: 2px dashed #aaa;
 
-        background: #eee;
+        background-color: #eee;
 
         .dz-text {
           padding: 12px 24px;
@@ -116,7 +121,7 @@ dropzone {
             opacity: 0;
 
             font-weight: bold;
-            background: rgba(#fff, 0.5);
+            background-color: rgba(#fff, 0.5);
 
             transform: translateY(-50%);
             transition:
@@ -152,7 +157,7 @@ dropzone {
           border-radius: 4px;
 
           .dz-upload {
-            background: #666;
+            background-color: #666;
           }
         }
 
@@ -186,7 +191,8 @@ dropzone {
           height: 100%;
 
           .dz-text {
-            margin-top: 50%;
+            position: relative;
+            top: 50%;
 
             transform: translateY(-50%);
           }

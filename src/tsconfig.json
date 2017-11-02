@@ -1,13 +1,22 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "inlineSources": true,
-    "lib": ["dom", "es2015"],
+    "lib": [
+      "dom",
+      "es2015"
+    ],
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "../dist",
+    "paths": {
+      "ngx-dropzone-wrapper/*": [
+        "../dist/index.js"
+      ]
+    },
     "rootDir": ".",
     "rootDirs": [
       ".",
@@ -31,8 +40,8 @@
     "lib/dropzone.interfaces.ts"
   ],
   "angularCompilerOptions": {
-    "skipMetadataEmit" : false,
-    "skipTemplateCodegen": true
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true
   },
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true

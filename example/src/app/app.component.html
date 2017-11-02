@@ -5,30 +5,30 @@
     This example does not actually upload any of the selected files, only simulates the upload process.
   </div>
 
-  <div class ="horizontal-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="stretch" fxFlex>
+  <div class ="horizontal-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="stretch" fxFlex="auto">
     <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
       <div class="box-title">Settings</div>
 
-      <div class="action-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex>
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex (click)='toggleType()'>{{(type == "component") ? "Switch to directive" : "Switch to component"}}</div>
+      <div class="action-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleType()'>{{(type == "component") ? "Switch to directive" : "Switch to component"}}</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex (click)='toggleMultiUpload()'>{{(config.maxFiles !== 1) ? "Upload single file" : "Upload multiple files"}}</div>
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleMultiUpload()'>{{(config.maxFiles !== 1) ? "Upload single file" : "Upload multiple files"}}</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex (click)='toggleDisabledState()'>Toggle disabled state</div>
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleDisabledState()'>Toggle disabled state</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex (click)='toggleAutoReset()'>{{config.autoReset ? "Turn off auto reset" : "Turn on auto reset"}}</div>
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleAutoReset()'>{{config.autoReset ? "Turn off auto reset" : "Turn on auto reset"}}</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex (click)='toggleClickAction()'>{{config.clickable ? "Turn off click action" : "Turn on click action"}}</div>
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleClickAction()'>{{config.clickable ? "Turn off click action" : "Turn on click action"}}</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex (click)='reset()'>Reset Upload Area</div>
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='resetDropzoneUploads()'>Reset Upload Area</div>
       </div>
     </div>
 
     <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
       <div class="box-title">Dropzone</div>
 
-      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex>
-        <dropzone *ngIf="type === 'component'" class="upload-container" [config]="config" [disabled]="disabled" fxLayout="row" fxLayoutAlign="start strech" fxFlex [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+        <dropzone *ngIf="type === 'component'" class="upload-container" [config]="config" [disabled]="disabled" fxLayout="row" fxLayoutAlign="start strech" fxFlex="auto" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
 
         <div *ngIf="type === 'directive'" class="upload-container" [dropzone]="config" [disabled]="disabled" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
       </div>
