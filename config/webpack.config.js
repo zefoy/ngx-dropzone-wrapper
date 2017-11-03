@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var ngtools = require('@ngtools/webpack');
 
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
@@ -26,8 +25,22 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-        use: '@ngtools/webpack'
+        test: /\.ts$/,
+        use: [
+          {
+            loader: 'awesome-typescript-loader',
+            options: {
+              configFileName: 'src/tsconfig.json',
+              declaration: 'false'
+            }
+          },
+          {
+            loader: 'angular-inliner-loader',
+            options: {
+              styleSuffix: "scss"
+            }
+          }
+        ]
       },
       {
         test: /\.scss$/,
@@ -46,11 +59,6 @@ module.exports = {
   plugins: [
     new UglifyJSPlugin({
       include: /\.min\.js$/
-    }),
-
-    new ngtools.AngularCompilerPlugin({
-      entryModule: './src/lib/dropzone.module#DropzoneModule',
-      tsConfigPath: './src/tsconfig.json'
     })
   ],
   externals: [
