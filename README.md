@@ -48,7 +48,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   ...
   imports: [
     ...
-    DropzoneModule.forRoot(DROPZONE_CONFIG)
+    DropzoneModule
   ],
   providers: [
     {
