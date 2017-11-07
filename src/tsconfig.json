@@ -4,19 +4,18 @@
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "inlineSources": true,
     "lib": [
-      "dom",
-      "es2015"
+      "es2015",
+      "dom"
     ],
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
     "outDir": "../dist",
-    "paths": {
-      "ngx-dropzone-wrapper/*": [
-        "../dist/index.js"
-      ]
-    },
+    "rootDir": ".",
+    "skipLibCheck": true,
     "sourceMap": true,
+    "strict": false,
     "target": "es5",
     "typeRoots": [
       "../node_modules/@types"
@@ -27,17 +26,13 @@
     ]
   },
   "files": [
-    "index.ts",
-    "lib/dropzone.module.ts",
-    "lib/dropzone.component.ts",
-    "lib/dropzone.directive.ts",
-    "lib/dropzone.interfaces.ts"
+    "index.ts"
   ],
   "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "flatModuleId": "ngx-dropzone-wrapper",
+    "flatModuleOutFile": "ngx-dropzone-wrapper.js",
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true
-  },
-  "awesomeTypescriptLoaderOptions": {
-    "useWebpackText": true
   }
 }

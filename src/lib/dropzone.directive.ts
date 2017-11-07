@@ -57,7 +57,7 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
     @Optional() @Inject(DROPZONE_CONFIG) private defaults: DropzoneConfigInterface)
   {
     /* tslint:disable */
-    eval('Dropzone.autoDiscover = false');
+    (1, eval)('Dropzone.autoDiscover = false');
     /* tslint:enable */
   }
 

@@ -13,7 +13,7 @@ See a live example application <a href="https://zefoy.github.io/ngx-dropzone-wra
 ```bash
 npm install
 npm run build
-npm run inline
+npm run bundle
 ```
 
 ### Running the example
