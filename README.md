@@ -38,7 +38,7 @@ import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
-  // Change this to your upload POST address:
+ // Change this to your upload POST address:
   url: 'https://httpbin.org/post',
   maxFilesize: 50,
   acceptedFiles: 'image/*'
@@ -61,32 +61,32 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 
 ##### Use it in your html template (with custom configuration):
 
-This library provides two ways to create a Dropzone element, simple component and custom directive.
+This library provides two ways to create a Dropzone element, component for simple use cases and directive for more custom use cases.
 
 **COMPONENT USAGE**
 
 Simply replace the element that would ordinarily be passed to `Dropzone` with the dropzone component.
 
-**NOTE:** Component provides couple additional features from directive. Such as the placeholder image, if you don't need them or want to create custom component then you might want to use the directive instead.
+**NOTE:** Component provides couple additional features from directive such as the placeholder image. If you don't need them or want to create custom component then you might want to use the directive instead.
 
 ```html
 <dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
 ```
 
 ```javascript
-[config]            // Custom config to override the global defaults.
-[disabled]          // Disables / detaches Dropzone from the element.
+[config]                // Custom config to override the global defaults.
+[disabled]              // Disables / detaches Dropzone from the element.
 
-[message]           // Message to show for the user on the upload area.
-[placeholder]       // Placeholder image to be shown as the upload area.
+[message]               // Message to show for the user on the upload area.
+[placeholder]           // Placeholder image to be shown as the upload area.
 
-[useDropzoneClass]  // Use 'dropzone' class (use provided default styles).
+[useDropzoneClass]      // Use 'dropzone' class (use provided default styles).
 
-(error)             // Event handler for the Dropzone upload error event.
-(success)           // Event handler for the Dropzone upload success event.
-(canceled)          // Event handler for the Dropzone upload canceled event.
+(error)                 // Event handler for the Dropzone upload error event.
+(success)               // Event handler for the Dropzone upload success event.
+(canceled)              // Event handler for the Dropzone upload canceled event.
 
-(<dropzone-event>)  // All other Dropzone events are also supported as bindings.
+(<dropzone-event>)      // All other Dropzone events are also supported as bindings.
 ```
 
 **DIRECTIVE USAGE**
@@ -105,7 +105,6 @@ Dropzone directive can be used in form or div element with optional custom confi
 
 ```javascript
 [dropzone]              // Can be used to provide optional custom config.
-
 [disabled]              // Disables / detaches Dropzone from the element.
 
 (error)                 // Event handler for the Dropzone upload error event.
@@ -117,7 +116,7 @@ Dropzone directive can be used in form or div element with optional custom confi
 
 ##### Available configuration options (custom / global configuration):
 
-This library supports all Dropzone configuration options and few custom extra options for easier usage.
+This library supports all Dropzone configuration options and few extra options for easier usage.
 
 **LIBRARY OPTIONS**
 

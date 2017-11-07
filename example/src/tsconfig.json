@@ -23,8 +23,8 @@
     ],
     "types": [
       "core-js",
-      "node"
+      "node",
+      "dropzone"
     ]
   }
 }
-
