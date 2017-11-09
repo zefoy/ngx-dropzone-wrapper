@@ -8,24 +8,30 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" />
 
     <style>
       .loading,
       .loading:after,
       .loading:before {
         content: ' ';
+
         top: 0;
+
         width: 24px;
         height: 24px;
         border-radius: 50%;
+
         animation: spinner 1600ms infinite ease-in-out;
       }
 
       .loading {
-        color: #555;
-        margin: 64px auto;
         position: relative;
+
+        margin: 64px auto;
+
+        color: #555;
+
         animation-delay: -160ms;
       }
 
@@ -35,6 +41,7 @@
 
       .loading:before {
         left: -64px;
+
         animation-delay: -320ms;
       }
 
