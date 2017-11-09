@@ -44,7 +44,7 @@
     "@angular/router": "^5.0.0",
     "core-js": "^2.5.0",
     "dropzone": "^5.2.0",
-    "ngx-dropzone-wrapper": "5.0.0-6",
+    "ngx-dropzone-wrapper": "^5.0.0",
     "rxjs": "^5.5.0",
     "zone.js": "^0.8.0"
   },
