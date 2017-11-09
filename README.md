@@ -2,7 +2,7 @@
 
 <a href="https://badge.fury.io/js/ngx-dropzone-wrapper"><img src="https://badge.fury.io/js/ngx-dropzone-wrapper.svg" align="right" alt="npm version" height="18"></a>
 
-This is an Angular wrapper library for the [Dropzone](http://www.dropzonejs.com/). To use this library you should get familiar with the Dropzone documentation as well, this documentation only explains details specific to this wrapper.
+This is an Angular wrapper library for the [Dropzone](http://www.dropzonejs.com/). To use this library you should get familiar with the [Dropzone documentation](http://www.dropzonejs.com/#configuration-options) as well, this documentation only explains details specific to this wrapper.
 
 This documentation is for the latest 5.x.x version which requires Angular 5. For Angular 4 you need to use the latest 4.x.x version. Documentation for the 4.x.x can be found from <a href="https://github.com/zefoy/ngx-dropzone-wrapper/tree/4.x.x/">here</a>.
 
@@ -22,6 +22,15 @@ npm run bundle
 cd example
 npm install
 npm start
+```
+
+### Library development
+
+
+```bash
+npm link
+cd example
+npm ling ngx-dropzone-wrapper
 ```
 
 ### Installing and usage
@@ -59,7 +68,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 })
 ```
 
-##### Use it in your html template (with custom configuration):
+##### Use it in your HTML template (with custom configuration):
 
 This library provides two ways to create a Dropzone element, component for simple use cases and directive for more custom use cases.
 
@@ -75,6 +84,7 @@ Simply replace the element that would ordinarily be passed to `Dropzone` with th
 
 ```javascript
 [config]                // Custom config to override the global defaults.
+
 [disabled]              // Disables / detaches Dropzone from the element.
 
 [message]               // Message to show for the user on the upload area.
@@ -86,7 +96,9 @@ Simply replace the element that would ordinarily be passed to `Dropzone` with th
 (success)               // Event handler for the Dropzone upload success event.
 (canceled)              // Event handler for the Dropzone upload canceled event.
 
-(<dropzone-event>)      // All other Dropzone events are also supported as bindings.
+(<dropzoneEvent>)       // All Dropzone events / callbacks work as bindings.
+                        // Event names are in camel case (not lower case).
+                        // Example: maxfilesreached -> maxFilesReached
 ```
 
 **DIRECTIVE USAGE**
@@ -105,13 +117,16 @@ Dropzone directive can be used in form or div element with optional custom confi
 
 ```javascript
 [dropzone]              // Can be used to provide optional custom config.
+
 [disabled]              // Disables / detaches Dropzone from the element.
 
 (error)                 // Event handler for the Dropzone upload error event.
 (success)               // Event handler for the Dropzone upload success event.
 (canceled)              // Event handler for the Dropzone upload canceled event.
 
-(<dropzone-event>)      // All other Dropzone events are also supported as bindings.
+(<dropzoneEvent>)       // All Dropzone events / callbacks work as bindings.
+                        // Event names are in camel case (not lower case).
+                        // Example: maxfilesreached -> maxFilesReached
 ```
 
 ##### Available configuration options (custom / global configuration):

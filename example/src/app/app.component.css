@@ -29,11 +29,6 @@
   line-height: 24px;
 }
 
-.upload-container {
-  height: 100%;
-  margin: -4px;
-}
-
 .action-container,
 .content-container {
   position: relative;
@@ -71,4 +66,9 @@
 .action-button:hover {
   color: #fff;
   background-color: #555;
+}
+
+.upload-container {
+  height: 100%;
+  margin: -4px;
 }

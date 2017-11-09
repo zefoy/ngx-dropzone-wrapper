@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { DropzoneComponent , DropzoneDirective, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { DropzoneComponent , DropzoneDirective,
+  DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 @Component({
   selector: 'my-app',
@@ -26,29 +27,29 @@ export class AppComponent {
 
   constructor() {}
 
-  toggleType() {
-    this.type = this.type === 'component' ? 'directive' : 'component';
+  public toggleType() {
+    this.type = (this.type === 'component') ? 'directive' : 'component';
   }
 
-  toggleAutoReset() {
+  public toggleDisabled() {
+    this.disabled = !this.disabled;
+  }
+
+  public toggleAutoReset() {
     this.config.autoReset = this.config.autoReset ? null : 5000;
     this.config.errorReset = this.config.errorReset ? null : 5000;
     this.config.cancelReset = this.config.cancelReset ? null : 5000;
   }
 
-  toggleMultiUpload() {
+  public toggleMultiUpload() {
     this.config.maxFiles = this.config.maxFiles ? null : 1;
   }
 
-  toggleClickAction() {
+  public toggleClickAction() {
     this.config.clickable = !this.config.clickable;
   }
 
-  toggleDisabledState() {
-    this.disabled = !this.disabled;
-  }
-
-  resetDropzoneUploads() {
+  public resetDropzoneUploads() {
     if (this.type === 'directive') {
       this.directiveRef.reset();
     } else {
@@ -56,11 +57,11 @@ export class AppComponent {
     }
   }
 
-  onUploadError(args: any) {
+  public onUploadError(args: any) {
     console.log('onUploadError:', args);
   }
 
-  onUploadSuccess(args: any) {
+  public onUploadSuccess(args: any) {
     console.log('onUploadSuccess:', args);
   }
 }

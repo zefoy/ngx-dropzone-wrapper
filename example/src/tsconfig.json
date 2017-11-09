@@ -4,6 +4,7 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "inlineSources": false,
     "lib": [
       "es2015",
       "dom"
@@ -22,9 +23,8 @@
       "../node_modules/@types"
     ],
     "types": [
-      "core-js",
-      "node",
-      "dropzone"
+      "node"
+      // Add this when 5.x types available: "dropzone"
     ]
   }
 }

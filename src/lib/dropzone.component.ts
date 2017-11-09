@@ -22,13 +22,6 @@ export class DropzoneComponent {
 
   @ViewChild(DropzoneDirective) directiveRef: DropzoneDirective;
 
-  @Output('drop'                  ) DZ_DROP                     = new EventEmitter<any>();
-  @Output('dragstart'             ) DZ_DRAGSTART                = new EventEmitter<any>();
-  @Output('dragend'               ) DZ_DRAGEND                  = new EventEmitter<any>();
-  @Output('dragenter'             ) DZ_DRAGENTER                = new EventEmitter<any>();
-  @Output('dragover'              ) DZ_DRAGOVER                 = new EventEmitter<any>();
-  @Output('dragleave'             ) DZ_DRAGLEAVE                = new EventEmitter<any>();
-
   @Output('error'                 ) DZ_ERROR                    = new EventEmitter<any>();
   @Output('success'               ) DZ_SUCCESS                  = new EventEmitter<any>();
   @Output('sending'               ) DZ_SENDING                  = new EventEmitter<any>();
@@ -36,22 +29,29 @@ export class DropzoneComponent {
   @Output('complete'              ) DZ_COMPLETE                 = new EventEmitter<any>();
   @Output('processing'            ) DZ_PROCESSING               = new EventEmitter<any>();
 
-  @Output('thumbnail'             ) DZ_THUMBNAIL                = new EventEmitter<any>();
-  @Output('addedfile'             ) DZ_ADDEDFILE                = new EventEmitter<any>();
-  @Output('removedfile'           ) DZ_REMOVEDFILE              = new EventEmitter<any>();
-  @Output('uploadprogress'        ) DZ_UPLOADPROGRESS           = new EventEmitter<any>();
-  @Output('maxfilesreached'       ) DZ_MAXFILESREACHED          = new EventEmitter<any>();
-  @Output('maxfilesexceeded'      ) DZ_MAXFILESEXCEEDED         = new EventEmitter<any>();
+  @Output('drop'                  ) DZ_DROP                     = new EventEmitter<any>();
+  @Output('dragStart'             ) DZ_DRAGSTART                = new EventEmitter<any>();
+  @Output('dragEnd'               ) DZ_DRAGEND                  = new EventEmitter<any>();
+  @Output('dragEnter'             ) DZ_DRAGENTER                = new EventEmitter<any>();
+  @Output('dragOver'              ) DZ_DRAGOVER                 = new EventEmitter<any>();
+  @Output('dragLeave'             ) DZ_DRAGLEAVE                = new EventEmitter<any>();
 
-  @Output('successmultiple'       ) DZ_SUCCESSMULTIPLE          = new EventEmitter<any>();
-  @Output('sendingmultiple'       ) DZ_SENDINGMULTIPLE          = new EventEmitter<any>();
-  @Output('canceledmultiple'      ) DZ_CANCELEDMULTIPLE         = new EventEmitter<any>();
-  @Output('completemultiple'      ) DZ_COMPLETEMULTIPLE         = new EventEmitter<any>();
-  @Output('processingmultiple'    ) DZ_PROCESSINGMULTIPLE       = new EventEmitter<any>();
+  @Output('thumbnail'             ) DZ_THUMBNAIL                = new EventEmitter<any>();
+  @Output('addedFile'             ) DZ_ADDEDFILE                = new EventEmitter<any>();
+  @Output('removedFile'           ) DZ_REMOVEDFILE              = new EventEmitter<any>();
+  @Output('uploadProgress'        ) DZ_UPLOADPROGRESS           = new EventEmitter<any>();
+  @Output('maxFilesReached'       ) DZ_MAXFILESREACHED          = new EventEmitter<any>();
+  @Output('maxFilesExceeded'      ) DZ_MAXFILESEXCEEDED         = new EventEmitter<any>();
+
+  @Output('successMultiple'       ) DZ_SUCCESSMULTIPLE          = new EventEmitter<any>();
+  @Output('sendingMultiple'       ) DZ_SENDINGMULTIPLE          = new EventEmitter<any>();
+  @Output('canceledMultiple'      ) DZ_CANCELEDMULTIPLE         = new EventEmitter<any>();
+  @Output('completeMultiple'      ) DZ_COMPLETEMULTIPLE         = new EventEmitter<any>();
+  @Output('processingMultiple'    ) DZ_PROCESSINGMULTIPLE       = new EventEmitter<any>();
 
   @Output('reset'                 ) DZ_RESET                    = new EventEmitter<any>();
-  @Output('queuecomplete'         ) DZ_QUEUECOMPLETE            = new EventEmitter<any>();
-  @Output('totaluploadprogress'   ) DZ_TOTALUPLOADPROGRESS      = new EventEmitter<any>();
+  @Output('queueComplete'         ) DZ_QUEUECOMPLETE            = new EventEmitter<any>();
+  @Output('totalUploadProgress'   ) DZ_TOTALUPLOADPROGRESS      = new EventEmitter<any>();
 
   constructor() {}
 

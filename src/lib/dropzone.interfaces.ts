@@ -3,13 +3,6 @@ import { InjectionToken } from '@angular/core';
 export const DROPZONE_CONFIG = new InjectionToken('DROPZONE_CONFIG');
 
 export const DropzoneEvents = [
-  'drop',
-  'dragstart',
-  'dragend',
-  'dragenter',
-  'dragover',
-  'dragleave',
-
   'error',
   'success',
   'sending',
@@ -17,22 +10,29 @@ export const DropzoneEvents = [
   'complete',
   'processing',
 
-  'thumbnail',
-  'addedfile',
-  'removedfile',
-  'uploadprogress',
-  'maxfilesreached',
-  'maxfilesexceeded',
+  'drop',
+  'dragStart',
+  'dragEnd',
+  'dragEnter',
+  'dragOver',
+  'dragLeave',
 
-  'successmultiple',
-  'sendingmultiple',
-  'canceledmultiple',
-  'completemultiple',
-  'processingmultiple',
+  'thumbnail',
+  'addedFile',
+  'removedFile',
+  'uploadProgress',
+  'maxFilesReached',
+  'maxFilesExceeded',
+
+  'successMultiple',
+  'sendingMultiple',
+  'canceledMultiple',
+  'completeMultiple',
+  'processingMultiple',
 
   'reset',
-  'queuecomplete',
-  'totaluploadprogress'
+  'queueComplete',
+  'totalUploadProgress'
 ];
 
 export interface DropzoneConfigInterface {
@@ -176,7 +176,11 @@ export class DropzoneConfig implements DropzoneConfigInterface {
 
   assign(config: DropzoneConfigInterface = {}) {
     for (const key in config) {
-      this[key] = config[key];
+      if (config[key] && typeof config[key] === 'object') {
+        this[key] = Object.assign({}, config[key]);
+      } else {
+        this[key] = config[key];
+      }
     }
   }
 }

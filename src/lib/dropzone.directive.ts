@@ -7,10 +7,12 @@ import { Directive,
   SimpleChanges, KeyValueDiffer, KeyValueDiffers } from '@angular/core';
 
 import { DROPZONE_CONFIG } from './dropzone.interfaces';
+
 import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces';
 
 @Directive({
-  selector: '[dropzone]'
+  selector: '[dropzone]',
+  exportAs: 'ngxDropzone'
 })
 export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy {
   private instance: any;
@@ -21,13 +23,6 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
 
   @Input('dropzone') config: DropzoneConfigInterface;
 
-  @Output('drop'                  ) DZ_DROP                     = new EventEmitter<any>();
-  @Output('dragstart'             ) DZ_DRAGSTART                = new EventEmitter<any>();
-  @Output('dragend'               ) DZ_DRAGEND                  = new EventEmitter<any>();
-  @Output('dragenter'             ) DZ_DRAGENTER                = new EventEmitter<any>();
-  @Output('dragover'              ) DZ_DRAGOVER                 = new EventEmitter<any>();
-  @Output('dragleave'             ) DZ_DRAGLEAVE                = new EventEmitter<any>();
-
   @Output('error'                 ) DZ_ERROR                    = new EventEmitter<any>();
   @Output('success'               ) DZ_SUCCESS                  = new EventEmitter<any>();
   @Output('sending'               ) DZ_SENDING                  = new EventEmitter<any>();
@@ -35,22 +30,29 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
   @Output('complete'              ) DZ_COMPLETE                 = new EventEmitter<any>();
   @Output('processing'            ) DZ_PROCESSING               = new EventEmitter<any>();
 
-  @Output('thumbnail'             ) DZ_THUMBNAIL                = new EventEmitter<any>();
-  @Output('addedfile'             ) DZ_ADDEDFILE                = new EventEmitter<any>();
-  @Output('removedfile'           ) DZ_REMOVEDFILE              = new EventEmitter<any>();
-  @Output('uploadprogress'        ) DZ_UPLOADPROGRESS           = new EventEmitter<any>();
-  @Output('maxfilesreached'       ) DZ_MAXFILESREACHED          = new EventEmitter<any>();
-  @Output('maxfilesexceeded'      ) DZ_MAXFILESEXCEEDED         = new EventEmitter<any>();
+  @Output('drop'                  ) DZ_DROP                     = new EventEmitter<any>();
+  @Output('dragStart'             ) DZ_DRAGSTART                = new EventEmitter<any>();
+  @Output('dragEnd'               ) DZ_DRAGEND                  = new EventEmitter<any>();
+  @Output('dragEnter'             ) DZ_DRAGENTER                = new EventEmitter<any>();
+  @Output('dragOver'              ) DZ_DRAGOVER                 = new EventEmitter<any>();
+  @Output('dragLeave'             ) DZ_DRAGLEAVE                = new EventEmitter<any>();
 
-  @Output('successmultiple'       ) DZ_SUCCESSMULTIPLE          = new EventEmitter<any>();
-  @Output('sendingmultiple'       ) DZ_SENDINGMULTIPLE          = new EventEmitter<any>();
-  @Output('canceledmultiple'      ) DZ_CANCELEDMULTIPLE         = new EventEmitter<any>();
-  @Output('completemultiple'      ) DZ_COMPLETEMULTIPLE         = new EventEmitter<any>();
-  @Output('processingmultiple'    ) DZ_PROCESSINGMULTIPLE       = new EventEmitter<any>();
+  @Output('thumbnail'             ) DZ_THUMBNAIL                = new EventEmitter<any>();
+  @Output('addedFile'             ) DZ_ADDEDFILE                = new EventEmitter<any>();
+  @Output('removedFile'           ) DZ_REMOVEDFILE              = new EventEmitter<any>();
+  @Output('uploadProgress'        ) DZ_UPLOADPROGRESS           = new EventEmitter<any>();
+  @Output('maxFilesReached'       ) DZ_MAXFILESREACHED          = new EventEmitter<any>();
+  @Output('maxFilesExceeded'      ) DZ_MAXFILESEXCEEDED         = new EventEmitter<any>();
+
+  @Output('successMultiple'       ) DZ_SUCCESSMULTIPLE          = new EventEmitter<any>();
+  @Output('sendingMultiple'       ) DZ_SENDINGMULTIPLE          = new EventEmitter<any>();
+  @Output('canceledMultiple'      ) DZ_CANCELEDMULTIPLE         = new EventEmitter<any>();
+  @Output('completeMultiple'      ) DZ_COMPLETEMULTIPLE         = new EventEmitter<any>();
+  @Output('processingMultiple'    ) DZ_PROCESSINGMULTIPLE       = new EventEmitter<any>();
 
   @Output('reset'                 ) DZ_RESET                    = new EventEmitter<any>();
-  @Output('queuecomplete'         ) DZ_QUEUECOMPLETE            = new EventEmitter<any>();
-  @Output('totaluploadprogress'   ) DZ_TOTALUPLOADPROGRESS      = new EventEmitter<any>();
+  @Output('queueComplete'         ) DZ_QUEUECOMPLETE            = new EventEmitter<any>();
+  @Output('totalUploadProgress'   ) DZ_TOTALUPLOADPROGRESS      = new EventEmitter<any>();
 
   constructor(private zone: NgZone, private renderer: Renderer2,
     private elementRef: ElementRef, private differs: KeyValueDiffers,
@@ -95,9 +97,9 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
       }
     });
 
-    // Add native dropzone event handling
+    // Add native Dropzone event handling
     DropzoneEvents.forEach((eventName) => {
-      this.instance.on(eventName, (...args) => {
+      this.instance.on(eventName.toLowerCase(), (...args) => {
         args = (args.length === 1) ? args[0] : args;
 
         if (this[`DZ_${eventName.toUpperCase()}`]) {
@@ -128,9 +130,13 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
   }
 
   ngOnDestroy() {
-    this.zone.runOutsideAngular(() => {
-      this.instance.destroy();
-    });
+    if (this.instance) {
+      this.zone.runOutsideAngular(() => {
+        this.instance.destroy();
+      });
+
+      this.instance = null;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -149,11 +155,11 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
     }
   }
 
-  dropzone(): any {
+  public dropzone(): any {
     return this.instance;
   }
 
-  reset(cancel?: boolean) {
+  public reset(cancel?: boolean) {
     this.zone.runOutsideAngular(() => {
       this.instance.removeAllFiles(cancel);
     });
