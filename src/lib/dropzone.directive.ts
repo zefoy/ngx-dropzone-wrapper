@@ -58,9 +58,9 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
     private elementRef: ElementRef, private differs: KeyValueDiffers,
     @Optional() @Inject(DROPZONE_CONFIG) private defaults: DropzoneConfigInterface)
   {
-    /* tslint:disable */
-    (1, eval)('Dropzone.autoDiscover = false');
-    /* tslint:enable */
+    const dz = Dropzone;
+
+    dz.autoDiscover = false;
   }
 
   ngOnInit() {
