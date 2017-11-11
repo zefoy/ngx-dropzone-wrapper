@@ -12,8 +12,7 @@ See a live example application <a href="https://zefoy.github.io/ngx-dropzone-wra
 
 ```bash
 npm install
-npm run build
-npm run bundle
+npm start
 ```
 
 ### Running the example
@@ -88,6 +87,7 @@ Simply replace the element that would ordinarily be passed to `Dropzone` with th
 [disabled]              // Disables / detaches Dropzone from the element.
 
 [message]               // Message to show for the user on the upload area.
+
 [placeholder]           // Placeholder image to be shown as the upload area.
 
 [useDropzoneClass]      // Use 'dropzone' class (use provided default styles).
