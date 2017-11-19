@@ -29,7 +29,7 @@ npm start
 ```bash
 npm link
 cd example
-npm ling ngx-dropzone-wrapper
+npm link ngx-dropzone-wrapper
 ```
 
 ### Installing and usage
