@@ -1,1 +1,1 @@
-# Example app for the angular2-dropzone-wrapper
+# Example app for the ngx-dropzone-wrapper
