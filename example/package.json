@@ -43,7 +43,6 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "core-js": "^2.5.0",
-    "dropzone": "^5.2.0",
     "ngx-dropzone-wrapper": "^5.0.0",
     "rxjs": "^5.5.0",
     "zone.js": "^0.8.0"
@@ -51,7 +50,6 @@
   "devDependencies": {
     "@angular/compiler-cli": "^5.0.0",
     "@ngtools/webpack": "^1.8.0",
-    "@types/dropzone": "^5.0.0",
     "@types/node": "^8.0.0",
     "codelyzer": "^4.0.0",
     "connect-history-api-fallback": "^1.4.0",
