@@ -134,7 +134,7 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
   }
 
   ngOnDestroy() {
-    if(this.dropzone){
+    if (this.dropzone) {
       if (this.runInsideAngular) {
         this.dropzone.destroy();
       } else {
@@ -170,7 +170,7 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
   }
 
   reset() {
-    if(this.dropzone){
+    if (this.dropzone) {
       if (this.runInsideAngular) {
         this.dropzone.removeAllFiles();
       } else {
