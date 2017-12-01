@@ -134,12 +134,14 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
   }
 
   ngOnDestroy() {
-    if (this.runInsideAngular) {
-      this.dropzone.destroy();
-    } else {
-      this.zone.runOutsideAngular(() => {
+    if(this.dropzone){
+      if (this.runInsideAngular) {
         this.dropzone.destroy();
-      });
+      } else {
+        this.zone.runOutsideAngular(() => {
+          this.dropzone.destroy();
+        });
+      }
     }
   }
 
@@ -168,12 +170,14 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
   }
 
   reset() {
-    if (this.runInsideAngular) {
-      this.dropzone.removeAllFiles();
-    } else {
-      this.zone.runOutsideAngular(() => {
+    if(this.dropzone){
+      if (this.runInsideAngular) {
         this.dropzone.removeAllFiles();
-      });
+      } else {
+        this.zone.runOutsideAngular(() => {
+          this.dropzone.removeAllFiles();
+        });
+      }
     }
   }
 }
