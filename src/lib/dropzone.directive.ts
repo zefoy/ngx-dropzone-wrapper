@@ -118,6 +118,8 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
 
     if (!this.configDiff) {
       this.configDiff = this.differs.find(this.config || {}).create(null);
+
+      this.configDiff.diff(this.config || {});
     }
   }
 
