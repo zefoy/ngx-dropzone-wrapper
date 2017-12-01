@@ -160,8 +160,10 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
   }
 
   public reset(cancel?: boolean) {
-    this.zone.runOutsideAngular(() => {
-      this.instance.removeAllFiles(cancel);
-    });
+    if (this.instance) {
+      this.zone.runOutsideAngular(() => {
+        this.instance.removeAllFiles(cancel);
+      });
+    }
   }
 }
