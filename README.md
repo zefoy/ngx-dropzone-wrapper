@@ -35,7 +35,7 @@ npm link ngx-dropzone-wrapper
 ### Installing and usage
 
 ```bash
-npm install ngx-dropzone-wrapper@4.6.6 --save
+npm install ngx-dropzone-wrapper --save
 ```
 
 ##### Load the module for your app (with global configuration):
