@@ -2,7 +2,7 @@
   "name": "ngx-dropzone-wrapper-example",
   "description": "Example app for the ngx-dropzone-wrapper",
   "license": "MIT",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "tslint": {
     "extends": "./tslint.json"
   },
@@ -62,8 +62,8 @@
     "raw-loader": "^0.5.0",
     "sass-loader": "^6.0.0",
     "stylelint": "^8.2.0",
-    "stylelint-config-standard": "^17.0.0",
-    "stylelint-order": "^0.7.0",
+    "stylelint-config-standard": "^18.0.0",
+    "stylelint-order": "^0.8.0",
     "systemjs": "^0.20.0",
     "tslint": "^5.7.0",
     "typescript": "~2.4.0",
