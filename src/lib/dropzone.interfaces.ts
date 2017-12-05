@@ -3,35 +3,36 @@ import * as Dropzone from 'dropzone';
 // http://www.dropzonejs.com/#event-list
 
 export const DropzoneEvents = [
-  'drop',
-  'dragstart',
-  'dragend',
-  'dragenter',
-  'dragover',
-  'dragleave',
-
-  'addedfile',
-  'removedfile',
-  'thumbnail',
   'error',
-  'processing',
-  'uploadprogress',
-  'sending',
   'success',
-  'complete',
+  'sending',
   'canceled',
-  'maxfilesreached',
-  'maxfilesexceeded',
+  'complete',
+  'processing',
 
-  'processingmultiple',
-  'sendingmultiple',
-  'successmultiple',
-  'completemultiple',
-  'canceledmultiple',
+  'drop',
+  'dragStart',
+  'dragEnd',
+  'dragEnter',
+  'dragOver',
+  'dragLeave',
 
-  'totaluploadprogress',
+  'thumbnail',
+  'addedFile',
+  'removedFile',
+  'uploadProgress',
+  'maxFilesReached',
+  'maxFilesExceeded',
+
+  'successMultiple',
+  'sendingMultiple',
+  'canceledMultiple',
+  'completeMultiple',
+  'processingMultiple',
+
   'reset',
-  'queuecomplete'
+  'queueComplete',
+  'totalUploadProgress'
 ];
 
 export interface DropzoneConfigInterface {
@@ -44,8 +45,8 @@ export interface DropzoneConfigInterface {
   url?: string,
   method?: string,
 
-  params?: Object,
-  headers?: Object,
+  params?: any,
+  headers?: any,
 
   init?: any,
   accept?: any,
@@ -53,6 +54,7 @@ export interface DropzoneConfigInterface {
   fallback?: any,
   renameFile?: any,
   transformFile?: any,
+  chunksUploaded?: any,
 
   withCredentials?: boolean,
 
@@ -85,6 +87,13 @@ export interface DropzoneConfigInterface {
   maxThumbnailFilesize?: number,
   createImageThumbnails?: boolean,
 
+  chunking?: boolean,
+  chunkSize?: number,
+  retryChunks?: boolean,
+  forceChunking?: boolean,
+  retryChunksLimit?: number,
+  parallelChunkUploads?: boolean,
+
   dictFileSizeUnits?: any,
 
   dictDefaultMessage?: string,
@@ -112,8 +121,8 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   url: string;
   method: string;
 
-  params: Object;
-  headers: Object;
+  params: any;
+  headers: any;
 
   init: any;
   accept: any;
@@ -121,6 +130,7 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   fallback: any;
   renameFile: any;
   transformFile: any;
+  chunksUploaded: any;
 
   withCredentials: boolean;
 
@@ -153,6 +163,13 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   maxThumbnailFilesize: number;
   createImageThumbnails: boolean;
 
+  chunking: boolean;
+  chunkSize: number;
+  retryChunks: boolean;
+  forceChunking: boolean;
+  retryChunksLimit: number;
+  parallelChunkUploads: boolean;
+
   dictFileSizeUnits: any;
 
   dictDefaultMessage: string;
@@ -173,9 +190,19 @@ export class DropzoneConfig implements DropzoneConfigInterface {
     this.assign(config);
   }
 
-  public assign(config: DropzoneConfigInterface = {}) {
+  assign(config: DropzoneConfigInterface | any = {}, target?: any) {
+    target = target || this;
+
     for (const key in config) {
-      this[key] = config[key];
+      if (config[key] != null && !(Array.isArray(config[key])) &&
+        typeof config[key] === 'object' && !(config[key] instanceof HTMLElement))
+      {
+        target[key] = {};
+
+        this.assign(config[key], target[key]);
+      } else {
+        target[key] = config[key];
+      }
     }
   }
 }
