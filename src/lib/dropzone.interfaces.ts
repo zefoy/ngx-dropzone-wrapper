@@ -54,6 +54,7 @@ export interface DropzoneConfigInterface {
   fallback?: DropzoneFallbackFunction,
   renameFile?: DropzoneRenameFileFunction,
   transformFile?: DropzoneTransformFileFunction,
+  chunksUploaded?: DropzoneChunksUploadedFunction,
 
   withCredentials?: boolean,
 
@@ -85,6 +86,13 @@ export interface DropzoneConfigInterface {
   ignoreHiddenFiles?: boolean,
   maxThumbnailFilesize?: number,
   createImageThumbnails?: boolean,
+
+  chunking?: boolean,
+  chunkSize?: number,
+  retryChunks?: boolean,
+  forceChunking?: boolean,
+  retryChunksLimit?: number,
+  parallelChunkUploads?: boolean,
 
   dictFileSizeUnits?: any,
 
@@ -122,6 +130,7 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   fallback: DropzoneFallbackFunction;
   renameFile: DropzoneRenameFileFunction;
   transformFile: DropzoneTransformFileFunction;
+  chunksUploaded: DropzoneChunksUploadedFunction;
 
   withCredentials: boolean;
 
@@ -154,6 +163,13 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   maxThumbnailFilesize: number;
   createImageThumbnails: boolean;
 
+  chunking: boolean;
+  chunkSize: number;
+  retryChunks: boolean;
+  forceChunking: boolean;
+  retryChunksLimit: number;
+  parallelChunkUploads: boolean;
+
   dictFileSizeUnits: any;
 
   dictDefaultMessage: string;
@@ -178,7 +194,9 @@ export class DropzoneConfig implements DropzoneConfigInterface {
     target = target || this;
 
     for (const key in config) {
-      if (config[key] && !Array.isArray(config[key]) && typeof config[key] === 'object') {
+      if (config[key] != null && !(Array.isArray(config[key])) &&
+        typeof config[key] === 'object' && !(config[key] instanceof HTMLElement))
+      {
         target[key] = {};
 
         this.assign(config[key], target[key]);
@@ -189,7 +207,7 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   }
 }
 
-export type DropzoneParamsFunction = (files: any, xhr: any, chunk: any) => any;
+export type DropzoneParamsFunction = (files: any, xhr: any, chunk?: any) => any;
 export type DropzoneHeadersFunction = () => any;
 
 export type DropzoneInitFunction = () => any;
@@ -200,3 +218,5 @@ export type DropzoneResizeFunction = (file: File, width: number, height: number,
 
 export type DropzoneRenameFileFunction = (file: File) => string;
 export type DropzoneTransformFileFunction = (file: File, done: Function) => any;
+
+export type DropzoneChunksUploadedFunction = (file: File, done: Function) => any;

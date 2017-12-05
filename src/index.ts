@@ -15,7 +15,8 @@ export {
   DropzoneAcceptFunction,
   DropzoneResizeFunction,
   DropzoneRenameFileFunction,
-  DropzoneTransformFileFunction
+  DropzoneTransformFileFunction,
+  DropzoneChunksUploadedFunction
 } from './lib/dropzone.interfaces';
 
 export { DropzoneModule } from './lib/dropzone.module';
