@@ -11,28 +11,28 @@ export const DropzoneEvents = [
   'processing',
 
   'drop',
-  'dragStart',
-  'dragEnd',
-  'dragEnter',
-  'dragOver',
-  'dragLeave',
+  'dragstart',
+  'dragend',
+  'dragenter',
+  'dragover',
+  'dragleave',
 
   'thumbnail',
-  'addedFile',
-  'removedFile',
-  'uploadProgress',
-  'maxFilesReached',
-  'maxFilesExceeded',
+  'addedfile',
+  'removedfile',
+  'uploadprogress',
+  'maxfilesreached',
+  'maxfilesexceeded',
 
-  'successMultiple',
-  'sendingMultiple',
-  'canceledMultiple',
-  'completeMultiple',
-  'processingMultiple',
+  'successmultiple',
+  'sendingmultiple',
+  'canceledmultiple',
+  'completemultiple',
+  'processingmultiple',
 
   'reset',
-  'queueComplete',
-  'totalUploadProgress'
+  'queuecomplete',
+  'totaluploadprogress'
 ];
 
 export interface DropzoneConfigInterface {
