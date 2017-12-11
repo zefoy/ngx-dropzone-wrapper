@@ -6,6 +6,7 @@ import { DropzoneConfigInterface } from './dropzone.interfaces';
 
 @Component({
   selector: 'dropzone',
+  exportAs: 'ngxDropzone',
   templateUrl: './lib/dropzone.component.html',
   styleUrls: [ './lib/dropzone.component.css' ],
   encapsulation: ViewEncapsulation.None
