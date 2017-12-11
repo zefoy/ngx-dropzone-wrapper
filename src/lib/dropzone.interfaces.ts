@@ -42,8 +42,8 @@ export interface DropzoneConfigInterface {
   errorReset?: number,
   cancelReset?: number,
 
-  url?: string,
-  method?: string,
+  url?: any | string,
+  method?: any | string,
 
   params?: any,
   headers?: any,
@@ -118,8 +118,8 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   errorReset: number;
   cancelReset: number;
 
-  url: string;
-  method: string;
+  url: any | string;
+  method: any | string;
 
   params: any;
   headers: any;
