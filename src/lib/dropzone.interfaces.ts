@@ -42,8 +42,8 @@ export interface DropzoneConfigInterface {
   errorReset?: number,
   cancelReset?: number,
 
-  url?: string,
-  method?: string,
+  url?: string | DropzoneUrlFunction,
+  method?: string | DropzoneMethodFunction,
 
   params?: any | DropzoneParamsFunction,
   headers?: any | DropzoneHeadersFunction,
@@ -118,8 +118,8 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   errorReset: number;
   cancelReset: number;
 
-  url: string;
-  method: string;
+  url: string | DropzoneUrlFunction;
+  method: string | DropzoneMethodFunction;
 
   params: any | DropzoneParamsFunction;
   headers: any | DropzoneHeadersFunction;
@@ -207,6 +207,9 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   }
 }
 
+export type DropzoneUrlFunction = (files: any) => string;
+export type DropzoneMethodFunction = (files: any) => string;
+
 export type DropzoneParamsFunction = (files: any, xhr: any, chunk?: any) => any;
 export type DropzoneHeadersFunction = () => any;
 
@@ -218,5 +221,4 @@ export type DropzoneResizeFunction = (file: File, width: number, height: number,
 
 export type DropzoneRenameFileFunction = (file: File) => string;
 export type DropzoneTransformFileFunction = (file: File, done: Function) => any;
-
 export type DropzoneChunksUploadedFunction = (file: File, done: Function) => any;

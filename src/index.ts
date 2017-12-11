@@ -7,6 +7,8 @@ export {
   DropzoneConfig,
   DropzoneConfigInterface,
 
+  DropzoneUrlFunction,
+  DropzoneMethodFunction,
   DropzoneParamsFunction,
   DropzoneHeadersFunction,
 
