@@ -79,7 +79,7 @@
 
     "declaration-empty-line-before": null,
 
-    "no-descending-specificity": false,
+    "no-descending-specificity": null,
 
     "order/properties-order": [
       [
