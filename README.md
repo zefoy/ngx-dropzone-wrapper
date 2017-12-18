@@ -2,11 +2,19 @@
 
 <a href="https://badge.fury.io/js/ngx-dropzone-wrapper"><img src="https://badge.fury.io/js/ngx-dropzone-wrapper.svg" align="right" alt="npm version" height="18"></a>
 
-This is an Angular wrapper library for the [Dropzone](http://www.dropzonejs.com/). To use this library you should get familiar with the [Dropzone documentation](http://www.dropzonejs.com/#configuration-options) as well, this documentation only explains details specific to this wrapper.
+This is an Angular wrapper library for the [Dropzone](http://www.dropzonejs.com/).
+
+To use this library you should get familiar with the Dropzone documentation as well since this documentation only explains details specific to this wrapper.
 
 This documentation is for the latest 5.x.x version which requires Angular 5. For Angular 4 you need to use the latest 4.x.x version. Documentation for the 4.x.x can be found from <a href="https://github.com/zefoy/ngx-dropzone-wrapper/tree/4.x.x/">here</a>.
 
-See a live example application <a href="https://zefoy.github.io/ngx-dropzone-wrapper/">here</a>.
+### Quick links
+
+[Example application](https://zefoy.github.io/ngx-dropzone-wrapper/)
+ | 
+[Plunker template](http://plnkr.co/edit/lRFrzs7FJ9Q0TSd5tTko?p=preview)
+ | 
+[Dropzone documentation](http://www.dropzonejs.com/#configuration-options)
 
 ### Building the library
 
@@ -152,7 +160,7 @@ maxFilesize             // Maximum file size for the upload files in megabytes (
 acceptedFiles           // Comma separated list of mime types or file extensions (Default: null).
 ```
 
-For more detailed documentation with all the supported Dropzone events / options see [Dropzone documentation](http://www.dropzonejs.com/#configuration-options).
+For more detailed documentation with all the supported Dropzone events / options see the Dropzone documentation.
 
 ##### Available control / helper functions (provided by the directive):
 
