@@ -93,7 +93,6 @@ Simply replace the element that would ordinarily be passed to `Dropzone` with th
 [disabled]              // Disables / detaches Dropzone from the element.
 
 [message]               // Message to show for the user on the upload area.
-
 [placeholder]           // Placeholder image to be shown as the upload area.
 
 [useDropzoneClass]      // Use 'dropzone' class (use provided default styles).
