@@ -1,60 +1,68 @@
 @import '../../node_modules/dropzone/dist/min/dropzone.min';
 
 dropzone {
-  /* stylelint-disable */
+  display: block;
+  width: 100%;
+  height: auto;
+
   &[fxflex] {
     display: flex;
     flex-direction: inherit;
-    -webkit-box-orient: inherit;
-    -webkit-box-direction: inherit;
     min-width: 0;
     min-height: 0;
+
+    -webkit-box-direction: inherit;
+    -webkit-box-orient: inherit;
 
     & > .dropzone {
       &.dz-wrapper {
         flex: 1 1 auto;
-        -ms-flex: 1 1 auto;
-        -webkit-box-flex: 1;
         min-width: 0;
         min-height: 0;
+
+        -webkit-box-flex: 1;
       }
     }
   }
 
   &[fxlayout] {
-    align-item: inherit;
-    place-content: inherit;
-    -webkit-box-pack: inherit;
+    align-items: inherit;
+    align-content: inherit;
+    justify-content: inherit;
+
     -webkit-box-align: inherit;
+    -webkit-box-pack: inherit;
 
     & > .dropzone {
       &.dz-wrapper {
         &.dz-single {
           display: flex;
           flex-direction: column;
-          -webkit-box-orient: column;
-          -webkit-box-direction: column;
           align-items: center;
-          place-content: center;
-          -webkit-box-pack: center;
+          align-content: center;
+          justify-content: center;
+
           -webkit-box-align: center;
+          -webkit-box-direction: column;
+          -webkit-box-orient: column;
+          -webkit-box-pack: center;
         }
 
         &.dz-multiple {
           display: flex;
-          flex-wrap: wrap;
-          flex-direction: row;
-          -webkit-box-orient: row;
-          -webkit-box-direction: row;
+          flex-flow: row wrap;
           align-items: start;
-          place-content: start;
-          -webkit-box-pack: start;
+          align-content: start;
+          justify-content: space-between;
+
           -webkit-box-align: start;
+          -webkit-box-direction: row;
+          -webkit-box-orient: row;
+          -webkit-box-pack: start;
         }
       }
     }
   }
-  /* stylelint-enable */
 
   & > .dropzone {
     &.dz-wrapper {
@@ -86,9 +94,15 @@ dropzone {
         background-color: #eee;
 
         .dz-text {
-          padding: 12px 24px;
+          position: absolute;
+          top: 50%;
+
+          width: 100%;
+          padding: 8px 24px;
 
           text-align: center;
+
+          transform: translateY(-50%);
         }
 
         .dz-image {
@@ -139,6 +153,7 @@ dropzone {
 
             .dz-image {
               -webkit-filter: blur(8px);
+
               filter: blur(8px);
             }
           }
@@ -146,6 +161,8 @@ dropzone {
       }
 
       .dz-preview {
+        margin: 8px;
+
         .dz-details {
           padding: 24px;
         }
@@ -190,19 +207,11 @@ dropzone {
         .dz-message {
           width: 100%;
           height: 100%;
-
-          .dz-text {
-            position: relative;
-            top: 50%;
-
-            transform: translateY(-50%);
-          }
         }
 
         .dz-preview {
           width: calc(100% - 16px);
           height: 100%;
-          margin: 8px;
 
           .dz-image {
             width: 100%;
