@@ -1,6 +1,7 @@
 import * as Dropzone from 'dropzone';
 
-import { Directive,
+import { isPlatformBrowser } from '@angular/common';
+import { Directive, PLATFORM_ID,
   OnInit, DoCheck, OnChanges, OnDestroy,
   Input, Output, HostBinding, EventEmitter,
   NgZone, Renderer2, ElementRef, Optional, Inject,
@@ -54,8 +55,8 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
   @Output('queueComplete'         ) DZ_QUEUECOMPLETE            = new EventEmitter<any>();
   @Output('totalUploadProgress'   ) DZ_TOTALUPLOADPROGRESS      = new EventEmitter<any>();
 
-  constructor(private zone: NgZone, private renderer: Renderer2,
-    private elementRef: ElementRef, private differs: KeyValueDiffers,
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private zone: NgZone,
+    private renderer: Renderer2, private elementRef: ElementRef, private differs: KeyValueDiffers,
     @Optional() @Inject(DROPZONE_CONFIG) private defaults: DropzoneConfigInterface)
   {
     const dz = Dropzone;
@@ -64,6 +65,10 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
   }
 
   ngOnInit() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     const params = new DropzoneConfig(this.defaults);
 
     params.assign(this.config); // Custom configuration
