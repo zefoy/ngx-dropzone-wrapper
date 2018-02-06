@@ -3,7 +3,7 @@
   "description": "Angular wrapper library for Dropzone",
   "bugs": "https://github.com/zefoy/ngx-dropzone-wrapper/issues",
   "license": "MIT",
-  "version": "5.3.1",
+  "version": "5.3.2",
   "main": "./bundles/ngx-dropzone-wrapper.umd.js",
   "module": "./dist/ngx-dropzone-wrapper.es5.js",
   "typings": "./dist/ngx-dropzone-wrapper.d.ts",
