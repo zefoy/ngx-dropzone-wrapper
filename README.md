@@ -10,7 +10,7 @@ This documentation is for the latest 5.x.x version which requires Angular 5. For
 
 [Example application](https://zefoy.github.io/ngx-dropzone-wrapper/)
  | 
-[Plunker template](http://plnkr.co/edit/lRFrzs7FJ9Q0TSd5tTko?p=preview)
+[StackBlitz example](https://stackblitz.com/github/zefoy/ngx-dropzone-wrapper/tree/master/example)
  | 
 [Dropzone documentation](http://www.dropzonejs.com/#configuration-options)
 

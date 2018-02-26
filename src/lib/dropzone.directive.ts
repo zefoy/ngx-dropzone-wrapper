@@ -1,9 +1,9 @@
 import * as Dropzone from 'dropzone';
 
 import { isPlatformBrowser } from '@angular/common';
-import { Directive, PLATFORM_ID,
+import { PLATFORM_ID,
   OnInit, DoCheck, OnChanges, OnDestroy,
-  Input, Output, HostBinding, EventEmitter,
+  Directive, Input, Output, EventEmitter,
   NgZone, Renderer2, ElementRef, Optional, Inject,
   SimpleChanges, KeyValueDiffer, KeyValueDiffers } from '@angular/core';
 
