@@ -83,6 +83,10 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
       this.instance = new Dropzone(this.elementRef.nativeElement, params);
     });
 
+    if (this.disabled) {
+      this.instance.disable();
+    }
+
     // Add auto reset handling for events
     this.instance.on('success', (result) => {
       if (params.autoReset != null) {
