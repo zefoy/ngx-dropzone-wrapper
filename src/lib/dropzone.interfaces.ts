@@ -138,7 +138,7 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   hiddenInputContainer: any;
 
   clickable: string | string[] | boolean;
-  paramName: string;
+  paramName: any;
   capture: string;
   maxFiles: number;
   maxFilesize: number;
