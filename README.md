@@ -4,14 +4,14 @@
 
 This is an Angular wrapper library for the [Dropzone](http://www.dropzonejs.com/). To use this library you should get familiar with the Dropzone documentation as well since this documentation only explains details specific to this wrapper.
 
-This documentation is for the latest 5.x.x version which requires Angular 5. For Angular 4 you need to use the latest 4.x.x version. Documentation for the 4.x.x can be found from <a href="https://github.com/zefoy/ngx-dropzone-wrapper/tree/4.x.x/">here</a>.
+This documentation is for the latest 6.x.x version which requires Angular 5 or newer. For Angular 4 you need to use the latest 4.x.x version. Documentation for the 4.x.x can be found from <a href="https://github.com/zefoy/ngx-dropzone-wrapper/tree/4.x.x/">here</a>.
 
 ### Quick links
 
 [Example application](https://zefoy.github.io/ngx-dropzone-wrapper/)
- | 
+ |
 [StackBlitz example](https://stackblitz.com/github/zefoy/ngx-dropzone-wrapper/tree/master/example)
- | 
+ |
 [Dropzone documentation](http://www.dropzonejs.com/#configuration-options)
 
 ### Building the library
