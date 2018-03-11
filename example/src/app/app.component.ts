@@ -27,29 +27,29 @@ export class AppComponent {
 
   constructor() {}
 
-  public toggleType() {
+  public toggleType(): void {
     this.type = (this.type === 'component') ? 'directive' : 'component';
   }
 
-  public toggleDisabled() {
+  public toggleDisabled(): void {
     this.disabled = !this.disabled;
   }
 
-  public toggleAutoReset() {
+  public toggleAutoReset(): void {
     this.config.autoReset = this.config.autoReset ? null : 5000;
     this.config.errorReset = this.config.errorReset ? null : 5000;
     this.config.cancelReset = this.config.cancelReset ? null : 5000;
   }
 
-  public toggleMultiUpload() {
+  public toggleMultiUpload(): void {
     this.config.maxFiles = this.config.maxFiles ? null : 1;
   }
 
-  public toggleClickAction() {
+  public toggleClickAction(): void {
     this.config.clickable = !this.config.clickable;
   }
 
-  public resetDropzoneUploads() {
+  public resetDropzoneUploads(): void {
     if (this.type === 'directive') {
       this.directiveRef.reset();
     } else {
@@ -57,11 +57,11 @@ export class AppComponent {
     }
   }
 
-  public onUploadError(args: any) {
+  public onUploadError(args: any): void {
     console.log('onUploadError:', args);
   }
 
-  public onUploadSuccess(args: any) {
+  public onUploadSuccess(args: any): void {
     console.log('onUploadSuccess:', args);
   }
 }

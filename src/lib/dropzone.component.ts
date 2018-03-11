@@ -56,7 +56,7 @@ export class DropzoneComponent {
 
   constructor() {}
 
-  public getPlaceholder() {
+  public getPlaceholder(): string {
     return 'url(' + encodeURI(this.placeholder) + ')';
   }
 }

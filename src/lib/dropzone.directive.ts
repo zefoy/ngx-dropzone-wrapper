@@ -2,7 +2,7 @@ import * as Dropzone from 'dropzone';
 
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID,
-  OnInit, DoCheck, OnChanges, OnDestroy,
+  OnInit, OnDestroy, DoCheck, OnChanges,
   Directive, Input, Output, EventEmitter,
   NgZone, Renderer2, ElementRef, Optional, Inject,
   SimpleChanges, KeyValueDiffer, KeyValueDiffers } from '@angular/core';
@@ -15,7 +15,7 @@ import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropz
   selector: '[dropzone]',
   exportAs: 'ngxDropzone'
 })
-export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy {
+export class DropzoneDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
   private instance: any;
 
   private configDiff: KeyValueDiffer<string, any>;
@@ -64,7 +64,7 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
     dz.autoDiscover = false;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }
@@ -126,7 +126,17 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
     }
   }
 
-  ngDoCheck() {
+  ngOnDestroy(): void {
+    if (this.instance) {
+      this.zone.runOutsideAngular(() => {
+        this.instance.destroy();
+      });
+
+      this.instance = null;
+    }
+  }
+
+  ngDoCheck(): void {
     if (!this.disabled && this.configDiff) {
       const changes = this.configDiff.diff(this.config || {});
 
@@ -138,17 +148,7 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
     }
   }
 
-  ngOnDestroy() {
-    if (this.instance) {
-      this.zone.runOutsideAngular(() => {
-        this.instance.destroy();
-      });
-
-      this.instance = null;
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (this.instance && changes['disabled']) {
       if (changes['disabled'].currentValue !== changes['disabled'].previousValue) {
         if (changes['disabled'].currentValue === false) {
@@ -168,7 +168,7 @@ export class DropzoneDirective implements OnInit, DoCheck, OnChanges, OnDestroy 
     return this.instance;
   }
 
-  public reset(cancel?: boolean) {
+  public reset(cancel?: boolean): void {
     if (this.instance) {
       this.zone.runOutsideAngular(() => {
         this.instance.removeAllFiles(cancel);
