@@ -1,10 +1,9 @@
 import * as Dropzone from 'dropzone';
 
+import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { PLATFORM_ID,
-  OnInit, OnDestroy, DoCheck, OnChanges,
-  Directive, Input, Output, EventEmitter,
-  NgZone, Renderer2, ElementRef, Optional, Inject,
+import { NgZone, Inject, Optional, ElementRef, Renderer2, Directive,
+  OnInit, OnDestroy, DoCheck, OnChanges, Input, Output, EventEmitter,
   SimpleChanges, KeyValueDiffer, KeyValueDiffers } from '@angular/core';
 
 import { DROPZONE_CONFIG } from './dropzone.interfaces';
@@ -55,8 +54,8 @@ export class DropzoneDirective implements OnInit, OnDestroy, DoCheck, OnChanges 
   @Output('queueComplete'         ) DZ_QUEUECOMPLETE            = new EventEmitter<any>();
   @Output('totalUploadProgress'   ) DZ_TOTALUPLOADPROGRESS      = new EventEmitter<any>();
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private zone: NgZone,
-    private renderer: Renderer2, private elementRef: ElementRef, private differs: KeyValueDiffers,
+  constructor(private zone: NgZone, private renderer: Renderer2, private elementRef: ElementRef,
+    private differs: KeyValueDiffers, @Inject(PLATFORM_ID) private platformId: Object,
     @Optional() @Inject(DROPZONE_CONFIG) private defaults: DropzoneConfigInterface)
   {
     const dz = Dropzone;
@@ -111,11 +110,9 @@ export class DropzoneDirective implements OnInit, OnDestroy, DoCheck, OnChanges 
       this.instance.on(eventName.toLowerCase(), (...args) => {
         args = (args.length === 1) ? args[0] : args;
 
-        if (this[`DZ_${eventName.toUpperCase()}`]) {
-          this.zone.run(() => {
-            this[`DZ_${eventName.toUpperCase()}`].emit(args);
-          });
-        }
+        this.zone.run(() => {
+          this[`DZ_${eventName.toUpperCase()}`].emit(args);
+        });
       });
     });
 

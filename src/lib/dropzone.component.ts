@@ -1,8 +1,11 @@
-import { Component, ViewEncapsulation,
-  Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Component,
+  OnInit, Input, Output, EventEmitter,
+  ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { DropzoneDirective } from './dropzone.directive';
-import { DropzoneConfigInterface } from './dropzone.interfaces';
+import { DropzoneEvents, DropzoneConfigInterface } from './dropzone.interfaces';
 
 @Component({
   selector: 'dropzone',
@@ -11,7 +14,7 @@ import { DropzoneConfigInterface } from './dropzone.interfaces';
   styleUrls: [ './lib/dropzone.component.css' ],
   encapsulation: ViewEncapsulation.None
 })
-export class DropzoneComponent {
+export class DropzoneComponent implements OnInit {
   @Input() disabled: boolean = false;
 
   @Input() config: DropzoneConfigInterface;
@@ -54,7 +57,23 @@ export class DropzoneComponent {
   @Output('queueComplete'         ) DZ_QUEUECOMPLETE            = new EventEmitter<any>();
   @Output('totalUploadProgress'   ) DZ_TOTALUPLOADPROGRESS      = new EventEmitter<any>();
 
-  constructor() {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    window.setTimeout(() => {
+      if (this.directiveRef) {
+        DropzoneEvents.forEach((eventName: string) => {
+          eventName = `DZ_${eventName.toUpperCase()}`;
+
+          this.directiveRef[eventName] = this[eventName];
+        });
+      }
+    }, 0);
+  }
 
   public getPlaceholder(): string {
     return 'url(' + encodeURI(this.placeholder) + ')';
