@@ -30,7 +30,7 @@
       <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
         <dropzone *ngIf="type === 'component'" class="dropzone-container" [config]="config" [disabled]="disabled" fxLayout="row" fxLayoutAlign="start strech" fxFlex="auto" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
 
-        <div *ngIf="type === 'directive'" class="dropzone-container" [dropzone]="config" [disabled]="disabled" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
+        <div *ngIf="type === 'directive'" class="dropzone dropzone-container" [dropzone]="config" [disabled]="disabled" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
       </div>
     </div>
   </div>
