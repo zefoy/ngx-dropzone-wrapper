@@ -69,7 +69,6 @@
   background-color: #555;
 }
 
-.upload-container {
+.dropzone-container {
   height: 100%;
-  margin: -4px;
 }
