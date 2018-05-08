@@ -10,8 +10,8 @@ import { DropzoneEvents, DropzoneConfigInterface } from './dropzone.interfaces';
 @Component({
   selector: 'dropzone',
   exportAs: 'ngxDropzone',
-  templateUrl: './lib/dropzone.component.html',
-  styleUrls: [ './lib/dropzone.component.css' ],
+  templateUrl: '../../dist/lib/dropzone.component.html',
+  styleUrls: [ '../../dist/lib/dropzone.component.css' ],
   encapsulation: ViewEncapsulation.None
 })
 export class DropzoneComponent implements OnInit {
