@@ -1,6 +1,6 @@
 <div class="dz-wrapper" [class.dropzone]="useDropzoneClass" [dropzone]="config" [disabled]="disabled">
   <div class="dz-message" [class.disabled]="disabled" [class.dz-placeholder]="placeholder">
-    <div class="dz-text" [innerHTML]="message || config?.dictDefaultMessage"></div>
+    <div class="dz-text" [innerHTML]="config?.dictDefaultMessage || message"></div>
 
     <div *ngIf="placeholder" class="dz-image" [style.background-image]="getPlaceholder()"></div>
   </div>
