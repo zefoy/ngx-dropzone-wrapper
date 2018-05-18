@@ -22,8 +22,8 @@ export class AppComponent {
     cancelReset: null
   };
 
-  @ViewChild(DropzoneComponent) componentRef: DropzoneComponent;
-  @ViewChild(DropzoneDirective) directiveRef: DropzoneDirective;
+  @ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
+  @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
 
   constructor() {}
 
@@ -42,7 +42,7 @@ export class AppComponent {
   }
 
   public toggleMultiUpload(): void {
-    this.config.maxFiles = this.config.maxFiles ? null : 1;
+    this.config.maxFiles = this.config.maxFiles ? 0 : 1;
   }
 
   public toggleClickAction(): void {
@@ -50,9 +50,9 @@ export class AppComponent {
   }
 
   public resetDropzoneUploads(): void {
-    if (this.type === 'directive') {
+    if (this.type === 'directive' && this.directiveRef) {
       this.directiveRef.reset();
-    } else {
+    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
       this.componentRef.directiveRef.reset();
     }
   }

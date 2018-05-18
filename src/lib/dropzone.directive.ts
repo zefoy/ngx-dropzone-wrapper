@@ -6,9 +6,8 @@ import { NgZone, Inject, Optional, ElementRef, Renderer2, Directive,
   OnInit, OnDestroy, DoCheck, OnChanges, Input, Output, EventEmitter,
   SimpleChanges, KeyValueDiffer, KeyValueDiffers } from '@angular/core';
 
-import { DROPZONE_CONFIG } from './dropzone.interfaces';
-
-import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropzone.interfaces';
+import { DROPZONE_CONFIG, DropzoneConfig, DropzoneConfigInterface,
+  DropzoneEvent, DropzoneEvents } from './dropzone.interfaces';
 
 @Directive({
   selector: '[dropzone]',
@@ -17,11 +16,11 @@ import { DropzoneEvents, DropzoneConfig, DropzoneConfigInterface } from './dropz
 export class DropzoneDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
   private instance: any;
 
-  private configDiff: KeyValueDiffer<string, any>;
+  private configDiff: KeyValueDiffer<string, any> | null = null;
 
   @Input() disabled: boolean = false;
 
-  @Input('dropzone') config: DropzoneConfigInterface;
+  @Input('dropzone') config?: DropzoneConfigInterface;
 
   @Output('error'                 ) DZ_ERROR                    = new EventEmitter<any>();
   @Output('success'               ) DZ_SUCCESS                  = new EventEmitter<any>();
@@ -87,32 +86,36 @@ export class DropzoneDirective implements OnInit, OnDestroy, DoCheck, OnChanges 
     }
 
     // Add auto reset handling for events
-    this.instance.on('success', (result) => {
+    this.instance.on('success', (result: any) => {
       if (params.autoReset != null) {
         setTimeout(() => this.reset(), params.autoReset);
       }
     });
 
-    this.instance.on('error', (error) => {
+    this.instance.on('error', (error: any) => {
       if (params.errorReset != null) {
         setTimeout(() => this.reset(), params.errorReset);
       }
     });
 
-    this.instance.on('canceled', (result) => {
+    this.instance.on('canceled', (result: any) => {
       if (params.cancelReset != null) {
         setTimeout(() => this.reset(), params.cancelReset);
       }
     });
 
     // Add native Dropzone event handling
-    DropzoneEvents.forEach((eventName) => {
-      this.instance.on(eventName.toLowerCase(), (...args) => {
+    DropzoneEvents.forEach((eventName: DropzoneEvent) => {
+      this.instance.on(eventName.toLowerCase(), (...args: any[]) => {
         args = (args.length === 1) ? args[0] : args;
 
-        if (this[`DZ_${eventName.toUpperCase()}`].observers.length > 0) {
+        const output = `DZ_${eventName.toUpperCase()}`;
+
+        const emitter = this[output as keyof DropzoneDirective] as EventEmitter<any>;
+
+        if (emitter.observers.length > 0) {
           this.zone.run(() => {
-            this[`DZ_${eventName.toUpperCase()}`].emit(args);
+            emitter.emit(args);
           });
         }
       });

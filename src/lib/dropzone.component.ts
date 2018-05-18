@@ -5,7 +5,8 @@ import { Inject, Component,
   ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { DropzoneDirective } from './dropzone.directive';
-import { DropzoneEvents, DropzoneConfigInterface } from './dropzone.interfaces';
+
+import { DropzoneEvent, DropzoneEvents, DropzoneConfigInterface } from './dropzone.interfaces';
 
 @Component({
   selector: 'dropzone',
@@ -17,14 +18,14 @@ import { DropzoneEvents, DropzoneConfigInterface } from './dropzone.interfaces';
 export class DropzoneComponent implements OnInit {
   @Input() disabled: boolean = false;
 
-  @Input() config: DropzoneConfigInterface;
+  @Input() config?: DropzoneConfigInterface;
 
   @Input() message: string = 'Click or drag files to upload';
   @Input() placeholder: string = '';
 
   @Input() useDropzoneClass: boolean = true;
 
-  @ViewChild(DropzoneDirective) directiveRef: DropzoneDirective;
+  @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
 
   @Output('error'                 ) DZ_ERROR                    = new EventEmitter<any>();
   @Output('success'               ) DZ_SUCCESS                  = new EventEmitter<any>();
@@ -65,13 +66,16 @@ export class DropzoneComponent implements OnInit {
     }
 
     window.setTimeout(() => {
-      if (this.directiveRef) {
-        DropzoneEvents.forEach((eventName: string) => {
-          eventName = `DZ_${eventName.toUpperCase()}`;
+      DropzoneEvents.forEach((eventName: DropzoneEvent) => {
+        if (this.directiveRef) {
+          const output = `DZ_${eventName.toUpperCase()}`;
 
-          this.directiveRef[eventName] = this[eventName];
-        });
-      }
+          const directiveOutput = output as keyof DropzoneDirective;
+          const componentOutput = output as keyof DropzoneComponent;
+
+          this.directiveRef[directiveOutput] = this[componentOutput] as EventEmitter<any>;
+        }
+      });
     }, 0);
   }
 

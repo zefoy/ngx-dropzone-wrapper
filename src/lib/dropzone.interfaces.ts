@@ -2,7 +2,13 @@ import { InjectionToken } from '@angular/core';
 
 export const DROPZONE_CONFIG = new InjectionToken('DROPZONE_CONFIG');
 
-export const DropzoneEvents = [
+export type DropzoneEvent = 'error' | 'success' | 'sending' | 'canceled' | 'complete' |
+  'processing' | 'drop' | 'dragStart' | 'dragEnd' | 'dragEnter' | 'dragOver' | 'dragLeave' |
+  'thumbnail' | 'addedFile' | 'removedFile' | 'uploadProgress' | 'maxFilesReached' |
+  'maxFilesExceeded' | 'successMultiple' | 'sendingMultiple' | 'canceledMultiple' |
+  'completeMultiple' | 'processingMultiple' | 'reset' | 'queueComplete' | 'totalUploadProgress';
+
+export const DropzoneEvents: DropzoneEvent[] = [
   'error',
   'success',
   'sending',
@@ -38,9 +44,9 @@ export const DropzoneEvents = [
 export interface DropzoneConfigInterface {
   timeout?: number,
 
-  autoReset?: number,
-  errorReset?: number,
-  cancelReset?: number,
+  autoReset?: number | null,
+  errorReset?: number | null,
+  cancelReset?: number | null,
 
   url?: string | DropzoneUrlFunction,
   method?: string | DropzoneMethodFunction,
@@ -113,80 +119,80 @@ export interface DropzoneConfigInterface {
 }
 
 export class DropzoneConfig implements DropzoneConfigInterface {
-  timeout: number;
+  timeout?: number;
 
-  autoReset: number;
-  errorReset: number;
-  cancelReset: number;
+  autoReset?: number;
+  errorReset?: number;
+  cancelReset?: number;
 
-  url: string | DropzoneUrlFunction;
-  method: string | DropzoneMethodFunction;
+  url?: string | DropzoneUrlFunction;
+  method?: string | DropzoneMethodFunction;
 
-  params: any | DropzoneParamsFunction;
-  headers: any | DropzoneHeadersFunction;
+  params?: any | DropzoneParamsFunction;
+  headers?: any | DropzoneHeadersFunction;
 
-  init: DropzoneInitFunction;
-  accept: DropzoneAcceptFunction;
-  resize: DropzoneResizeFunction;
-  fallback: DropzoneFallbackFunction;
-  renameFile: DropzoneRenameFileFunction;
-  transformFile: DropzoneTransformFileFunction;
-  chunksUploaded: DropzoneChunksUploadedFunction;
+  init?: DropzoneInitFunction;
+  accept?: DropzoneAcceptFunction;
+  resize?: DropzoneResizeFunction;
+  fallback?: DropzoneFallbackFunction;
+  renameFile?: DropzoneRenameFileFunction;
+  transformFile?: DropzoneTransformFileFunction;
+  chunksUploaded?: DropzoneChunksUploadedFunction;
 
-  withCredentials: boolean;
+  withCredentials?: boolean;
 
-  previewsContainer: any;
-  hiddenInputContainer: any;
+  previewsContainer?: any;
+  hiddenInputContainer?: any;
 
-  clickable: string | string[] | boolean;
-  paramName: any;
-  capture: string;
-  maxFiles: number;
-  maxFilesize: number;
-  filesizeBase: number;
-  acceptedFiles: string;
-  forceFallback: boolean;
-  addRemoveLinks: boolean;
-  uploadMultiple: boolean;
-  parallelUploads: number;
-  resizeWidth: number;
-  resizeHeight: number;
-  resizeMethod: string;
-  resizeQuality: number;
-  resizeMimeType: string;
-  thumbnailWidth: number;
-  thumbnailHeight: number;
-  thumbnailMethod: string;
-  previewTemplate: string;
-  autoQueue: boolean;
-  autoProcessQueue: boolean;
-  ignoreHiddenFiles: boolean;
-  maxThumbnailFilesize: number;
-  createImageThumbnails: boolean;
+  clickable?: string | string[] | boolean;
+  paramName?: any;
+  capture?: string;
+  maxFiles?: number;
+  maxFilesize?: number;
+  filesizeBase?: number;
+  acceptedFiles?: string;
+  forceFallback?: boolean;
+  addRemoveLinks?: boolean;
+  uploadMultiple?: boolean;
+  parallelUploads?: number;
+  resizeWidth?: number;
+  resizeHeight?: number;
+  resizeMethod?: string;
+  resizeQuality?: number;
+  resizeMimeType?: string;
+  thumbnailWidth?: number;
+  thumbnailHeight?: number;
+  thumbnailMethod?: string;
+  previewTemplate?: string;
+  autoQueue?: boolean;
+  autoProcessQueue?: boolean;
+  ignoreHiddenFiles?: boolean;
+  maxThumbnailFilesize?: number;
+  createImageThumbnails?: boolean;
 
-  chunking: boolean;
-  chunkSize: number;
-  retryChunks: boolean;
-  forceChunking: boolean;
-  retryChunksLimit: number;
-  parallelChunkUploads: boolean;
+  chunking?: boolean;
+  chunkSize?: number;
+  retryChunks?: boolean;
+  forceChunking?: boolean;
+  retryChunksLimit?: number;
+  parallelChunkUploads?: boolean;
 
-  dictFileSizeUnits: any;
+  dictFileSizeUnits?: any;
 
-  dictDefaultMessage: string;
-  dictFallbackMessage: string;
+  dictDefaultMessage?: string;
+  dictFallbackMessage?: string;
 
-  dictFileTooBig: string;
-  dictResponseError: string;
-  dictInvalidFileType: string;
+  dictFileTooBig?: string;
+  dictResponseError?: string;
+  dictInvalidFileType?: string;
 
-  dictRemoveFile: string;
-  dictCancelUpload: string;
-  dictUploadCanceled: string;
-  dictFallbackText: string;
-  dictMaxFilesExceeded: string;
-  dictRemoveFileConfirmation: string;
-  dictCancelUploadConfirmation: string;
+  dictRemoveFile?: string;
+  dictCancelUpload?: string;
+  dictUploadCanceled?: string;
+  dictFallbackText?: string;
+  dictMaxFilesExceeded?: string;
+  dictRemoveFileConfirmation?: string;
+  dictCancelUploadConfirmation?: string;
 
   constructor(config: DropzoneConfigInterface = {}) {
     this.assign(config);
