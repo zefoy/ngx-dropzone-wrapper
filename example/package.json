@@ -41,13 +41,12 @@
     "@angular/common": "^6.0.0",
     "@angular/compiler": "^6.0.0",
     "@angular/core": "^6.0.0",
-    "@angular/flex-layout": "5.0.0-beta.14",
+    "@angular/flex-layout": "6.0.0-beta.16",
     "@angular/platform-browser": "^6.0.0",
     "@angular/platform-browser-dynamic": "^6.0.0",
     "core-js": "^2.5.0",
     "ngx-dropzone-wrapper": "^6.0.0",
-    "rxjs": "^6.1.0",
-    "rxjs-compat": "^6.1.0",
+    "rxjs": "^6.2.0",
     "zone.js": "^0.8.0"
   },
   "devDependencies": {
@@ -56,6 +55,7 @@
     "@angular-devkit/build-ng-packagr": "^0.6.0",
     "@angular-devkit/build-angular": "^0.6.0",
     "@ngtools/webpack": "^6.0.0",
+    "@types/dropzone": "^5.0.0",
     "@types/node": "^8.10.0",
     "codelyzer": "^4.3.0",
     "connect-history-api-fallback": "^1.5.0",
@@ -67,14 +67,14 @@
     "plugin-typescript": "^8.0.0",
     "raw-loader": "^0.5.0",
     "sass-loader": "^7.0.0",
-    "stylelint": "^9.2.0",
+    "stylelint": "^9.3.0",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^0.8.0",
     "systemjs": "^0.21.0",
     "tslint": "^5.10.0",
     "typescript": "~2.7.0",
-    "webpack": "^4.8.0",
-    "webpack-cli": "^2.1.0",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.0",
     "webpack-dev-server": "^3.1.0"
   }
 }
