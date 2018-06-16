@@ -46,6 +46,7 @@
     "@angular/compiler-cli": "^6.0.0",
     "@angular/core": "^6.0.0",
     "@angular/platform-browser": "^6.0.0",
+    "@types/dropzone": "^5.0.0",
     "@types/node": "^8.10.0",
     "codelyzer": "^4.3.0",
     "core-js": "^2.5.0",
