@@ -1,0 +1,227 @@
+dropzone {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+dropzone[fxflex] {
+  display: flex;
+  flex-direction: inherit;
+  min-width: 0;
+  min-height: 0;
+
+  -webkit-box-direction: inherit;
+  -webkit-box-orient: inherit;
+}
+
+dropzone[fxflex] > .dropzone.dz-wrapper {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+
+  -webkit-box-flex: 1;
+}
+
+dropzone[fxlayout] {
+  align-items: inherit;
+  align-content: inherit;
+  justify-content: inherit;
+
+  -webkit-box-align: inherit;
+  -webkit-box-pack: inherit;
+}
+
+dropzone[fxlayout] > .dropzone.dz-wrapper.dz-single {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+
+  -webkit-box-align: center;
+  -webkit-box-direction: column;
+  -webkit-box-orient: column;
+  -webkit-box-pack: center;
+}
+
+dropzone[fxlayout] > .dropzone.dz-wrapper.dz-multiple {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: start;
+  align-content: start;
+  justify-content: space-between;
+
+  -webkit-box-align: start;
+  -webkit-box-direction: row;
+  -webkit-box-orient: row;
+  -webkit-box-pack: start;
+}
+
+dropzone > .dropzone.dz-wrapper {
+  position: relative;
+
+  overflow: auto;
+  width: 100%;
+  min-height: 0;
+  max-height: 100%;
+  padding: 0;
+  border: none;
+
+  color: #666;
+  background: transparent;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-message {
+  position: relative;
+
+  display: inline-block;
+  overflow: auto;
+  width: calc(100% - 16px);
+  min-width: calc(100% - 16px);
+  min-height: 40px;
+  max-width: calc(100% - 16px);
+  max-height: 100%;
+  margin: 8px;
+  border: 2px dashed #aaa;
+
+  background-color: #eee;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-message .dz-text {
+  position: absolute;
+  top: 50%;
+
+  width: 100%;
+  padding: 8px 16px;
+
+  text-align: center;
+
+  transform: translateY(-50%);
+}
+
+dropzone > .dropzone.dz-wrapper .dz-message .dz-image {
+  width: 100%;
+  height: 100%;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-message.disabled {
+  cursor: not-allowed;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-message.disabled .dz-text {
+  opacity: 0.5;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-message.dz-placeholder {
+  border-color: rgba(#aaa, 0);
+}
+
+dropzone > .dropzone.dz-wrapper .dz-message.dz-placeholder .dz-text {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 10%;
+  left: 10%;
+
+  opacity: 0;
+
+  font-weight: bold;
+  background-color: rgba(#fff, 0.5);
+
+  transform: translateY(-50%);
+  transition:
+    filter 250ms ease-in-out,
+    opacity 250ms ease-in-out,
+    border-color 250ms ease-in-out;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) {
+  border-color: #aaa;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) .dz-text {
+  opacity: 1;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) .dz-image {
+  -webkit-filter: blur(8px);
+
+  filter: blur(8px);
+}
+
+dropzone > .dropzone.dz-wrapper .dz-preview {
+  margin: 8px;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-preview .dz-details {
+  padding: 24px;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-preview .dz-progress {
+  width: 80%;
+  margin-left: -40%;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-preview .dz-progress .dz-upload {
+  background-color: #666;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-preview .dz-filename span {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+
+  text-overflow: ellipsis;
+}
+
+dropzone > .dropzone.dz-wrapper .dz-preview .dz-filename span:hover {
+  overflow: visible;
+
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+dropzone > .dropzone.dz-wrapper.dz-single .dz-message {
+  width: 100%;
+  height: 100%;
+}
+
+dropzone > .dropzone.dz-wrapper.dz-single.dz-started .dz-message {
+  display: none;
+}
+
+dropzone > .dropzone.dz-wrapper.dz-single .dz-preview {
+  width: calc(100% - 16px);
+  height: 100%;
+}
+
+dropzone > .dropzone.dz-wrapper.dz-single .dz-preview .dz-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+dropzone > .dropzone.dz-wrapper.dz-single .dz-preview .dz-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+dropzone > .dropzone.dz-wrapper.dz-single .dz-error-message {
+  top: 50%;
+  left: 50%;
+
+  transform: translateX(-50%) translateY(100%);
+}
+
+dropzone > .dropzone.dz-wrapper.dz-multiple.dz-started .dz-message {
+  display: inline-block;
+}

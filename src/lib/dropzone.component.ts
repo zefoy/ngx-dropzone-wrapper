@@ -12,7 +12,10 @@ import { DropzoneEvent, DropzoneEvents, DropzoneConfigInterface } from './dropzo
   selector: 'dropzone',
   exportAs: 'ngxDropzone',
   templateUrl: '../../dist/lib/dropzone.component.html',
-  styleUrls: [ '../../dist/lib/dropzone.component.css' ],
+  styleUrls: [
+    '../../dist/lib/dropzone.component.css',
+    '../../node_modules/dropzone/dist/min/dropzone.min.css'
+  ],
   encapsulation: ViewEncapsulation.None
 })
 export class DropzoneComponent implements OnInit {
