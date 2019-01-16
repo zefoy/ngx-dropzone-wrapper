@@ -57,6 +57,10 @@ export class AppComponent {
     }
   }
 
+  public onUploadInit(args: any): void {
+    console.log('onUploadInit:', args);
+  }
+
   public onUploadError(args: any): void {
     console.log('onUploadError:', args);
   }

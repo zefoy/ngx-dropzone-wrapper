@@ -22,6 +22,8 @@ export class DropzoneDirective implements OnInit, OnDestroy, DoCheck, OnChanges 
 
   @Input('dropzone') config?: DropzoneConfigInterface;
 
+  @Output('init'                  ) DZ_INIT                     = new EventEmitter<any>();
+
   @Output('error'                 ) DZ_ERROR                    = new EventEmitter<any>();
   @Output('success'               ) DZ_SUCCESS                  = new EventEmitter<any>();
   @Output('sending'               ) DZ_SENDING                  = new EventEmitter<any>();
@@ -83,6 +85,12 @@ export class DropzoneDirective implements OnInit, OnDestroy, DoCheck, OnChanges 
 
     if (this.disabled) {
       this.instance.disable();
+    }
+
+    if (this.DZ_INIT.observers.length) {
+      this.zone.run(() => {
+        this.DZ_INIT.emit(this.instance);
+      });
     }
 
     // Add auto reset handling for events

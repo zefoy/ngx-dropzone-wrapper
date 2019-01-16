@@ -1,4 +1,4 @@
-<div class="dz-wrapper" [class.dropzone]="useDropzoneClass" [dropzone]="config" [disabled]="disabled">
+<div class="dz-wrapper" [class.dropzone]="useDropzoneClass" [dropzone]="config" [disabled]="disabled" (init)="DZ_INIT.emit($event)">
   <div class="dz-message" [class.disabled]="disabled" [class.dz-placeholder]="placeholder">
     <div class="dz-text" [innerHTML]="config?.dictDefaultMessage || message"></div>
 

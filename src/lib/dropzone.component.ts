@@ -30,6 +30,8 @@ export class DropzoneComponent implements OnInit {
 
   @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
 
+  @Output('init'                  ) DZ_INIT                     = new EventEmitter<any>();
+
   @Output('error'                 ) DZ_ERROR                    = new EventEmitter<any>();
   @Output('success'               ) DZ_SUCCESS                  = new EventEmitter<any>();
   @Output('sending'               ) DZ_SENDING                  = new EventEmitter<any>();
