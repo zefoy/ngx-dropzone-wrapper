@@ -22,8 +22,8 @@ export class AppComponent {
     cancelReset: null
   };
 
-  @ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
-  @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
+  @ViewChild(DropzoneComponent, { static: false }) componentRef?: DropzoneComponent;
+  @ViewChild(DropzoneDirective, { static: false }) directiveRef?: DropzoneDirective;
 
   constructor() {}
 

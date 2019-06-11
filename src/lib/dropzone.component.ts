@@ -28,8 +28,6 @@ export class DropzoneComponent implements OnInit {
 
   @Input() useDropzoneClass: boolean = true;
 
-  @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
-
   @Output('init'                  ) DZ_INIT                     = new EventEmitter<any>();
 
   @Output('error'                 ) DZ_ERROR                    = new EventEmitter<any>();
@@ -62,6 +60,8 @@ export class DropzoneComponent implements OnInit {
   @Output('reset'                 ) DZ_RESET                    = new EventEmitter<any>();
   @Output('queueComplete'         ) DZ_QUEUECOMPLETE            = new EventEmitter<any>();
   @Output('totalUploadProgress'   ) DZ_TOTALUPLOADPROGRESS      = new EventEmitter<any>();
+
+  @ViewChild(DropzoneDirective, { static: true }) directiveRef?: DropzoneDirective;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
