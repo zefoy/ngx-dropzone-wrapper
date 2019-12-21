@@ -78,7 +78,7 @@ export class DropzoneComponent implements OnInit {
           const directiveOutput = output as keyof DropzoneDirective;
           const componentOutput = output as keyof DropzoneComponent;
 
-          this.directiveRef[directiveOutput] = this[componentOutput] as EventEmitter<any>;
+          this.directiveRef[directiveOutput] = this[componentOutput] as any;
         }
       });
     }, 0);
