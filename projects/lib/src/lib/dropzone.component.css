@@ -47,14 +47,14 @@ dropzone[fxlayout] > .dropzone.dz-wrapper.dz-single {
 dropzone[fxlayout] > .dropzone.dz-wrapper.dz-multiple {
   display: flex;
   flex-flow: row wrap;
-  align-items: start;
-  align-content: start;
+  align-items: flex-start;
+  align-content: flex-start;
   justify-content: space-between;
 
-  -webkit-box-align: start;
+  -webkit-box-align: flex-start;
   -webkit-box-direction: row;
   -webkit-box-orient: row;
-  -webkit-box-pack: start;
+  -webkit-box-pack: flex-start;
 }
 
 dropzone > .dropzone.dz-wrapper {

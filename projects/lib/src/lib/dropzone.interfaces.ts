@@ -80,12 +80,12 @@ export interface DropzoneConfigInterface {
   parallelUploads?: number,
   resizeWidth?: number,
   resizeHeight?: number,
-  resizeMethod?: string,
+  resizeMethod?: 'contain' | 'crop',
   resizeQuality?: number,
   resizeMimeType?: string,
   thumbnailWidth?: number,
   thumbnailHeight?: number,
-  thumbnailMethod?: string,
+  thumbnailMethod?: 'contain' | 'crop',
   previewTemplate?: string,
   autoQueue?: boolean,
   autoProcessQueue?: boolean,
@@ -157,12 +157,12 @@ export class DropzoneConfig implements DropzoneConfigInterface {
   parallelUploads?: number;
   resizeWidth?: number;
   resizeHeight?: number;
-  resizeMethod?: string;
+  resizeMethod?: 'contain' | 'crop';
   resizeQuality?: number;
   resizeMimeType?: string;
   thumbnailWidth?: number;
   thumbnailHeight?: number;
-  thumbnailMethod?: string;
+  thumbnailMethod?: 'contain' | 'crop';
   previewTemplate?: string;
   autoQueue?: boolean;
   autoProcessQueue?: boolean;

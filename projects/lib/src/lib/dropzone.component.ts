@@ -11,10 +11,10 @@ import { DropzoneEvent, DropzoneEvents, DropzoneConfigInterface } from './dropzo
 @Component({
   selector: 'dropzone',
   exportAs: 'ngxDropzone',
-  templateUrl: '../../dist/lib/dropzone.component.html',
+  templateUrl: './dropzone.component.html',
   styleUrls: [
-    '../../dist/lib/dropzone.component.css',
-    '../../node_modules/dropzone/dist/min/dropzone.min.css'
+    './dropzone.component.css',
+    '../../../../node_modules/dropzone/dist/min/dropzone.min.css'
   ],
   encapsulation: ViewEncapsulation.None
 })
