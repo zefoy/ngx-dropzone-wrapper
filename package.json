@@ -2,7 +2,7 @@
   "name": "ngx-dropzone-wrapper",
   "description": "Angular wrapper library for Dropzone",
   "bugs": "https://github.com/zefoy/ngx-dropzone-wrapper/issues",
-  "version": "9.0.0-1",
+  "version": "9.0.0",
   "license": "MIT",
   "private": true,
   "scripts": {

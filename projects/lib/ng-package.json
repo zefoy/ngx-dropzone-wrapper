@@ -6,5 +6,8 @@
     "umdModuleIds": {
       "dropzone": "Dropzone"
     }
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "dropzone"
+  ]
 }
