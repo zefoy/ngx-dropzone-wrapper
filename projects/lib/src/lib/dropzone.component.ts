@@ -46,11 +46,13 @@ export class DropzoneComponent implements OnInit {
 
   @Output('thumbnail'             ) DZ_THUMBNAIL                = new EventEmitter<any>();
   @Output('addedFile'             ) DZ_ADDEDFILE                = new EventEmitter<any>();
+  @Output('addedFiles'            ) DZ_ADDEDFILES               = new EventEmitter<any>();
   @Output('removedFile'           ) DZ_REMOVEDFILE              = new EventEmitter<any>();
   @Output('uploadProgress'        ) DZ_UPLOADPROGRESS           = new EventEmitter<any>();
   @Output('maxFilesReached'       ) DZ_MAXFILESREACHED          = new EventEmitter<any>();
   @Output('maxFilesExceeded'      ) DZ_MAXFILESEXCEEDED         = new EventEmitter<any>();
 
+  @Output('errorMultiple'         ) DZ_ERRORMULTIPLE            = new EventEmitter<any>();
   @Output('successMultiple'       ) DZ_SUCCESSMULTIPLE          = new EventEmitter<any>();
   @Output('sendingMultiple'       ) DZ_SENDINGMULTIPLE          = new EventEmitter<any>();
   @Output('canceledMultiple'      ) DZ_CANCELEDMULTIPLE         = new EventEmitter<any>();
