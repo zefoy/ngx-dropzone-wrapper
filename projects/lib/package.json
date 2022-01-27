@@ -9,10 +9,10 @@
     "url": "https://github.com/zefoy/ngx-dropzone-wrapper.git"
   },
   "dependencies": {
-    "dropzone": "^5.7.0"
+    "dropzone": "^5.9.0"
   },
   "peerDependencies": {
-    "@angular/common": ">=9.0.0",
-    "@angular/core": ">=9.0.0"
+    "@angular/common": ">=13.0.0",
+    "@angular/core": ">=13.0.0"
   }
 }

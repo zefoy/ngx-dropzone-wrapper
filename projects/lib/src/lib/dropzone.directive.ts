@@ -1,4 +1,6 @@
-import Dropzone from 'dropzone';
+import _dz from 'dropzone';
+// Fix until Dropzone types are updated
+const Dropzone: typeof _dz = (_dz as any).Dropzone;
 
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';

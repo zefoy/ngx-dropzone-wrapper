@@ -2,12 +2,9 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/lib",
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdModuleIds": {
-      "dropzone": "Dropzone"
-    }
+    "entryFile": "src/public-api.ts"
   },
-  "whitelistedNonPeerDependencies": [
+  "allowedNonPeerDependencies": [
     "dropzone"
   ]
 }
