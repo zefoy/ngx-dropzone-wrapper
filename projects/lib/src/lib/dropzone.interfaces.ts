@@ -205,8 +205,7 @@ export class DropzoneConfig implements DropzoneConfigInterface {
 
     for (const key in config) {
       if (config[key] != null && !(Array.isArray(config[key])) &&
-        typeof config[key] === 'object' && !(config[key] instanceof HTMLElement))
-      {
+        typeof config[key] === 'object' && !(config[key] instanceof HTMLElement)) {
         target[key] = {};
 
         this.assign(config[key], target[key]);
@@ -226,9 +225,9 @@ export type DropzoneHeadersFunction = () => any;
 export type DropzoneInitFunction = () => any;
 export type DropzoneFallbackFunction = () => HTMLElement;
 
-export type DropzoneAcceptFunction = (file: File, done: Function) => any;
+export type DropzoneAcceptFunction = (file: File, done: (error?: string | Error) => void) => any;
 export type DropzoneResizeFunction = (file: File, width: number, height: number, resizeMethod: string) => any;
 
 export type DropzoneRenameFileFunction = (file: File) => string;
-export type DropzoneTransformFileFunction = (file: File, done: Function) => any;
-export type DropzoneChunksUploadedFunction = (file: File, done: Function) => any;
+export type DropzoneTransformFileFunction = (file: File, done: (file?: string | Blob) => void) => any;
+export type DropzoneChunksUploadedFunction = (file: File, done: (error?: string | Error) => void) => any;

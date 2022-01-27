@@ -59,8 +59,7 @@ export class DropzoneDirective implements OnInit, OnDestroy, DoCheck, OnChanges 
 
   constructor(private zone: NgZone, private renderer: Renderer2, private elementRef: ElementRef,
     private differs: KeyValueDiffers, @Inject(PLATFORM_ID) private platformId: Object,
-    @Optional() @Inject(DROPZONE_CONFIG) private defaults: DropzoneConfigInterface)
-  {
+    @Optional() @Inject(DROPZONE_CONFIG) private defaults: DropzoneConfigInterface) {
     const dz = Dropzone;
 
     dz.autoDiscover = false;
