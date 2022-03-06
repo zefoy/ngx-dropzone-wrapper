@@ -10,7 +10,7 @@
       <div class="box-title">Controls</div>
 
       <div class="action-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleType()'>{{(type == "component") ? "Switch to directive" : "Switch to component"}}</div>
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleType()'>{{(type === "component") ? "Switch to directive" : "Switch to component"}}</div>
 
         <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleDisabled()'>Toggle disabled state</div>
 

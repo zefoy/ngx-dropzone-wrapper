@@ -21,7 +21,7 @@
     ],
     "paths": {
       "ngx-dropzone-wrapper": [
-        "dist/lib"
+        "./projects/lib/src/public-api.ts"
       ]
     }
   },
