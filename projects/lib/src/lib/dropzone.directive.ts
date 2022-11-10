@@ -1,4 +1,4 @@
-import Dropzone from 'dropzone';
+import { Dropzone } from 'dropzone';
 
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
