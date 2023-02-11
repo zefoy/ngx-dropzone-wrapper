@@ -102,8 +102,7 @@
             "project": "projects/lib/ng-package.json"
           },
           "configurations": {
-            "production": {
-            }
+            "production": {}
           }
         },
         "lint": {
@@ -118,5 +117,13 @@
       }
     }
   },
-  "defaultProject": "lib"
+  "defaultProject": "lib",
+  "schematics": {
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
+  }
 }

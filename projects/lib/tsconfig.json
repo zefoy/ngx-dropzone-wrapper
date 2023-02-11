@@ -2,7 +2,6 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
-    "target": "esnext",
     "declaration": true,
     "inlineSources": true,
     "stripInternal": true,
