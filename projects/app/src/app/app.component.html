@@ -1,36 +1,36 @@
-<div class="box-container" fxLayout="column" [ngStyle.lt-sm]="'min-height: 800px;'">
+<div class="box-container flex-col">
   <div class="app-title">Simple example application for the ngx-dropzone-wrapper</div>
 
   <div class="info-container">
     This example does not actually upload any of the selected files, only simulates the upload process.
   </div>
 
-  <div class="horizontal-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="stretch" fxFlex="auto">
-    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+  <div class="horizontal-container flex content-stretch flex-col md:flex-row">
+    <div class="vertical-container flex-1 flex-col content-stretch" style="min-width: 0">
       <div class="box-title">Controls</div>
 
-      <div class="action-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleType()'>{{(type === "component") ? "Switch to directive" : "Switch to component"}}</div>
+      <div class="action-container flex-col content-stretch">
+        <div class="action-button flex items-center justify-center" (click)='toggleType()'>{{(type === "component") ? "Switch to directive" : "Switch to component"}}</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleDisabled()'>Toggle disabled state</div>
+        <div class="action-button flex items-center justify-center" (click)='toggleDisabled()'>Toggle disabled state</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleMultiUpload()'>{{(config.maxFiles !== 1) ? "Upload single file" : "Upload multiple files"}}</div>
+        <div class="action-button flex items-center justify-center" (click)='toggleMultiUpload()'>{{(config.maxFiles !== 1) ? "Upload single file" : "Upload multiple files"}}</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleAutoReset()'>{{config.autoReset ? "Turn off auto reset" : "Turn on auto reset"}}</div>
+        <div class="action-button flex items-center justify-center" (click)='toggleAutoReset()'>{{config.autoReset ? "Turn off auto reset" : "Turn on auto reset"}}</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleClickAction()'>{{config.clickable ? "Turn off click action" : "Turn on click action"}}</div>
+        <div class="action-button flex items-center justify-center" (click)='toggleClickAction()'>{{config.clickable ? "Turn off click action" : "Turn on click action"}}</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='resetDropzoneUploads()'>Reset upload area</div>
+        <div class="action-button flex items-center justify-center" (click)='resetDropzoneUploads()'>Reset upload area</div>
       </div>
     </div>
 
-    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+    <div class="vertical-container flex-1 flex-col content-stretch" style="min-width: 0">
       <div class="box-title">Dropzone</div>
 
-      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
-        <dropzone *ngIf="type === 'component'" class="dropzone-container" [config]="config" [disabled]="disabled" fxLayout="row" fxLayoutAlign="start strech" fxFlex="auto" [message]="'Click or drag images here to upload'" (init)="onUploadInit($event)" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+      <div class="content-container flex flex-col content-stretch">
+        <dropzone *ngIf="type === 'component'" class="dropzone-container flex" [config]="config" [disabled]="disabled" [message]="'Click or drag images here to upload'" (init)="onUploadInit($event)" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
 
-        <div *ngIf="type === 'directive'" class="dropzone dropzone-container" [dropzone]="config" [disabled]="disabled" (init)="onUploadInit($event)" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
+        <div *ngIf="type === 'directive'" class="dropzone dropzone-container justify-center flex flex-1" [dropzone]="config" [disabled]="disabled" (init)="onUploadInit($event)" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
       </div>
     </div>
   </div>

@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
-
 import { DropzoneModule, DropzoneConfigInterface,
   DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 
@@ -25,8 +23,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ],
     imports: [
       DropzoneModule,
-      BrowserModule,
-      FlexLayoutModule,
+      BrowserModule
     ],
     exports: [
     ],
