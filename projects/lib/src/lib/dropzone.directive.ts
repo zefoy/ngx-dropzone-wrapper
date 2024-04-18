@@ -117,7 +117,6 @@ export class DropzoneDirective
     Object.keys(params).forEach(key => params[key] === undefined && delete params[key])
 
     this.zone.runOutsideAngular(() => {
-      console.log(params);
       this.instance = new Dropzone(this.elementRef.nativeElement, params);
     });
 
