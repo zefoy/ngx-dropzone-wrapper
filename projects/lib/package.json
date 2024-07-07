@@ -1,9 +1,9 @@
 {
+  "license": "MIT",
+  "version": "17.0.0",
   "name": "ngx-dropzone-wrapper",
   "description": "Angular wrapper library for Dropzone",
   "bugs": "https://github.com/zefoy/ngx-dropzone-wrapper/issues",
-  "version": "16.0.0",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/zefoy/ngx-dropzone-wrapper.git"
