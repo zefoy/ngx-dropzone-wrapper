@@ -133,21 +133,27 @@ dropzone > .dropzone.dz-wrapper .dz-message.dz-placeholder .dz-text {
   background-color: rgba(#fff, 0.5);
 
   transform: translateY(-50%);
-  transition:
-    filter 250ms ease-in-out,
-    opacity 250ms ease-in-out,
+  transition: filter 250ms ease-in-out, opacity 250ms ease-in-out,
     border-color 250ms ease-in-out;
 }
 
-dropzone > .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) {
+dropzone
+  > .dropzone.dz-wrapper
+  .dz-message.dz-placeholder:hover:not(.disabled) {
   border-color: #aaa;
 }
 
-dropzone > .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) .dz-text {
+dropzone
+  > .dropzone.dz-wrapper
+  .dz-message.dz-placeholder:hover:not(.disabled)
+  .dz-text {
   opacity: 1;
 }
 
-dropzone > .dropzone.dz-wrapper .dz-message.dz-placeholder:hover:not(.disabled) .dz-image {
+dropzone
+  > .dropzone.dz-wrapper
+  .dz-message.dz-placeholder:hover:not(.disabled)
+  .dz-image {
   -webkit-filter: blur(8px);
 
   filter: blur(8px);

@@ -1,24 +1,24 @@
 import { Dropzone } from "dropzone";
 
-import { PLATFORM_ID } from "@angular/core";
 import { isPlatformBrowser } from "@angular/common";
 import {
-  NgZone,
-  Inject,
-  Optional,
-  ElementRef,
-  Renderer2,
   Directive,
-  OnInit,
-  OnDestroy,
   DoCheck,
-  OnChanges,
-  Input,
-  Output,
+  ElementRef,
   EventEmitter,
-  SimpleChanges,
+  Inject,
+  Input,
   KeyValueDiffer,
   KeyValueDiffers,
+  NgZone,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Output,
+  PLATFORM_ID,
+  Renderer2,
+  SimpleChanges,
 } from "@angular/core";
 
 import {
@@ -114,7 +114,9 @@ export class DropzoneDirective
       params.maxFiles === 1 ? "dz-multiple" : "dz-single"
     );
 
-    Object.keys(params).forEach(key => params[key] === undefined && delete params[key])
+    Object.keys(params).forEach(
+      (key) => params[key] === undefined && delete params[key]
+    );
 
     this.zone.runOutsideAngular(() => {
       this.instance = new Dropzone(this.elementRef.nativeElement, params);
