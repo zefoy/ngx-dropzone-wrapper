@@ -1,16 +1,21 @@
-import { Component, ViewChild } from '@angular/core';
+import { CommonModule } from "@angular/common";
+import { Component, ViewChild } from "@angular/core";
 
-import { DropzoneComponent , DropzoneDirective,
-  DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import {
+  DropzoneComponent,
+  DropzoneConfigInterface,
+  DropzoneDirective,
+} from "ngx-dropzone-wrapper";
 
 @Component({
-  selector: 'my-app',
-  moduleId: 'src/app/app.component',
-  templateUrl: './app.component.html',
-  styleUrls: [ './app.component.css' ]
+  selector: "my-app",
+  moduleId: "src/app/app.component",
+  imports: [DropzoneComponent, DropzoneDirective, CommonModule],
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  public type: string = 'component';
+  public type: string = "component";
 
   public disabled: boolean = false;
 
@@ -19,16 +24,18 @@ export class AppComponent {
     maxFiles: 1,
     autoReset: null,
     errorReset: null,
-    cancelReset: null
+    cancelReset: null,
   };
 
-  @ViewChild(DropzoneComponent, { static: false }) componentRef?: DropzoneComponent;
-  @ViewChild(DropzoneDirective, { static: false }) directiveRef?: DropzoneDirective;
+  @ViewChild(DropzoneComponent, { static: false })
+  componentRef?: DropzoneComponent;
+  @ViewChild(DropzoneDirective, { static: false })
+  directiveRef?: DropzoneDirective;
 
   constructor() {}
 
   public toggleType(): void {
-    this.type = (this.type === 'component') ? 'directive' : 'component';
+    this.type = this.type === "component" ? "directive" : "component";
   }
 
   public toggleDisabled(): void {
@@ -50,22 +57,26 @@ export class AppComponent {
   }
 
   public resetDropzoneUploads(): void {
-    if (this.type === 'directive' && this.directiveRef) {
+    if (this.type === "directive" && this.directiveRef) {
       this.directiveRef.reset();
-    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
+    } else if (
+      this.type === "component" &&
+      this.componentRef &&
+      this.componentRef.directiveRef
+    ) {
       this.componentRef.directiveRef.reset();
     }
   }
 
   public onUploadInit(args: any): void {
-    console.log('onUploadInit:', args);
+    console.log("onUploadInit:", args);
   }
 
   public onUploadError(args: any): void {
-    console.log('onUploadError:', args);
+    console.log("onUploadError:", args);
   }
 
   public onUploadSuccess(args: any): void {
-    console.log('onUploadSuccess:', args);
+    console.log("onUploadSuccess:", args);
   }
 }
